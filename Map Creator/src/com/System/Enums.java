@@ -21,20 +21,24 @@ public class Enums {
     public enum animationEnd {
         DESTROY, REPEAT
     }
-    //Types of buttons on the upgrades screen.
-    public enum statButton {
-        ATTACK, DEFENSE, DIFFICULTY, EXTRA_TIME, CONTINUE
-    }
     //The types of damage an attack can deal.
     public enum damageType {
         BLUDGEONING, PIERCING, SLASHING, ACID, COLD, FIRE, FORCE, LIGHTNING, NECROTIC, POISON, PSYCHIC, THUNDER, RADIANT, ARCANE, RIGHTEOUS, VILE
+    }
+    //The various classes assignable to players.
+    public enum characterClass {
+        ARTIFICER, BARBARIAN, BLOOD_HUNTER, CLERIC, DRUID, FIGHTER, MONK, MYSTIC, PALADIN, RANGER, ROGUE, SORCERER, WARLOCK, WIZARD
     }
     //Whether a map is randomly generated or static.
     public enum mapLayout {
         RANDOMLY_GENERATED, STATIC
     }
-    //Types of tiles in relation to character pathfinding.
+    //Types of tiles in relation to terrain.
+    public enum tileType {
+        FLOOR, WALL, DIFFICULT_TERRAIN, WATER
+    }
+    //Types of tiles in regards to character pathfinding.
     public enum pathTile {
-        FLOOR, WALL, DIFFICULT_TERRAIN
+        NULL, FREE, ATTACK
     }
 }

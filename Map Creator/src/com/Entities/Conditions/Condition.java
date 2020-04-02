@@ -1,18 +1,18 @@
 package com.Entities.Conditions;
 
-import com.Entities.Characters.Character;
+import com.Entities.Characters.CharacterModel;
 
 public abstract class Condition {
     public String name;
     public int level;
-    public Character target;
+    public CharacterModel target;
     public int duration;
     public int effectGap;
     public int timer;
     public int decisecond = 0;
     public int timeGap = 10;
 
-    public void setAttributes(Character target, int level, int duration, int timeGap) {
+    public void setAttributes(CharacterModel target, int level, int duration, int timeGap) {
         this.target = target;
         this.level = level;
         this.duration = duration;

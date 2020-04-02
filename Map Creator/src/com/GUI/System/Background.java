@@ -155,36 +155,4 @@ public class Background {
             drawWall(g, tileX, tileY, screenX, screenY, screenTileSize);
         }
     }
-
-    //Draw the floor's entrances and exits on a wall face next to the start and end squares.
-    public void drawRoomDoors(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize) {
-        if (tileSheet != null) {
-            try {
-                int type = -1;
-                int[] dir = {0, 0};
-                switch (map.map[tileY][tileX]) {
-                    case 3:
-                        if (map.floor == 0) {
-                            type = 2;
-                        }
-                        else {
-                            type = 1;
-                        }
-                        break;
-                    case 4:
-                        type = 0;
-                        break;
-                }
-                if (type > -1) {
-                    String key = map.wallChecker.concatenateCode(new int[]{dir[0] + 1, dir[1] + 1, type});
-                    int[] wall = doorMap.get(key);
-                    int screenTileX = (dir[0] * screenTileSize);
-                    int screenTileY = (dir[1] * screenTileSize);
-                    g.drawImage(tileSheet, screenX + screenTileX - 1, screenY + screenTileY, screenX + screenTileX + screenTileSize + 1, screenY + screenTileY + screenTileSize, wall[0] * tileSize, 160 + (wall[1] * tileSize), (wall[0] * tileSize) + tileSize, 160 + (wall[1] * tileSize) + tileSize, null);
-                }
-            } catch (ArrayIndexOutOfBoundsException e) {
-
-            }
-        }
-    }
 }

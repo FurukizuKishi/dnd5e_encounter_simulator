@@ -9,6 +9,8 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class methods {
     //Print multiples of variables inside brackets.
@@ -30,6 +32,29 @@ public class methods {
             return -1;
         }
         return 0;
+    }
+
+    //Check if a coordinate is in a list.
+    public static int containsCoordinate(ArrayList<int[]> list, int x, int y) {
+        int i = 0;
+        for (int[] coord : list) {
+            if (Arrays.equals(coord, new int[] {x, y})) {
+                return i;
+            }
+            i += 1;
+        }
+        return -1;
+    }
+
+    //Check if you would be stepping backwards by adding a coordinate to a path.
+    public static boolean steppingBackwards(ArrayList<int[]> path, int x, int y) {
+        if (path.size() > 0) {
+            if (methods.containsCoordinate(path, x, y) == path.size() - 1) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     //Fill a circle on a map with a particular value.
@@ -140,13 +165,26 @@ public class methods {
     }
 
     //Obtain a sprite from a path.
-    public static BufferedImage getSprite(String spritePath) {
-        File file = new File(spritePath + ".png");
+    public static BufferedImage getImage(String spritePath) {
+        File file = new File(spritePath);
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
+            System.out.println(e);
             return null;
         }
+    }
+
+    //Code sourced from stack overflow users Suken Shah and Mr. Polywhirl - https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+    public static BufferedImage getScaledImage(BufferedImage srcImg, int w, int h){
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+
+        return resizedImg;
     }
 
     //Combine a list into a string with a delimiter.

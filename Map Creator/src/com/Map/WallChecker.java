@@ -1,5 +1,7 @@
 package com.Map;
 
+import com.System.Enums;
+
 import java.util.Arrays;
 
 public class WallChecker {
@@ -33,7 +35,7 @@ public class WallChecker {
     }
 
     //Get the number of wall tiles a coordinate has adjacent to it.
-    public int[] getAdjacentTotal(int[][] map, int x, int y) {
+    public int[] getAdjacentTotal(Enums.tileType[][] map, int x, int y) {
         String[] adj = getAdjacentTiles(map, x, y, false, false).split("-");
         return new int[] {Integer.parseInt(adj[0]), Integer.parseInt(adj[1])};
     }
@@ -41,10 +43,10 @@ public class WallChecker {
     //Get a coordinate's code, applying a 1 to a direction in which a wall is present, and a 0 to a direction in which it is absent. This code is
     //used to match with a code key in the Backgrounds class to determine what tile should be placed it its coordinate.
     //This function has two modes, one to obtain just the total number of surrounding walls, and another to actually obtain the code.
-    public String getAdjacentTiles(int[][] map, int x, int y) {
+    public String getAdjacentTiles(Enums.tileType[][] map, int x, int y) {
         return getAdjacentTiles(map, x, y, true, false);
     }
-    public String getAdjacentTiles(int[][] map, int x, int y, boolean getCode, boolean cannotRecurse) {
+    public String getAdjacentTiles(Enums.tileType[][] map, int x, int y, boolean getCode, boolean cannotRecurse) {
         int top;
         int bottom;
         int left;
@@ -55,36 +57,36 @@ public class WallChecker {
         int bottomRight;
 
         try {
-            top = map[y - 1][x];
-            if (top > 1) {
-                top = 0;
+            top = 0;
+            if (map[y - 1][x] == Enums.tileType.WALL) {
+                top = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             top = 1;
         }
         try {
-            bottom = map[y + 1][x];
-            if (bottom > 1) {
-                bottom = 0;
+            bottom = 0;
+            if (map[y + 1][x] == Enums.tileType.WALL) {
+                bottom = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             bottom = 1;
         }
         try {
-            left = map[y][x - 1];
-            if (left > 1) {
-                left = 0;
+            left = 0;
+            if (map[y][x - 1] == Enums.tileType.WALL) {
+                left = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             left = 1;
         }
         try {
-            right = map[y][x + 1];
-            if (right > 1) {
-                right = 0;
+            right = 0;
+            if (map[y][x + 1] == Enums.tileType.WALL) {
+                right = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
@@ -92,36 +94,36 @@ public class WallChecker {
         }
 
         try {
-            topLeft = map[y - 1][x - 1];
-            if (topLeft > 1) {
-                topLeft = 0;
+            topLeft = 0;
+            if (map[y - 1][x - 1] == Enums.tileType.WALL) {
+                topLeft = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             topLeft = 1;
         }
         try {
-            topRight = map[y - 1][x + 1];
-            if (topRight > 1) {
-                topRight = 0;
+            topRight = 0;
+            if (map[y - 1][x + 1] == Enums.tileType.WALL) {
+                topRight = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             topRight = 1;
         }
         try {
-            bottomLeft = map[y + 1][x - 1];
-            if (bottomLeft > 1) {
-                bottomLeft = 0;
+            bottomLeft = 0;
+            if (map[y + 1][x - 1] == Enums.tileType.WALL) {
+                bottomLeft = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
             bottomLeft = 1;
         }
         try {
-            bottomRight = map[y + 1][x + 1];
-            if (bottomRight > 1) {
-                bottomRight = 0;
+            bottomRight = 0;
+            if (map[y + 1][x + 1] == Enums.tileType.WALL) {
+                bottomRight = 1;
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {

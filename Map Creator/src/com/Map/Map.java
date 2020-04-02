@@ -1,10 +1,10 @@
 package com.Map;
 
-import com.Entities.Characters.Character;
-import com.Entities.Characters.Player;
+import com.Entities.Characters.CharacterModel;
 import com.GUI.Camera;
 import com.GUI.GUI;
 import com.GUI.System.Background;
+import com.System.Enums;
 import com.methods;
 
 import java.util.ArrayList;
@@ -13,20 +13,19 @@ import java.util.HashSet;
 public class Map {
     public GUI frame;                                                   //The frame the map is assigned to.
     public String name;                                                 //The map's name.
-    public int[][] map;                                                 //The map's terrain layout.
+    public Enums.tileType[][] map;                                      //The map's terrain layout.
     public boolean[][] visited;                                         //Where the player has visited.
-    public HashSet<Character> characterList;                            //The list of all of the map's entities.
+    public ArrayList<CharacterModel> characterList = new ArrayList<>(); //The list of all of the map's entities.
+    public boolean encounter = false;                                   //Whether there is an encounter running on this map.
+    public int turn = 1;                                                //The current turn in the round.
+    public int round = 1;                                               //The current round in the encounter.
     public Background background;                                       //The map's tileset background.
     public Camera camera;                                               //The map's camera.
-    public Object[][] enemySpawns = new Object[0][0];                   //The map's spawn pool.
-    public Object[][] staticEnemySpawns = new Object[0][0];             //The enemies that will be spawned when the set map initializes.
-    public int[][] staticEnemyLocations;                                //The set map's enemy locations.
-    public int floor = 0;                                               //The floor of the map.
     public int w;                                                       //The map's dimensions.
     public int h;
     public int th;                                                      //The map's tile dimensions.
     public int tw;
-    public WallChecker wallChecker;      //The map's wallChecker that determines terrain autotiling.
+    public WallChecker wallChecker;                                     //The map's wallChecker that determines terrain autotiling.
 
     //Map constructor.
     public Map() {
@@ -63,33 +62,6 @@ public class Map {
         this.name = name;
     }
 
-    //Set the map's enemy spawn pool.
-    public void setEnemySpawns(Object ... enemy) {
-        if (enemy != null) {
-            enemySpawns = new Object[enemy.length / 2][2];
-            for (int i = 0; i < enemy.length / 2; i += 1) {
-                enemySpawns[i] = new Object[]{enemy[i * 2], enemy[(i * 2) + 1]};
-            }
-        } else {
-            enemySpawns = new Object[0][0];
-        }
-    }
-
-    public void setEnemyLocations(Object ... enemy) {
-        if (enemy != null) {
-            staticEnemySpawns = new Object[enemy.length / 4][2];
-            staticEnemyLocations = new int[enemy.length / 4][2];
-            for (int i = 0; i < enemy.length / 4; i += 1) {
-                //com.System.out.println(methods.tuple(enemy[i * 4], enemy[(i * 4) + 1], enemy[(i * 4) + 2], enemy[(i * 4) + 3]));
-                staticEnemySpawns[i] = new Object[] { enemy[i * 4], enemy[(i * 4) + 1] };
-                staticEnemyLocations[i] = new int[] { (int) enemy[(i * 4) + 2], (int) enemy[(i * 4) + 3] };
-            }
-        } else {
-            staticEnemySpawns = new Object[0][0];
-            staticEnemyLocations = new int[0][0];
-        }
-    }
-
     //Set the map's background to null or an actual tilesheet.
     public void setBackground() {
         setBackground("");
@@ -99,15 +71,13 @@ public class Map {
     }
 
     //Add a player to the map and align the entity lists to match.
-    public void addPlayer(Player player) {
-        player.map = this;
-        if (player != null) {
-            player.setBoundingBox();
-        }
-        characterList.add(player);
+    public void addCharacter(CharacterModel character) {
+        character.map = this;
+        character.setBoundingBox();
+        characterList.add(character);
     }
 
-    public void setMap(int[][] map) {
+    public void setMap(Enums.tileType[][] map) {
         this.map = map;
         display();
         w = this.map[0].length;
@@ -120,36 +90,32 @@ public class Map {
     }
 
     //Parse the inputted character map to generate the floor layout.
-    public int[][] parseMap(String[] map) {
-        int[][] parsedMap = new int[map.length][(map[0].length() + 1) / 2];
+    public Enums.tileType[][] parseMap(String[] map) {
+        Enums.tileType[][] parsedMap = new Enums.tileType[map.length][(map[0].length() + 1) / 2];
         System.out.println(map[0].length() + " " + ((map[0].length() + 1) / 2));
         for (int i = 0; i < parsedMap.length; i += 1) {
             for (int j = 0; j < parsedMap[i].length; j += 1) {
-                parsedMap[i][j] = 0;
+                parsedMap[i][j] = Enums.tileType.FLOOR;
                 char tile = map[i].charAt(j * 2);
                 switch (tile) {
-                    case '#': parsedMap[i][j] = 1; break;
-                    case '-': parsedMap[i][j] = 5; break;
+                    case '#': parsedMap[i][j] = Enums.tileType.WALL; break;
+                    case '-': parsedMap[i][j] = Enums.tileType.DIFFICULT_TERRAIN; break;
+                    case '=': parsedMap[i][j] = Enums.tileType.WATER; break;
                 }
             }
         }
         return parsedMap;
     }
 
-    //Set the map's floor.
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
     //Set the map's entity lists and backgrounds.
     public void setMapAttributes() {
-        this.characterList = new HashSet<>();
+        this.characterList = new ArrayList<>();
         setBackground();
     }
 
     //Check whether an entity exists at a particular location on the map.
-    public Character checkEntityPositions(int x, int y) {
-        for (Character character : characterList) {
+    public CharacterModel checkEntityPositions(int x, int y) {
+        for (CharacterModel character : characterList) {
             if (character != null) {
                 if (character.x == x && character.y == y) {
                     return character;
@@ -159,28 +125,13 @@ public class Map {
         return null;
     }
 
-    //Add an enemy to the map and align the entity lists to match.
-    public void addEnemy(String name, int x, int y) {
-        Class<?> enemyClass = EnemyBattlers.battlers.get(name);
-        System.out.println("[DBG]: " + enemyClass + " " + enemyClass.getConstructors()[0]);
-        try {
-            Character enemy = (Character) enemyClass.getConstructors()[0].newInstance(this);
-            System.out.println("[DBG]: Enemy " + enemy);
-            enemy.teleport(x, y);
-            characterList.add(enemy);
-            System.out.println("[DBG]: Enemy created successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     //Check if a certain coordinate is a wall.
     public boolean isWall(int x, int y) {
         return isWall(map, x, y);
     }
-    public boolean isWall(int[][] map, int x, int y) {
+    public boolean isWall(Enums.tileType[][] map, int x, int y) {
         try {
-            if (map[y][x] == 1) {
+            if (map[y][x] == Enums.tileType.WALL) {
                 return true;
             }
             return false;
@@ -199,10 +150,22 @@ public class Map {
         return true;
     }
 
+    //Check if a certain coordinate is difficult terrain.
+    public boolean isDifficultTerrain(int x, int y) {
+        try {
+            if (map[y][x] == Enums.tileType.DIFFICULT_TERRAIN) {
+                return true;
+            }
+            return false;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
     //Check if a certain coordinate is water.
     public boolean isWater(int x, int y) {
         try {
-            if (map[y][x] == 5) {
+            if (map[y][x] == Enums.tileType.WATER) {
                 return true;
             }
             return false;
@@ -218,20 +181,20 @@ public class Map {
             for (int x = 0; x < map[y].length; x += 1) {
                 char icon = ' ';
                 switch (map[y][x]) {
-                    case 0:
+                    case FLOOR:
                         icon = ' ';
                         break;      // floor
-                    case 1:
+                    case WALL:
                         icon = '#';
                         break;      // wall
-                    case 2:
-                        icon = '?';
-                        break;      // spawning pit
-                    case 5:
+                    case DIFFICULT_TERRAIN:
                         icon = '-';
+                        break;      // difficult terrain
+                    case WATER:
+                        icon = '=';
                         break;      // water
                 }
-                for (Character character : characterList) {
+                for (CharacterModel character : characterList) {
                     if (x == character.x && y == character.y) {
                         icon = character.name.toUpperCase().charAt(0);
                     }

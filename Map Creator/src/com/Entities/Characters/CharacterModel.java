@@ -2,27 +2,30 @@ package com.Entities.Characters;
 
 import com.Entities.Conditions.Condition;
 import com.Entities.Entity;
+import com.Entities.Pathfinder;
 import com.Map.Map;
 import com.System.Enums;
+import com.System.Text.FloatingText;
 import com.methods;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public abstract class Character extends Entity {
+public abstract class CharacterModel extends Entity implements Comparable<CharacterModel> {
     public String name;                                                     //The character's name.
     public int tileSize = 32;                                               //The size of tiles in the game.
     public boolean attacking = false;                                       //Whether the character is attacking.
     public int attackTick = 0;                                              //The timer for the character's attack.
     public int attackTime = 0;
     public boolean invulnerable = false;                                    //Whether the character is flashing white.
-    public CharacterSheet charSheet = new CharacterSheet();
+    public CharacterSheet charSheet = new CharacterSheet();                 //The character's character sheet.
+    public Pathfinder pathfinder = new Pathfinder(this);            //The character's pathfinder.
     public int x;                                                           //The character's coordinates.
     public int y;
     public Rectangle boundingBox;                                           //The character's bounding box.
-    public int xDir;                                                        //The character's direction.
-    public int yDir;
+    public int xDir = 0;                                                    //The character's direction.
+    public int yDir = 0;
     public int space;                                                       //How much space the character takes up.
     public Map map;                                                         //What map the character is currently in.
     public ArrayList<Condition> conditions = new ArrayList<>();             //All of the conditions the character has applied to them.
@@ -33,7 +36,7 @@ public abstract class Character extends Entity {
 
     public void damageHealth(int damage) {
         //invulnerable = true;
-        charSheet.damageHealth(damage);
+        charSheet.setHealth(charSheet.health() - damage);
         map.frame.textStores.get("damage").addDamageText(damage, x, y);
         checkHealth();
     }
@@ -44,7 +47,7 @@ public abstract class Character extends Entity {
         textStore.get(textStore.size() - 1).setColours(damageTextColour);
     }
 
-    public boolean isAfflicted(String effect) {
+    public boolean hasCondition(String effect) {
         for (Condition condition : conditions) {
             if (condition.name.equals(effect)) {
                 return true;
@@ -84,10 +87,9 @@ public abstract class Character extends Entity {
         return false;
     }
 
-    //Change direction.
-    public void setDirection(int x, int y) {
-        xDir = x;
-        yDir = y;
+    //Change the player's current map. Alone this won't work. For a full removal, the GUI's unlinkRoom() function will need to be called.
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     //If the character is not flying, check whether it can move where it wants to for lack of walls and other creatures.
@@ -99,7 +101,7 @@ public abstract class Character extends Entity {
     }
 
     //Check distance between entities or coordinates.
-    public double checkDistance(Character character) {
+    public double checkDistance(CharacterModel character) {
         return checkDistance(character.x, character.y);
     }
     public double checkDistance(int x, int y) {
@@ -112,9 +114,9 @@ public abstract class Character extends Entity {
     //Row 3 - Left
     //Row 4 - Up
     public void drawSelf(Graphics g, int x, int y, int screenTileSize, Color colour) {
-        if (spriteSheet != null) {
+        if (sprite != null) {
             int offset, offsetX = 0, offsetY = 0;
-            BufferedImage sprite = methods.imageDeepCopy(spriteSheet);
+            BufferedImage sprite = methods.imageDeepCopy(this.sprite);
             if (attacking) {
                 offset = (int) Math.pow((attackTick - (attackTime / 2.0)), 2);
                 offsetX = xDir * offset;
@@ -123,11 +125,18 @@ public abstract class Character extends Entity {
             if (invulnerable) {
                 methods.tintImage(sprite, Color.WHITE);
             }
-            g.drawImage(sprite, x + methods.integerDivision(offsetX, tileSize, screenTileSize), y + methods.integerDivision(offsetY, tileSize, screenTileSize), null);
+            g.drawImage(sprite,
+                    x + methods.integerDivision(offsetX, tileSize, screenTileSize), y + methods.integerDivision(offsetY, tileSize, screenTileSize),
+                    screenTileSize, screenTileSize,
+                    null);
         }
         else {
             g.setColor(colour);
             g.fillRect(x, y, screenTileSize, screenTileSize);
         }
+    }
+
+    public int compareTo(CharacterModel o) {
+        return charSheet.initiative() - o.charSheet.initiative();
     }
 }

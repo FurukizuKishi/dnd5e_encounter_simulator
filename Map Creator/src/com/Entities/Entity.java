@@ -8,19 +8,18 @@ import java.awt.image.BufferedImage;
 public class Entity {
     public String spriteBaseFolder = "sprites/";                            //Attributes regarding entity sprites.
     public String spritePath;
-    public BufferedImage spriteSheet;
+    public BufferedImage sprite;
     public String name;
     public int x;                                                           //The entity's coordinates.
     public int y;
     public Rectangle boundingBox;                                           //The entity's bounding box.
 
-    //Fetch the entity's sprites for different actions. Sprite filenames are determined by the entity's name.
-    public void getSprite() {
-        this.spritePath += name;
-        this.spriteSheet = methods.getSprite(this.spritePath);
-        System.out.println(this.spriteSheet);
-        this.spritePath += ".png";
-        System.out.println("[DBG]: " + name + " sprite - " + this.spritePath);
+    //Fetch the entity's sprites for different actions.
+    public void setSprite(String spritePath) {
+        this.spritePath = spritePath;
+
+        this.sprite = methods.getImage(this.spritePath);
+        System.out.println("[DBG]: " + this.sprite + " - " + this.spritePath);
     }
 
     //Update the bounding box.
@@ -30,4 +29,5 @@ public class Entity {
         }
         boundingBox.setLocation(x, y);
     }
+
 }

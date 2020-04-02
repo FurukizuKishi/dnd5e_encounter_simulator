@@ -17,7 +17,7 @@ public class Animation {
     //Animation constructor. Default is to destroy the animation when it ends.
     public Animation() {}
     public Animation(String spritePath, double imageSpeed, int imageNumber) {
-        sprite = methods.getSprite(spritePath);
+        sprite = methods.getImage(spritePath);
         this.imageSpeed = imageSpeed;
         this.imageNumber = imageNumber;
         this.animationEnd = Enums.animationEnd.DESTROY;
