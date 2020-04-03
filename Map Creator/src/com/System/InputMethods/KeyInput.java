@@ -3,7 +3,7 @@ package com.System.InputMethods;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyPressed implements KeyListener {
+public class KeyInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
     }

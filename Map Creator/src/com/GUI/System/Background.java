@@ -139,7 +139,6 @@ public class Background {
             //Top, Bottom, Left, Right, Top-Left, Top-Right, Bottom-Left, Bottom-Right
             int[] tilePos = tileMap.get(map.wallChecker.getAdjacentTiles(map.map, tileX, tileY));
             if (tilePos != null) {
-
                 int sheetX = tilePos[0] * tileSize;
                 int sheetY = tilePos[1] * tileSize;
                 //com.System.out.println(methods.tuple(sheetX, sheetY));

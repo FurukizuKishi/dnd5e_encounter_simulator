@@ -9,6 +9,7 @@ import com.Map.Map;
 import com.System.Enums;
 import com.System.HasImage;
 import com.System.ImageFilter;
+import com.System.InputMethods.MouseInput;
 import com.System.Text.FloatingText;
 import com.System.Text.TextStore;
 
@@ -62,6 +63,7 @@ public class GUI extends JFrame {
 
         createPlayer("Akuma", 8, 30, 12, 10, 18, 14);
         players.get("Akuma").charSheet.assignMaxHealth(154);
+        players.get("Akuma").setFrame(this);
 
         hud = new HUD(w, h, null);
         camera = new Camera(this, wCam, hCam, hud, rooms.get(0), null);
@@ -77,7 +79,10 @@ public class GUI extends JFrame {
         roomLinker.unlinkRoom();
         roomLinker.startRoomSwitch(rooms.get(0));
         System.out.println(players.get("Akuma").charSheet.setHealth(128));
-        //players.get("Akuma").teleport(6, 7);
+        players.get("Akuma").teleport(6, 4);
+        camera.map.display();
+
+        this.addMouseListener(new MouseInput(this));
 
         repaint();
     }

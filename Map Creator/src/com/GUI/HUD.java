@@ -18,6 +18,7 @@ public class HUD {
     int sh;
     Camera camera;                                                  //The camera the HUD is linked to.
     CharacterModel selected;                                        //The character the HUD is linked to.
+    CharacterModel hover;                                           //The character the mouse is hovering over.
     BufferedImage healthContainer;                                  //The sprite for the healthbar's border.
     int barXOffset;                                                 //The distance between the top-left corners of the healthbar and screen.
     int barYOffset;
@@ -36,6 +37,12 @@ public class HUD {
         catch (IOException e) {
             healthContainer = null;
         }
+    }
+
+    public void select(CharacterModel character) {
+        selected = character;
+        camera.selected = character;
+        character.pathfinder.activate(true);
     }
 
     //Create the dimensions for a drawn value bar.
@@ -84,7 +91,7 @@ public class HUD {
     }
 
     //Draw the HUD, including the healthbar and minimap.
-    public void paintHUD(Graphics g, Color fillColour, Color backColour, Color borderColour) {
+    public void paintHUD(Graphics g, Enums.alignment alignment, Color fillColour, Color backColour, Color borderColour) {
         if (selected != null) {
             int barX, barY, barWidth, barHeight;
             if (healthContainer != null) {
@@ -102,8 +109,14 @@ public class HUD {
                 int border = 2;
                 paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), fillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
             }
-            alignText(Enums.alignment.RIGHT);
-            drawString(g, Integer.toString(selected.charSheet.health()), barX + barWidth - 8, barY + barHeight + 1, Fonts.font.DAMAGE, Color.WHITE);
+            alignText(alignment);
+            int bx = 0;
+            switch (alignment) {
+                case LEFT: bx = 8; break;
+                case MIDDLE: bx = barWidth / 2; break;
+                case RIGHT: bx = barWidth - 8; break;
+            }
+            drawString(g, Integer.toString(selected.charSheet.health()), barX + bx, barY + barHeight + 1, Fonts.font.DAMAGE, Color.WHITE);
             if (selected.map != null) {
                 //character.map.drawMinimap(g, 16, 48, 160, 160);
             }
@@ -111,7 +124,7 @@ public class HUD {
     }
 
     //Draw the healthbar above the enemies' heads.
-    public void paintHealthbar(Graphics g, int x, int y, CharacterModel character, Color fillColour, Color backColour, Color borderColour) {
+    public void paintHealthbar(Graphics g, Enums.alignment alignment, int x, int y, CharacterModel character, Color fillColour, Color backColour, Color borderColour) {
         int barSqueeze = 2;
         int barX = x + barSqueeze;
         int barY = y - 4;
@@ -119,7 +132,14 @@ public class HUD {
         int barHeight = sw / 48;
         int border = 1;
         paintValueBarSquare(g, character.charSheet.health(), character.charSheet.maxHealth(), fillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
-        drawString(g, Integer.toString(character.charSheet.health()), barX, barY, Fonts.font.DAMAGE, Color.WHITE);
+        alignText(alignment);
+        int bx = 0;
+        switch (alignment) {
+            case LEFT: bx = 2; break;
+            case MIDDLE: bx = barWidth / 2; break;
+            case RIGHT: bx = barWidth - 2; break;
+        }
+        drawString(g, Integer.toString(character.charSheet.health()), barX + bx, barY + barHeight, Fonts.font.DAMAGE, Color.WHITE);
     }
 
     //Create the light that surrounds the character, using area subtraction to cut areas out of an overlay.

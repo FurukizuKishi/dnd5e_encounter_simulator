@@ -19,6 +19,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     public int attackTick = 0;                                              //The timer for the character's attack.
     public int attackTime = 0;
     public boolean invulnerable = false;                                    //Whether the character is flashing white.
+    public BufferedImage invulnerableSprite;
     public CharacterSheet charSheet = new CharacterSheet();                 //The character's character sheet.
     public Pathfinder pathfinder = new Pathfinder(this);            //The character's pathfinder.
     public int x;                                                           //The character's coordinates.
@@ -90,6 +91,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     //Change the player's current map. Alone this won't work. For a full removal, the GUI's unlinkRoom() function will need to be called.
     public void setMap(Map map) {
         this.map = map;
+        pathfinder.setMap(map);
     }
 
     //If the character is not flying, check whether it can move where it wants to for lack of walls and other creatures.
@@ -116,14 +118,18 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     public void drawSelf(Graphics g, int x, int y, int screenTileSize, Color colour) {
         if (sprite != null) {
             int offset, offsetX = 0, offsetY = 0;
-            BufferedImage sprite = methods.imageDeepCopy(this.sprite);
+            if (this.invulnerableSprite == null) {
+                this.invulnerableSprite = methods.imageDeepCopy(this.sprite);
+                methods.tintImage(this.invulnerableSprite, Color.WHITE);
+            }
+            BufferedImage sprite = this.sprite;
+            if (invulnerable) {
+                sprite = this.invulnerableSprite;
+            }
             if (attacking) {
                 offset = (int) Math.pow((attackTick - (attackTime / 2.0)), 2);
                 offsetX = xDir * offset;
                 offsetY = yDir * offset;
-            }
-            if (invulnerable) {
-                methods.tintImage(sprite, Color.WHITE);
             }
             g.drawImage(sprite,
                     x + methods.integerDivision(offsetX, tileSize, screenTileSize), y + methods.integerDivision(offsetY, tileSize, screenTileSize),

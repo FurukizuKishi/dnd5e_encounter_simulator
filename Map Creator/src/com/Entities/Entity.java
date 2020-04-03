@@ -1,15 +1,16 @@
 package com.Entities;
 
+import com.GUI.GUI;
 import com.methods;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
-    public String spriteBaseFolder = "sprites/";                            //Attributes regarding entity sprites.
+    public GUI frame;                                                       //The entity's graphical game frame.
     public String spritePath;
     public BufferedImage sprite;
-    public String name;
+    public String name;                                                     //The entity's name.
     public int x;                                                           //The entity's coordinates.
     public int y;
     public Rectangle boundingBox;                                           //The entity's bounding box.
@@ -20,6 +21,11 @@ public class Entity {
 
         this.sprite = methods.getImage(this.spritePath);
         System.out.println("[DBG]: " + this.sprite + " - " + this.spritePath);
+    }
+
+    //Set the entity's gui frame.
+    public void setFrame(GUI frame) {
+        this.frame = frame;
     }
 
     //Update the bounding box.
