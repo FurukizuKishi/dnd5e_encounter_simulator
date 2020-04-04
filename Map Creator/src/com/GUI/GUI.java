@@ -8,19 +8,15 @@ import com.GUI.System.Transitions.Transition;
 import com.Map.Map;
 import com.System.Enums;
 import com.System.HasImage;
-import com.System.ImageFilter;
 import com.System.InputMethods.MouseInput;
 import com.System.Text.FloatingText;
 import com.System.Text.TextStore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class GUI extends JFrame {
     public String title;                                                    //The game's title, shown on the top bar of the window.
@@ -51,22 +47,26 @@ public class GUI extends JFrame {
         hCam = cameraHeight;
 
         createSetRoom("Boss Fight", new String[]
-                       {"# # # # # # # # # # # # #",
-                        "# # - - - - - - - - - # #",
-                        "# - - -           - - - #",
-                        "#                       #",
-                        "#                       #",
-                        "#                       #",
-                        "# #                   # #",
-                        "# # # # # #Nv # # # # # #",
-                        "# # # # # # # # # # # # #"}, null, players, null);
+                       {"# # # # # # # # # # # # # # # # # # # # # # # #",
+                        "# # - - - - - - - - - # # # - - - - - - - # # #",
+                        "# - - -           - - - - - - -       - - - # #",
+                        "#               # #   - - -               - # #",
+                        "#             # #       -                     #",
+                        "#             # #                           # #",
+                        "# #                   # # # #           # # # #",
+                        "# # # # # #Nv # # # # # # # # # # # # # # # # #"}, null, players, null);
 
         createPlayer("Akuma", 8, 30, 12, 10, 18, 14);
         players.get("Akuma").charSheet.assignMaxHealth(154);
+        players.get("Akuma").charSheet.setHealth(128);
         players.get("Akuma").setFrame(this);
+        createPlayer("Kael", 14, 19, 16, 14, 10, 14);
+        players.get("Kael").charSheet.assignMaxHealth(65);
+        players.get("Kael").charSheet.setHealth(59);
+        players.get("Kael").setFrame(this);
 
         hud = new HUD(w, h, null);
-        camera = new Camera(this, wCam, hCam, hud, rooms.get(0), null);
+        camera = new Camera(this, wCam, hCam, hud, rooms.get(0));
         w = camera.sw;
         h = camera.sh;
         add(camera, BorderLayout.CENTER);
@@ -78,8 +78,8 @@ public class GUI extends JFrame {
 
         roomLinker.unlinkRoom();
         roomLinker.startRoomSwitch(rooms.get(0));
-        System.out.println(players.get("Akuma").charSheet.setHealth(128));
         players.get("Akuma").teleport(6, 4);
+        players.get("Kael").teleport(5, 5);
         camera.map.display();
 
         this.addMouseListener(new MouseInput(this));

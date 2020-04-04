@@ -1,8 +1,9 @@
 package com.Entities.Characters;
 
-import com.Entities.Conditions.Condition;
+import com.Entities.Characters.Subsystems.CharacterSheet;
+import com.Entities.Characters.Conditions.Condition;
 import com.Entities.Entity;
-import com.Entities.Pathfinder;
+import com.Entities.Characters.Subsystems.Pathfinder;
 import com.Map.Map;
 import com.System.Enums;
 import com.System.Text.FloatingText;

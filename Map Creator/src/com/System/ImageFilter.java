@@ -2,6 +2,7 @@ package com.System;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
+import java.util.Arrays;
 
 public class ImageFilter extends FileFilter {
     public boolean accept(File file) {
@@ -14,7 +15,8 @@ public class ImageFilter extends FileFilter {
             extension = file.getName().substring(i + 1);
         }
         if (!extension.equals("")) {
-            if (extension.equals("png") || extension.equals("jpg") || extension.equals("jpeg")) {
+            String[] extensions = {"png", "jpg", "jpeg"};
+            if (Arrays.asList(extensions).contains(extension.toLowerCase())) {
                 return true;
             }
             else {

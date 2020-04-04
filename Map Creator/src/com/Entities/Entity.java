@@ -18,7 +18,6 @@ public class Entity {
     //Fetch the entity's sprites for different actions.
     public void setSprite(String spritePath) {
         this.spritePath = spritePath;
-
         this.sprite = methods.getImage(this.spritePath);
         System.out.println("[DBG]: " + this.sprite + " - " + this.spritePath);
     }

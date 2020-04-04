@@ -1,8 +1,7 @@
-package com.Entities.Characters;
+package com.Entities.Characters.Subsystems;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CharacterSheet extends JFrame {
@@ -48,6 +47,9 @@ public class CharacterSheet extends JFrame {
         abilityScores.put(score, new int[] { value, (value - 10) / 2 });
     }
 
+    public int score(String score) {
+        return abilityScores.get(score.toUpperCase())[0];
+    }
     public int mod(String score) {
         return abilityScores.get(score.toUpperCase())[1];
     }

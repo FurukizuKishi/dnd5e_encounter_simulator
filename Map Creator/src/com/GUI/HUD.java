@@ -42,7 +42,12 @@ public class HUD {
     public void select(CharacterModel character) {
         selected = character;
         camera.selected = character;
-        character.pathfinder.activate(true);
+        for (CharacterModel c : camera.map.characterList) {
+            c.pathfinder.activate(false);
+        }
+        if (character != null) {
+            character.pathfinder.activate(true);
+        }
     }
 
     //Create the dimensions for a drawn value bar.

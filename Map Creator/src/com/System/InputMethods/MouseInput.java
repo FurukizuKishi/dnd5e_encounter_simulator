@@ -1,12 +1,15 @@
 package com.System.InputMethods;
 
+import com.Entities.Characters.CharacterModel;
 import com.GUI.GUI;
+import com.System.Enums;
 import com.methods;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+import static java.awt.Color.RED;
 import static java.awt.event.MouseEvent.*;
 
 public class MouseInput implements MouseInputListener {
@@ -28,7 +31,13 @@ public class MouseInput implements MouseInputListener {
     public void mouseClicked(MouseEvent e) {
         setMouseLocation(e);
         switch (e.getButton()) {
-            case BUTTON1: frame.hud.select(frame.players.get("Akuma")); break;
+            case BUTTON1:
+                for (CharacterModel character : frame.camera.getMap().characterList) {
+                    Point coords = frame.camera.getRelativeCoordinates(character.x * frame.camera.tileSize, character.y * frame.camera.tileSize);
+                    if ((new Rectangle(coords.x, coords.y, frame.camera.tileSize, frame.camera.tileSize)).contains(mx, my)) {
+                        frame.hud.select(character);
+                    }
+                } break;
             case BUTTON3: frame.hud.select(null); break;
         }
         System.out.println(frame.camera.selected);

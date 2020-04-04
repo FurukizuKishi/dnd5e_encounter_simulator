@@ -1,6 +1,7 @@
 package com.GUI.System;
 
 import com.Map.Map;
+import com.System.Enums;
 import com.methods;
 
 import javax.imageio.ImageIO;
@@ -133,8 +134,22 @@ public class Background {
         g.drawImage(tileSheet, screenX - 1, screenY, screenX + screenTileSize + 1, screenY + screenTileSize, 0, 0, tileSize, tileSize, null);
     }
 
+    //
+    public void drawTile(Graphics g, int x, int y, int sx, int sy, int ts, Enums.tileType tile, Color colour) {
+        try {
+            if (map.map[y][x] == tile) {
+                g.setColor(colour);
+                drawWall(g, x, y, sx, sy, ts);
+                g.setColor(BLACK);
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+
+        }
+    }
+
     //Draw the room's wall tiles using the map's wallChecker's autotiling functionality.
-    public void drawRoomTiles(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize) {
+    public void drawRoomTiles(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize, Enums.tileType tile, Color colour) {
         if (tileSheet != null) {
             //Top, Bottom, Left, Right, Top-Left, Top-Right, Bottom-Left, Bottom-Right
             int[] tilePos = tileMap.get(map.wallChecker.getAdjacentTiles(map.map, tileX, tileY));
@@ -145,9 +160,7 @@ public class Background {
                 g.drawImage(tileSheet, screenX - 1, screenY, screenX + screenTileSize + 1, screenY + screenTileSize, sheetX, sheetY, sheetX + tileSize, sheetY + tileSize, null);
             }
             else {
-                if (map.isWall(tileX, tileY)) {
-                    drawWall(g, tileX, tileY, screenX, screenY, screenTileSize);
-                }
+                drawTile(g, tileX, tileY, screenX, screenY, screenTileSize, tile, colour);
             }
         }
         else {

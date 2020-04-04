@@ -1,4 +1,4 @@
-package com.Entities.Conditions;
+package com.Entities.Characters.Conditions;
 
 import com.Entities.Characters.CharacterModel;
 
@@ -23,7 +23,7 @@ public abstract class Condition {
     public void applyEffect() {
         if (decisecond == timeGap) {
             decisecond = 0;
-            String applyWord = "";
+            String applyWord;
             if (timer < duration) {
                 if (timer == 0) {
                     startEffect();
