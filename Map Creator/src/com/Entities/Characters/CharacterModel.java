@@ -1,5 +1,6 @@
 package com.Entities.Characters;
 
+import com.Entities.Characters.Subsystems.Actor;
 import com.Entities.Characters.Subsystems.CharacterSheet;
 import com.Entities.Characters.Conditions.Condition;
 import com.Entities.Entity;
@@ -22,6 +23,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     public boolean invulnerable = false;                                    //Whether the character is flashing white.
     public BufferedImage invulnerableSprite;
     public CharacterSheet charSheet = new CharacterSheet();                 //The character's character sheet.
+    public Actor actor = new Actor(this);                           //The character's ability to carry out their turn.
     public Pathfinder pathfinder = new Pathfinder(this);            //The character's pathfinder.
     public int x;                                                           //The character's coordinates.
     public int y;
@@ -49,17 +51,19 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
         textStore.get(textStore.size() - 1).setColours(damageTextColour);
     }
 
-    public boolean hasCondition(String effect) {
-        for (Condition condition : conditions) {
-            if (condition.name.equals(effect)) {
-                return true;
+    public boolean hasCondition(String ... effects) {
+        for (String effect : effects) {
+            for (Condition condition : conditions) {
+                if (condition.name.equals(effect)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     //Move the character based on key input. This input can come from a variety of sources, not just keyboard presses.
-    public int[] move(Enums.key input) {
+    public int[] moveKey(Enums.key input) {
         int[] move = new int[2];
         switch (input) {
             case LEFT: move = new int[] {-1, 0}; System.out.println("[DBG]: Moved left."); break;
@@ -141,6 +145,27 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
             g.setColor(colour);
             g.fillRect(x, y, screenTileSize, screenTileSize);
         }
+    }
+
+    public void turnStart() {
+        actor.makeDeathSaves();
+        actor.makeSavingThrows(true);
+    }
+    public void turn() {
+        Enums.actionType action = Enums.actionType.ACTION;
+        if (!actor.done()) {
+            actor.performAction(action);
+        }
+    }
+    public void turnEnd() {
+        actor.replenishActions();
+        actor.makeSavingThrows(false);
+        actor.updateRound();
+    }
+    public void enactTurn() {
+        turnStart();
+        turn();
+        turnEnd();
     }
 
     public int compareTo(CharacterModel o) {

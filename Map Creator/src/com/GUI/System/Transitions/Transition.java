@@ -116,7 +116,7 @@ public class Transition {
             g.setColor(new Color(backColour.getRed(), backColour.getGreen(), backColour.getBlue(), backOpacity));
             g.fillRect(0, 0, frame.w, frame.h);
             int textAlignment;
-            textAlignment = frame.getNewTextAlignment(title, Enums.alignment.MIDDLE, Fonts.font.TITLE);
+            textAlignment = frame.getNewTextAlignment(title, Enums.alignmentHorizontal.MIDDLE, Fonts.font.TITLE);
             int titleOffset = 0;
             if (subtitleListHeight > 0) {
                 titleOffset = subtitleHeight;
@@ -124,7 +124,7 @@ public class Transition {
             methods.drawString(g, title, (frame.w / 2) - textAlignment, (frame.h / 2) - (subtitleListHeight + titleOffset), Fonts.font.TITLE, new Color(textColour.getRed(), textColour.getGreen(), textColour.getBlue(), titleOpacity));
             for (int i = 0; i < subtitles.length; i += 1) {
                 if (!subtitles[i].equals("")) {
-                    textAlignment = frame.getNewTextAlignment(subtitles[i], Enums.alignment.MIDDLE, Fonts.font.SUBTITLE);
+                    textAlignment = frame.getNewTextAlignment(subtitles[i], Enums.alignmentHorizontal.MIDDLE, Fonts.font.SUBTITLE);
                     methods.drawString(g, subtitles[i], (frame.w / 2) - textAlignment, ((frame.h * 3) / 5) - subtitleListHeight + (subtitleHeight * i), Fonts.font.SUBTITLE, new Color(textColour.getRed(), textColour.getGreen(), textColour.getBlue(), subtitleOpacities[i]));
                 }
             }

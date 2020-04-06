@@ -113,25 +113,25 @@ public class GUI extends JFrame {
     }
 
     //Align text using its width in pixels. Justifications include LEFT, MIDDLE and RIGHT.
-    public void alignFloatingText(FloatingText text, Enums.alignment justification) {
+    public void alignFloatingText(FloatingText text, Enums.alignmentHorizontal justification) {
         text.alignmentOffset = getNewTextAlignment(text.text, justification);
     }
-    public int getNewTextAlignment(String str, Enums.alignment justification) {
+    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification) {
         return getNewTextAlignment(str, justification, getFont());
     }
-    public int getNewTextAlignment(String str, Enums.alignment justification, Fonts.font font) {
+    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification, Fonts.font font) {
         return getNewTextAlignment(str, justification, Fonts.fonts.get(font));
     }
-    public int getNewTextAlignment(String str, Enums.alignment justification, Font font) {
+    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification, Font font) {
         FontMetrics fm = getFontMetrics(font);
         int fontWidth = fm.stringWidth(str);
-        if (justification == Enums.alignment.LEFT) {
+        if (justification == Enums.alignmentHorizontal.LEFT) {
             return 0;
         }
-        else if (justification == Enums.alignment.MIDDLE) {
+        else if (justification == Enums.alignmentHorizontal.MIDDLE) {
             return fontWidth / 2;
         }
-        else if (justification == Enums.alignment.RIGHT) {
+        else if (justification == Enums.alignmentHorizontal.RIGHT) {
             return fontWidth;
         }
         return 0;

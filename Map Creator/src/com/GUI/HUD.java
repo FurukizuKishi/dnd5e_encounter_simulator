@@ -96,7 +96,7 @@ public class HUD {
     }
 
     //Draw the HUD, including the healthbar and minimap.
-    public void paintHUD(Graphics g, Enums.alignment alignment, Color fillColour, Color backColour, Color borderColour) {
+    public void paintHUD(Graphics g, Enums.alignmentHorizontal alignment, Color fillColour, Color backColour, Color borderColour) {
         if (selected != null) {
             int barX, barY, barWidth, barHeight;
             if (healthContainer != null) {
@@ -129,7 +129,7 @@ public class HUD {
     }
 
     //Draw the healthbar above the enemies' heads.
-    public void paintHealthbar(Graphics g, Enums.alignment alignment, int x, int y, CharacterModel character, Color fillColour, Color backColour, Color borderColour) {
+    public void paintHealthbar(Graphics g, Enums.alignmentHorizontal alignment, int x, int y, CharacterModel character, Color fillColour, Color backColour, Color borderColour) {
         int barSqueeze = 2;
         int barX = x + barSqueeze;
         int barY = y - 4;
@@ -179,7 +179,7 @@ public class HUD {
     }
 
     //Align text to a certain justification.
-    public void alignText(Enums.alignment justification) {
+    public void alignText(Enums.alignmentHorizontal justification) {
         this.justification = justification;
     }
 }

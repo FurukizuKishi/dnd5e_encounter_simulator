@@ -13,9 +13,13 @@ public class Enums {
     public enum spellShape {
         LINE, CIRCLE, SQUARE
     }
-    //Types of text alignment.
-    public enum alignment {
+    //Types of horizontal text alignment.
+    public enum alignmentHorizontal {
         LEFT, MIDDLE, RIGHT
+    }
+    //Types of vertical text alignment.
+    public enum alignmentVertical {
+        TOP, MIDDLE, BOTTOM
     }
     //What happens when an animation ends.
     public enum animationEnd {
@@ -40,5 +44,13 @@ public class Enums {
     //Types of tiles in regards to character pathfinding.
     public enum pathTile {
         NULL, FREE, ATTACK
+    }
+    //Types of action.
+    public enum actionType {
+        MOVE, ACTION, BONUS_ACTION, REACTION, LEGENDARY_ACTION, LAIR_ACTION, MYTHIC_ACTION, INTERACTION
+    }
+    //The actions a character can perform.
+    public enum action {
+        DASH, DODGE, ONE_ATTACK, FULL_ATTACK, SPELL, USE_AN_ITEM,
     }
 }

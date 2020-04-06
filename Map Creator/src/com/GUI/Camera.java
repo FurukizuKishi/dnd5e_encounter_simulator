@@ -9,7 +9,6 @@ import com.methods;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 
 import static java.awt.Color.RED;
@@ -52,7 +51,7 @@ public class Camera extends JPanel {
         super.paintComponent(g);
         if (map != null) {
             paintRoom((Graphics2D) g);
-            hud.paintHUD(g, Enums.alignment.LEFT, fillColour, backColour, borderColour);
+            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, fillColour, backColour, borderColour);
         }
         for (int i = 0; i < frame.transitions.size(); i += 1) {
             frame.transitions.get(i).paintTransition(g);
@@ -241,7 +240,7 @@ public class Camera extends JPanel {
                         Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                         if (coords != null) {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
-                            hud.paintHealthbar(g, Enums.alignment.LEFT, coords.x, coords.y - titleThickness, character, fillColour, backColour, borderColour);
+                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, fillColour, backColour, borderColour);
                         }
                     }
                 }
@@ -249,7 +248,7 @@ public class Camera extends JPanel {
         }
         //Draw floating text.
         for (FloatingText text : frame.textStores.get("damage").floatingText) {
-            frame.alignFloatingText(text, Enums.alignment.MIDDLE);
+            frame.alignFloatingText(text, Enums.alignmentHorizontal.MIDDLE);
             if (cBox.contains(text.x * tileSize, text.y * tileSize)) {
                 int textX = text.x - (int) cBox.getBounds().getX();
                 int textY = text.y - (int) cBox.getBounds().getY();
