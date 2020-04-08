@@ -14,6 +14,7 @@ public class Pathfinder {
     private int maxRange;
     public Enums.pathTile[][] pathGrid;
     public int[][] distGrid;
+    public ArrayList<int[]> path = new ArrayList<>();
     private Map map;
     private boolean active = false;
 
@@ -34,6 +35,14 @@ public class Pathfinder {
         this(owner, 3, 1, null);
     }
 
+    //Get the movement range.
+    public int getMove() {
+        return move;
+    }
+    //Get the attack range.
+    public int getRange() {
+        return range;
+    }
     //Set the pathfinder's map.
     public void setMap(Map map) {
         this.map = map;
@@ -66,6 +75,25 @@ public class Pathfinder {
     //Check whether the pathfinder is active.
     public boolean isActive() {
         return active;
+    }
+
+    //Check if one cell is adjacent to another.
+    public boolean adjacentCells(int x1, int y1, int x2, int y2) {
+        boolean horizontal = (Math.abs(x1 - x2) == 1);
+        boolean vertical = (Math.abs(y1 - y2) == 1);
+        if ((horizontal || vertical) && !(horizontal && vertical)) {
+            return true;
+        }
+        return false;
+    }
+    //Check if one cell is close to another.
+    public boolean closeCells(int x1, int y1, int x2, int y2) {
+        boolean horizontal = (Math.abs(x1 - x2) == 1);
+        boolean vertical = (Math.abs(y1 - y2) == 1);
+        if (horizontal || vertical) {
+            return true;
+        }
+        return false;
     }
 
     //Pathfind towards the player, one step at a time. This function checks each of the enemy's adjacent walls to see where it can move that reduces

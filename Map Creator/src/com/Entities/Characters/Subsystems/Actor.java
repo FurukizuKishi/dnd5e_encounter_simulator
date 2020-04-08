@@ -106,4 +106,8 @@ public class Actor {
     public void updateRound() {
 
     }
+
+    public void move() {
+
+    }
 }

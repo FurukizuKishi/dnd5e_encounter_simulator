@@ -83,6 +83,7 @@ public class GUI extends JFrame {
         camera.map.display();
 
         this.addMouseListener(new MouseInput(this));
+        this.addMouseMotionListener(new MouseInput(this));
 
         repaint();
     }

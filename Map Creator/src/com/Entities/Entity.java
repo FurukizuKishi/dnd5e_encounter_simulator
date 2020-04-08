@@ -13,6 +13,8 @@ public class Entity {
     public String name;                                                     //The entity's name.
     public int x;                                                           //The entity's coordinates.
     public int y;
+    public double betweenX;                                                 //The distance an entity is between x-coordinates.
+    public double betweenY;                                                 //The distance an entity is between y-coordinates.
     public Rectangle boundingBox;                                           //The entity's bounding box.
 
     //Fetch the entity's sprites for different actions.
@@ -34,5 +36,4 @@ public class Entity {
         }
         boundingBox.setLocation(x, y);
     }
-
 }

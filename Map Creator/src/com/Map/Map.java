@@ -23,8 +23,8 @@ public class Map {
     public Camera camera;                                               //The map's camera.
     public int w;                                                       //The map's dimensions.
     public int h;
-    public int th;                                                      //The map's tile dimensions.
-    public int tw;
+    public int th = 24;                                                 //The map's tile dimensions.
+    public int tw = 24;
     public WallChecker wallChecker;                                     //The map's wallChecker that determines terrain autotiling.
 
     //Map constructor.

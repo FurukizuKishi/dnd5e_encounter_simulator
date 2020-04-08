@@ -4,6 +4,7 @@ import com.Entities.Characters.CharacterModel;
 import com.Entities.Entity;
 import com.Map.Map;
 import com.System.Enums;
+import com.System.InputMethods.MouseInput;
 import com.System.Text.FloatingText;
 import com.methods;
 
@@ -12,6 +13,7 @@ import java.awt.*;
 import java.awt.geom.Area;
 
 import static java.awt.Color.RED;
+import static java.awt.Color.YELLOW;
 
 public class Camera extends JPanel {
     public int w, h, sw, sh;                    //Camera's tile dimensions and the screen's dimensions.
@@ -127,9 +129,14 @@ public class Camera extends JPanel {
     public Area getDraggableRegion(int border) {
         Area window = new Area(getWindowBox());
         Rectangle bounds = window.getBounds();
-        Area exclusion = new Area(new Rectangle((int) bounds.getX() + border, (int) bounds.getY() + border, (int) bounds.getWidth() - (border * 2), (int) bounds.getHeight() - (border * 2)));
-        window.exclusiveOr(exclusion);
-        return window;
+        Area shape = new Area(new Rectangle(0, 0, (int) bounds.getWidth(), (int) bounds.getHeight() - titleThickness));
+        Area exclusion = new Area(new Rectangle(border, border, (int) bounds.getWidth() - (border * 2), (int) bounds.getHeight() - titleThickness - (border * 2)));
+        //Area shape = new Area(new Rectangle((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight() - titleThickness));
+        //Area exclusion = new Area(new Rectangle((int) bounds.getX() + border, (int) bounds.getY() + border, (int) bounds.getWidth() - (border * 2), (int) bounds.getHeight() - titleThickness - (border * 2)));
+        shape.exclusiveOr(exclusion);
+        bounds = shape.getBounds();
+        //System.out.println(methods.tuple(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight()));
+        return shape;
     }
 
     //Get the mouse position.
@@ -144,6 +151,18 @@ public class Camera extends JPanel {
             return getAbsoluteCoordinates(pos.x, pos.y);
         }
         return null;
+    }
+
+    //Check if the mouse is being dragged.
+    public boolean getMouseDrag() {
+        Point mouse = getMouseScreenPosition();
+        MouseInput input = (MouseInput) frame.getMouseMotionListeners()[0];
+        if (input.getPressedDown()) {
+            if (!(input.getMouseLocation().x == mouse.x && input.getMouseLocation().y == mouse.y)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //Move towards the mouse if nothing is selected.
@@ -162,8 +181,9 @@ public class Camera extends JPanel {
     //in layers, making sure everything is properly positioned in the z-axis.
     public void paintRoom(Graphics2D g) {
         Point mouse = getMouseScreenPosition();
+        Area pull = null;
         if (mouse != null) {
-            Area pull = getDraggableRegion(64);
+            pull = getDraggableRegion(64);
             Point focus = getWindowPosition(mouse);
             if (focus != null) {
                 if (pull.contains(focus)) {
@@ -211,27 +231,30 @@ public class Camera extends JPanel {
                         if (bigCoords != null) {
                             Point absCoords = getAbsoluteCoordinates(bigCoords.x, bigCoords.y);
                             Point coords = new Point(absCoords.x / tileSize, absCoords.y / tileSize);
-                            Enums.pathTile node = character.pathfinder.pathGrid[coords.y][coords.x];
-                            if (node != Enums.pathTile.NULL) {
-                                Color colour;
-                                switch (node) {
-                                    case ATTACK:
-                                        colour = Color.RED;
-                                        break;
-                                    default:
-                                        colour = Color.BLUE;
-                                        break;
+                            if (methods.containsCoordinate(character.pathfinder.path, coords.x, coords.y) == -1) {
+                                Enums.pathTile node = character.pathfinder.pathGrid[coords.y][coords.x];
+                                if (!(node == Enums.pathTile.NULL || node == Enums.pathTile.ATTACK)) {
+                                    Color colour;
+                                    switch (node) {
+                                        case ATTACK:
+                                            colour = Color.RED;
+                                            break;
+                                        default:
+                                            colour = Color.BLUE;
+                                            break;
+                                    }
+                                    g.setColor(colour);
+                                    g.fillRect(bigCoords.x + 1, bigCoords.y - titleThickness + 1, tileSize - 3, tileSize - 2);
                                 }
-                                g.setColor(colour);
-                                g.fillRect(bigCoords.x + 1, bigCoords.y - titleThickness + 1, tileSize - 3, tileSize - 2);
                             }
                         }
                     }
                 }
             }
         }
-        //Draw characters.
+        //Get the camera's bounding box.
         Rectangle cBox = getCameraBox();
+        //Draw characters.
         for (int y = -cBorder; y < map.h + cBorder; y += 1) {
             for (int x = -cBorder; x < map.w + cBorder; x += 1) {
                 calculateCoordinates(x, y);
@@ -246,6 +269,25 @@ public class Camera extends JPanel {
                 }
             }
         }
+        //Draw a selected character's path.
+        for (int y = -cBorder; y < map.h + cBorder; y += 1) {
+            for (int x = -cBorder; x < map.w + cBorder; x += 1) {
+                calculateCoordinates(x, y);
+                for (CharacterModel character : map.characterList) {
+                    if (character.pathfinder.isActive()) {
+                        for (int[] node : character.pathfinder.path) {
+                            if (x == node[0] && y == node[1]) {
+                                Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
+                                if (coords != null) {
+                                    g.setColor(Color.GREEN);
+                                    g.fillRect(coords.x + 1, coords.y - titleThickness + 1, tileSize - 3, tileSize - 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         //Draw floating text.
         for (FloatingText text : frame.textStores.get("damage").floatingText) {
             frame.alignFloatingText(text, Enums.alignmentHorizontal.MIDDLE);
@@ -255,6 +297,11 @@ public class Camera extends JPanel {
                 Point coords = getRelativeCoordinates((int) (textX + 0.5) * tileSize, (int) (textY + 0.25) * tileSize);
                 text.display(g, coords.x, coords.y - titleThickness, tileSize);
             }
+        }
+        //Draw mouse pull.
+        if (pull != null) {
+            g.setColor(YELLOW);
+            g.fill(pull);
         }
     }
 }

@@ -22,7 +22,7 @@ public class HUD {
     BufferedImage healthContainer;                                  //The sprite for the healthbar's border.
     int barXOffset;                                                 //The distance between the top-left corners of the healthbar and screen.
     int barYOffset;
-    Enums.alignment justification;                                  //Text justification.
+    Enums.alignmentHorizontal justification;                        //Text justification.
 
     //HUD constructor.
     public HUD(int screenW, int screenH, CharacterModel selected) {
@@ -39,14 +39,21 @@ public class HUD {
         }
     }
 
+    public CharacterModel getSelected() {
+        return selected;
+    }
+
     public void select(CharacterModel character) {
-        selected = character;
-        camera.selected = character;
-        for (CharacterModel c : camera.map.characterList) {
-            c.pathfinder.activate(false);
-        }
-        if (character != null) {
-            character.pathfinder.activate(true);
+        if (character != selected) {
+            selected = character;
+            camera.selected = character;
+            for (CharacterModel c : camera.map.characterList) {
+                c.pathfinder.activate(false);
+                c.pathfinder.path.clear();
+            }
+            if (character != null) {
+                character.pathfinder.activate(true);
+            }
         }
     }
 

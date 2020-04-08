@@ -83,6 +83,31 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
         return move;
     }
 
+    //Move the character to a particular node.
+    public void moveToCoordinate(int x, int y, int speed) {
+        double ts = (double) speed / tileSize;
+        if (this.x != x && this.y != y) {
+            betweenX += (x - this.x) * ts;
+            betweenY += (y - this.y) * ts;
+            if (betweenX >= 1) {
+                betweenX -= (int) betweenX;
+                this.x += (int) betweenX;
+            }
+            if (betweenY >= 1) {
+                betweenY -= (int) betweenY;
+                this.y += (int) betweenY;
+            }
+            if (this.x == x && this.y == y) {
+                betweenX = 0;
+                betweenY = 0;
+            }
+        }
+        else {
+            betweenX = 0;
+            betweenY = 0;
+        }
+    }
+
     //Teleport to another area of the map.
     public boolean teleport(int x, int y) {
         if (!this.map.isWall(x, y)) {
@@ -122,7 +147,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     //Row 4 - Up
     public void drawSelf(Graphics g, int x, int y, int screenTileSize, Color colour) {
         if (sprite != null) {
-            int offset, offsetX = 0, offsetY = 0;
+            int offset, offsetX = (int) (betweenX * tileSize), offsetY = (int) (betweenY * tileSize);
             if (this.invulnerableSprite == null) {
                 this.invulnerableSprite = methods.imageDeepCopy(this.sprite);
                 methods.tintImage(this.invulnerableSprite, Color.WHITE);
@@ -133,8 +158,8 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
             }
             if (attacking) {
                 offset = (int) Math.pow((attackTick - (attackTime / 2.0)), 2);
-                offsetX = xDir * offset;
-                offsetY = yDir * offset;
+                offsetX += xDir * offset;
+                offsetY += yDir * offset;
             }
             g.drawImage(sprite,
                     x + methods.integerDivision(offsetX, tileSize, screenTileSize), y + methods.integerDivision(offsetY, tileSize, screenTileSize),
