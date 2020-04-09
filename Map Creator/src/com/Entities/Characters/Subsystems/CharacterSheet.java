@@ -1,10 +1,16 @@
 package com.Entities.Characters.Subsystems;
 
+import com.Entities.Characters.CharacterModel;
+import com.methods;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
-public class CharacterSheet extends JFrame {
+public class CharacterSheet extends JPanel {
+    private String name;
+    private BufferedImage sheetBackground = methods.getImage("images/character_sheet.png");
     private HashMap<String, int[]> abilityScores = new HashMap<>();
     private HashMap<String, Integer> secondaryScores = new HashMap<>();
     private HashMap<String, Integer> classLevels = new HashMap<>();
@@ -17,11 +23,13 @@ public class CharacterSheet extends JFrame {
     private boolean dead = false;
     private int[] deathSaves = {0, 0};
 
-    public CharacterSheet(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+    public CharacterSheet(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        this.name = name;
         calculateStats(strength, dexterity, constitution, intelligence, wisdom, charisma);
     }
-    public CharacterSheet() {
-        calculateAbilityScores(10, 10, 10, 10, 10, 10);
+    public CharacterSheet(String name) {
+
+        this(name, 10, 10, 10, 10, 10, 10);
     }
 
     public void calculateStats(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
@@ -46,6 +54,12 @@ public class CharacterSheet extends JFrame {
         abilityScores.put(score, new int[] { value, (value - 10) / 2 });
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
     public int score(String score) {
         return abilityScores.get(score.toUpperCase())[0];
     }
@@ -142,7 +156,38 @@ public class CharacterSheet extends JFrame {
         return false;
     }
 
-    public void display(Graphics g) {
+    public void drawBars(int hpX, int hpY, int expX, int expY) {
 
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        //drawBars();
+        g.drawImage(sheetBackground, 0, 0, null);
+        for (int y = 0; y < getHeight(); y += 32) {
+            g.drawLine(0, y, getWidth(), y);
+            for (int x = 0; x < getWidth(); x += 32) {
+                g.drawLine(x, 0, x, getHeight());
+            }
+        }
+    }
+    public void createInterface() {
+        draw
+    }
+    public void display() {
+        JFrame sheet = new JFrame();
+
+        JScrollPane scrollbar = new JScrollPane(this);
+        setPreferredSize(new Dimension(sheetBackground.getWidth(), sheetBackground.getHeight()));
+        setVisible(true);
+        scrollbar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollbar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollbar.setVisible(true);
+
+        sheet.add(scrollbar);
+        sheet.setTitle("Character sheet for " + name);
+        sheet.setSize(new Dimension(getPreferredSize().width, 480));
+        sheet.setVisible(true);
     }
 }

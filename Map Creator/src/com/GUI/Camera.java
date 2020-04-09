@@ -12,8 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Area;
 
-import static java.awt.Color.RED;
-import static java.awt.Color.YELLOW;
+import static java.awt.Color.*;
 
 public class Camera extends JPanel {
     public int w, h, sw, sh;                    //Camera's tile dimensions and the screen's dimensions.
@@ -22,13 +21,14 @@ public class Camera extends JPanel {
     int mSpeed = 8;                             //The camera's movement speed.
     double slowdown = 0.01;                     //The camera's slowdown fraction.
     public int tileSize;                        //The size of tiles in the game.
-    public Entity selected;                     //The object the camera is following.
+    public CharacterModel selected;             //The object the camera is following.
     public int titleThickness = 32;             //The size of the window's title bar.
     GUI frame;                                  //The camera's parent frame.
     Map map;                                    //The map the camera is currently in.
     HUD hud;                                    //The HUD the camera is using.
     Color borderColour = new Color(255, 255, 255);
-    Color fillColour = new Color(0, 135, 0);
+    Color healthFillColour = new Color(0, 135, 0);
+    Color moveFillColour = new Color(65, 175, 255);
     Color backColour = new Color(45, 45, 45);
 
     //Camera constructor.
@@ -46,19 +46,6 @@ public class Camera extends JPanel {
         this.selected = hud.selected;
         this.map = map;
         this.hud = hud;
-    }
-
-    //The camera draws all visual elements onto the screen. All objects with a Graphics function offload the painting to the camera.
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (map != null) {
-            paintRoom((Graphics2D) g);
-            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, fillColour, backColour, borderColour);
-        }
-        for (int i = 0; i < frame.transitions.size(); i += 1) {
-            frame.transitions.get(i).paintTransition(g);
-        }
-        repaint();
     }
 
     //Change the camera's current map. Alone this won't work. For a full removal, the com.GUI's unlinkRoom() function will need to be called.
@@ -92,6 +79,9 @@ public class Camera extends JPanel {
     }
 
     //Get an object's relative coordinates to the camera.
+    public Point getRelativeCoordinates(Point p) {
+        return getRelativeCoordinates(p.x, p.y);
+    }
     public Point getRelativeCoordinates(int x, int y) {
         Rectangle cameraBox = getCameraBox();
         Rectangle tile = new Rectangle(x, y, tileSize, tileSize);
@@ -102,6 +92,9 @@ public class Camera extends JPanel {
     }
 
     //Get an object's relative coordinates to the camera.
+    public Point getAbsoluteCoordinates(Point p) {
+        return getAbsoluteCoordinates(p.x, p.y);
+    }
     public Point getAbsoluteCoordinates(int x, int y) {
         Rectangle cameraBox = getCameraBox();
         return new Point(Math.min(x + cameraBox.x, map.w * tileSize - 1), Math.min(y + cameraBox.y, map.h * tileSize - 1));
@@ -123,6 +116,16 @@ public class Camera extends JPanel {
     //Get the window's bounding box.
     public Rectangle getWindowBox() {
         return new Rectangle(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+    }
+
+    public boolean inDraggableRegion(int border, Point p) {
+        return inDraggableRegion(border, p.x, p.y);
+    }
+    public boolean inDraggableRegion(int border, int x, int y) {
+        if (getDraggableRegion(border).contains(x, y)) {
+            return true;
+        }
+        return false;
     }
 
     //Get the border region of the window at which point the mouse can pull the camera from.
@@ -166,31 +169,33 @@ public class Camera extends JPanel {
     }
 
     //Move towards the mouse if nothing is selected.
-    public void moveTowardsMouse() {
-        Point target = getMouseMapPosition();
-        if (selected != null) {
-            target = new Point(selected.x * tileSize, selected.y * tileSize);
+    public void moveTowardsPoint(int x, int y) {
+        this.x = (int) Math.max((w / 2.0) * tileSize, Math.min(this.x + (x - this.x) * slowdown, (map.w - (w / 2.0)) * tileSize));
+        this.y = (int) Math.max((h / 2.0) * tileSize, Math.min(this.y + (y - this.y) * slowdown, (map.h - (h / 2.0)) * tileSize));
+    }
+
+    //The camera draws all visual elements onto the screen. All objects with a Graphics function offload the painting to the camera.
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (map != null) {
+            paintRoom((Graphics2D) g);
+            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, healthFillColour, moveFillColour, backColour, borderColour);
+            if (selected != null) {
+                System.out.println(methods.tuple("selected", selected, selected.actor.moving, selected.actor.node));
+            }
+            else {
+                System.out.println(methods.tuple("selected", null));
+            }
         }
-        if (target != null) {
-            x = (int) Math.max((w / 2.0) * tileSize, Math.min(x + (target.x - x) * slowdown, (map.w - (w / 2.0)) * tileSize));
-            y = (int) Math.max((h / 2.0) * tileSize, Math.min(y + (target.y - y) * slowdown, (map.h - (h / 2.0)) * tileSize));
+        for (int i = 0; i < frame.transitions.size(); i += 1) {
+            frame.transitions.get(i).paintTransition(g);
         }
+        repaint();
     }
 
     //Paint the room the camera is in, drawing its tiles using the Background class' autotiling functionality. The separate for loops draw the tiles
     //in layers, making sure everything is properly positioned in the z-axis.
     public void paintRoom(Graphics2D g) {
-        Point mouse = getMouseScreenPosition();
-        Area pull = null;
-        if (mouse != null) {
-            pull = getDraggableRegion(64);
-            Point focus = getWindowPosition(mouse);
-            if (focus != null) {
-                if (pull.contains(focus)) {
-                    moveTowardsMouse();
-                }
-            }
-        }
         int cBorder = 3;
         //Draw floor.
         for (int y = -cBorder; y < map.h + cBorder; y += 1) {
@@ -263,7 +268,7 @@ public class Camera extends JPanel {
                         Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                         if (coords != null) {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
-                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, fillColour, backColour, borderColour);
+                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, healthFillColour, backColour, borderColour);
                         }
                     }
                 }
@@ -297,11 +302,6 @@ public class Camera extends JPanel {
                 Point coords = getRelativeCoordinates((int) (textX + 0.5) * tileSize, (int) (textY + 0.25) * tileSize);
                 text.display(g, coords.x, coords.y - titleThickness, tileSize);
             }
-        }
-        //Draw mouse pull.
-        if (pull != null) {
-            g.setColor(YELLOW);
-            g.fill(pull);
         }
     }
 }

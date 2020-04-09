@@ -22,7 +22,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     public int attackTime = 0;
     public boolean invulnerable = false;                                    //Whether the character is flashing white.
     public BufferedImage invulnerableSprite;
-    public CharacterSheet charSheet = new CharacterSheet();                 //The character's character sheet.
+    public CharacterSheet charSheet;                                        //The character's character sheet.
     public Actor actor = new Actor(this);                           //The character's ability to carry out their turn.
     public Pathfinder pathfinder = new Pathfinder(this);            //The character's pathfinder.
     public int x;                                                           //The character's coordinates.
@@ -84,28 +84,34 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     }
 
     //Move the character to a particular node.
-    public void moveToCoordinate(int x, int y, int speed) {
-        double ts = (double) speed / tileSize;
-        if (this.x != x && this.y != y) {
-            betweenX += (x - this.x) * ts;
-            betweenY += (y - this.y) * ts;
-            if (betweenX >= 1) {
-                betweenX -= (int) betweenX;
+    public boolean moveToCoordinate(int x, int y, double speed) {
+        double ts = speed / tileSize;
+        x = x / map.camera.tileSize;
+        y = y / map.camera.tileSize;
+        if (this.x != x || this.y != y) {
+            betweenX += methods.sign(x - this.x) * ts;
+            betweenY += methods.sign(y - this.y) * ts;
+            if (Math.abs(betweenX) >= 1) {
                 this.x += (int) betweenX;
+                betweenX -= (int) betweenX;
             }
-            if (betweenY >= 1) {
-                betweenY -= (int) betweenY;
+            if (Math.abs(betweenY) >= 1) {
                 this.y += (int) betweenY;
+                betweenY -= (int) betweenY;
             }
+            System.out.println(methods.tuple(this.x, this.y, this.x + betweenX, this.y + betweenY, x, y, actor.node));
             if (this.x == x && this.y == y) {
                 betweenX = 0;
                 betweenY = 0;
+            } else {
+                return true;
             }
         }
         else {
             betweenX = 0;
             betweenY = 0;
         }
+        return false;
     }
 
     //Teleport to another area of the map.
@@ -137,7 +143,7 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
         return checkDistance(character.x, character.y);
     }
     public double checkDistance(int x, int y) {
-        return methods.distance(this.x, this.y, x, y);
+        return methods.distance(this.x + betweenX, this.y + betweenY, x, y);
     }
 
     //Draw the character, using rectangular sections of a sprite sheet. If there is no sprite sheet, default to a coloured square.
@@ -146,6 +152,9 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     //Row 3 - Left
     //Row 4 - Up
     public void drawSelf(Graphics g, int x, int y, int screenTileSize, Color colour) {
+        if (actor.moving) {
+            actor.moveToNode();
+        }
         if (sprite != null) {
             int offset, offsetX = (int) (betweenX * tileSize), offsetY = (int) (betweenY * tileSize);
             if (this.invulnerableSprite == null) {

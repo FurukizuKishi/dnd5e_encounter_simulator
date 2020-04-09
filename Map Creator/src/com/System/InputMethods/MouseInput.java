@@ -9,14 +9,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Area;
 
 import static java.awt.event.MouseEvent.*;
 
 public class MouseInput implements MouseListener, MouseMotionListener {
     GUI frame;
-    int mx;
-    int my;
+    int mx = 0;
+    int my = 0;
     int mb;
+    String mt;
     boolean pushed = false;
     public MouseInput(GUI frame) {
         this.frame = frame;
@@ -33,10 +35,10 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     }
 
     public void selectPathTile() {
-        if (mb == BUTTON1) {
+        if (mb == BUTTON1 || mt.equals("dragged")) {
             CharacterModel character = frame.hud.getSelected();
             if (character != null) {
-                Point bigCoords = frame.camera.getRelativeCoordinates(mx, my);
+                Point bigCoords = frame.camera.getAbsoluteCoordinates(mx, my);
                 Point coords = new Point(bigCoords.x / frame.camera.tileSize, bigCoords.y / frame.camera.tileSize);
                 boolean canSelect = false;
                 if (character.pathfinder.pathGrid[coords.y][coords.x] == Enums.pathTile.FREE) {
@@ -64,7 +66,8 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         mx = e.getX();
         my = e.getY();
         mb = e.getButton();
-        System.out.println(methods.tuple(type.toUpperCase(), mb, pushed, mx, my));
+        mt = type;
+        System.out.println(methods.tuple(mt.toUpperCase(), mb, pushed, mx, my));
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -75,11 +78,15 @@ public class MouseInput implements MouseListener, MouseMotionListener {
                     Point coords = frame.camera.getRelativeCoordinates(character.x * frame.camera.tileSize, character.y * frame.camera.tileSize);
                     if (coords != null) {
                         if ((new Rectangle(coords.x, coords.y, frame.camera.tileSize, frame.camera.tileSize)).contains(mx, my)) {
-                            frame.hud.select(character);
+                            System.out.println(character);
+                            if (!frame.hud.select(character)) {
+                                character.charSheet.display();
+                            }
                         }
                     }
                 } break;
-            case BUTTON3: frame.hud.select(null); break;
+            case BUTTON3:
+                frame.hud.select(null); break;
         }
         System.out.println(frame.camera.selected);
     }
@@ -110,6 +117,17 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     }
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        setMouseLocation(e, "moved");
+        Point mouse = getMouseLocation();
+        Point target = null;
+        if (frame.camera.inDraggableRegion(64, mouse)) {
+            target = frame.camera.getAbsoluteCoordinates(mouse);
+        }
+        if (frame.camera.selected != null) {
+            target = new Point(frame.camera.selected.x * frame.camera.tileSize, frame.camera.selected.y * frame.camera.tileSize);
+        }
+        if (target != null) {
+            frame.camera.moveTowardsPoint(target.x, target.y);
+        }
     }
 }

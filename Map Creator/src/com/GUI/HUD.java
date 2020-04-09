@@ -43,67 +43,23 @@ public class HUD {
         return selected;
     }
 
-    public void select(CharacterModel character) {
+    public boolean select(CharacterModel character) {
         if (character != selected) {
             selected = character;
             camera.selected = character;
             for (CharacterModel c : camera.map.characterList) {
-                c.pathfinder.activate(false);
-                c.pathfinder.path.clear();
+                c.pathfinder.deactivate();
             }
             if (character != null) {
-                character.pathfinder.activate(true);
+                character.pathfinder.activate();
             }
+            return true;
         }
-    }
-
-    //Create the dimensions for a drawn value bar.
-    public int[] createValueBarDimensions(int barX, int barY, int barWidth, int barHeight, int border) {
-        int fillX = barX + border;
-        int fillY = barY + border;
-        int fillWidth = barWidth - (border * 2);
-        int fillHeight = barHeight - (border * 2);
-        return new int[] {fillX, fillY, fillWidth, fillHeight};
-    }
-
-    //Create a value bar with a rounded-rectangle shape.
-    public void paintValueBarRound(Graphics g, int value, int maxValue, Color barColour, Color backColour, int barX, int barY, int barWidth, int barHeight) {
-        paintValueBarRound(g, value, maxValue, barColour, backColour, null, barX, barY, barWidth, barHeight, 0);
-    }
-    public void paintValueBarRound(Graphics g, int value, int maxValue, Color barColour, Color backColour, Color borderColour, int barX, int barY, int barWidth, int barHeight, int border) {
-        int[] fill = createValueBarDimensions(barX, barY, barWidth, barHeight, border);
-        if (borderColour != null) {
-            g.setColor(borderColour);
-            g.fillRoundRect(barX, barY, barWidth, barHeight, barHeight, barHeight);
-        }
-        if (backColour != null) {
-            g.setColor(backColour);
-            g.fillRoundRect(fill[0], fill[1], fill[2], fill[3], fill[3], fill[3]);
-        }
-        g.setColor(barColour);
-        g.fillRoundRect(fill[0], fill[1], methods.integerDivision(value, maxValue, fill[2]), fill[3], fill[3], fill[3]);
-    }
-
-    //Create a rectangular value bar.
-    public void paintValueBarSquare(Graphics g, int value, int maxValue, Color barColour, Color backColour, int barX, int barY, int barWidth, int barHeight) {
-        paintValueBarSquare(g, value, maxValue, barColour, backColour, null, barX, barY, barWidth, barHeight, 0);
-    }
-    public void paintValueBarSquare(Graphics g, int value, int maxValue, Color barColour, Color backColour, Color borderColour, int barX, int barY, int barWidth, int barHeight, int border) {
-        int[] fill = createValueBarDimensions(barX, barY, barWidth, barHeight, border);
-        if (borderColour != null) {
-            g.setColor(borderColour);
-            g.fillRect(barX, barY, barWidth, barHeight);
-        }
-        if (backColour != null) {
-            g.setColor(backColour);
-            g.fillRect(fill[0], fill[1], fill[2], fill[3]);
-        }
-        g.setColor(barColour);
-        g.fillRect(fill[0], fill[1], methods.integerDivision(value, maxValue, fill[2]), fill[3]);
+        return false;
     }
 
     //Draw the HUD, including the healthbar and minimap.
-    public void paintHUD(Graphics g, Enums.alignmentHorizontal alignment, Color fillColour, Color backColour, Color borderColour) {
+    public void paintHUD(Graphics g, Enums.alignmentHorizontal alignment, Color healthFillColour, Color moveFillColour, Color backColour, Color borderColour) {
         if (selected != null) {
             int barX, barY, barWidth, barHeight;
             if (healthContainer != null) {
@@ -111,7 +67,7 @@ public class HUD {
                 barY = 8;
                 barWidth = healthContainer.getWidth() - (barXOffset * 2);
                 barHeight = healthContainer.getHeight() - (barYOffset * 2);
-                paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), fillColour, backColour, barX + barXOffset, barY + barYOffset, barWidth, barHeight);
+                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, backColour, barX + barXOffset, barY + barYOffset, barWidth, barHeight);
                 g.drawImage(healthContainer, barX, barY, null);
             } else {
                 barX = sw / 96;
@@ -119,7 +75,7 @@ public class HUD {
                 barWidth = sw / 6;
                 barHeight = sw / 24;
                 int border = 2;
-                paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), fillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
+                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
             }
             alignText(alignment);
             int bx = 0;
@@ -129,6 +85,14 @@ public class HUD {
                 case RIGHT: bx = barWidth - 8; break;
             }
             drawString(g, Integer.toString(selected.charSheet.health()), barX + bx, barY + barHeight + 1, Fonts.font.DAMAGE, Color.WHITE);
+            if (selected.actor.node > -1) {
+                barX = sw / 96;
+                barY = sw / 96 + (sw / 24);
+                barWidth = sw / 6;
+                barHeight = sw / 48;
+                int border = 2;
+                methods.paintValueBarSquare(g, selected.actor.node + 1, selected.pathfinder.getMove(), moveFillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
+            }
             if (selected.map != null) {
                 //character.map.drawMinimap(g, 16, 48, 160, 160);
             }
@@ -143,7 +107,7 @@ public class HUD {
         int barWidth = camera.tileSize - (barSqueeze * 2);
         int barHeight = sw / 48;
         int border = 1;
-        paintValueBarSquare(g, character.charSheet.health(), character.charSheet.maxHealth(), fillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
+        methods.paintValueBarSquare(g, character.charSheet.health(), character.charSheet.maxHealth(), fillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
         alignText(alignment);
         int bx = 0;
         switch (alignment) {

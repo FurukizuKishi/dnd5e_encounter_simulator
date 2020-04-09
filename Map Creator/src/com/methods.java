@@ -99,7 +99,7 @@ public class methods {
     }
 
     //Check distance between two points.
-    public static double distance(int thisX, int thisY, int otherX, int otherY) {
+    public static double distance(double thisX, double thisY, double otherX, double otherY) {
         return Math.sqrt(Math.pow((otherX - thisX), 2) + Math.pow((otherY - thisY), 2));
     }
 
@@ -219,5 +219,50 @@ public class methods {
             case '>': dir[0] = 1; break;
         }
         return dir;
+    }
+
+    //Create the dimensions for a drawn value bar.
+    public static int[] createValueBarDimensions(int barX, int barY, int barWidth, int barHeight, int border) {
+        int fillX = barX + border;
+        int fillY = barY + border;
+        int fillWidth = barWidth - (border * 2);
+        int fillHeight = barHeight - (border * 2);
+        return new int[] {fillX, fillY, fillWidth, fillHeight};
+    }
+
+    //Create a value bar with a rounded-rectangle shape.
+    public static void paintValueBarRound(Graphics g, int value, int maxValue, Color barColour, Color backColour, int barX, int barY, int barWidth, int barHeight) {
+        paintValueBarRound(g, value, maxValue, barColour, backColour, null, barX, barY, barWidth, barHeight, 0);
+    }
+    public static void paintValueBarRound(Graphics g, int value, int maxValue, Color barColour, Color backColour, Color borderColour, int barX, int barY, int barWidth, int barHeight, int border) {
+        int[] fill = createValueBarDimensions(barX, barY, barWidth, barHeight, border);
+        if (borderColour != null) {
+            g.setColor(borderColour);
+            g.fillRoundRect(barX, barY, barWidth, barHeight, barHeight, barHeight);
+        }
+        if (backColour != null) {
+            g.setColor(backColour);
+            g.fillRoundRect(fill[0], fill[1], fill[2], fill[3], fill[3], fill[3]);
+        }
+        g.setColor(barColour);
+        g.fillRoundRect(fill[0], fill[1], methods.integerDivision(value, maxValue, fill[2]), fill[3], fill[3], fill[3]);
+    }
+
+    //Create a rectangular value bar.
+    public static void paintValueBarSquare(Graphics g, int value, int maxValue, Color barColour, Color backColour, int barX, int barY, int barWidth, int barHeight) {
+        paintValueBarSquare(g, value, maxValue, barColour, backColour, null, barX, barY, barWidth, barHeight, 0);
+    }
+    public static void paintValueBarSquare(Graphics g, int value, int maxValue, Color barColour, Color backColour, Color borderColour, int barX, int barY, int barWidth, int barHeight, int border) {
+        int[] fill = createValueBarDimensions(barX, barY, barWidth, barHeight, border);
+        if (borderColour != null) {
+            g.setColor(borderColour);
+            g.fillRect(barX, barY, barWidth, barHeight);
+        }
+        if (backColour != null) {
+            g.setColor(backColour);
+            g.fillRect(fill[0], fill[1], fill[2], fill[3]);
+        }
+        g.setColor(barColour);
+        g.fillRect(fill[0], fill[1], methods.integerDivision(value, maxValue, fill[2]), fill[3]);
     }
 }

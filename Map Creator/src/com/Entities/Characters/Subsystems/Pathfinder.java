@@ -63,9 +63,24 @@ public class Pathfinder {
         maxRange = move + range + 1;
     }
 
+    public void activate() {
+        activate(true);
+    }
+    public void activate(boolean clear) {
+        activate(true, clear);
+    }
+    public void deactivate() {
+        deactivate(true);
+    }
+    public void deactivate(boolean clear) {
+        activate(false, clear);
+    }
     //Set whether the pathfinder is active to show its character's movement options.
-    public void activate(boolean active) {
+    public void activate(boolean active, boolean clear) {
         this.active = active;
+        if (clear) {
+            path.clear();
+        }
         if (active) {
             createMovementRange();
             display();
@@ -81,7 +96,8 @@ public class Pathfinder {
     public boolean adjacentCells(int x1, int y1, int x2, int y2) {
         boolean horizontal = (Math.abs(x1 - x2) == 1);
         boolean vertical = (Math.abs(y1 - y2) == 1);
-        if ((horizontal || vertical) && !(horizontal && vertical)) {
+        boolean far = (Math.abs(x1 - x2) > 1 || Math.abs(y1 - y2) > 1);
+        if ((horizontal || vertical) && !((horizontal && vertical) || far)) {
             return true;
         }
         return false;
@@ -90,10 +106,19 @@ public class Pathfinder {
     public boolean closeCells(int x1, int y1, int x2, int y2) {
         boolean horizontal = (Math.abs(x1 - x2) == 1);
         boolean vertical = (Math.abs(y1 - y2) == 1);
-        if (horizontal || vertical) {
+        boolean far = (Math.abs(x1 - x2) > 1 || Math.abs(y1 - y2) > 1);
+        if ((horizontal || vertical) && !far) {
             return true;
         }
         return false;
+    }
+
+    //Print the path.
+    public void printPath() {
+        for (int[] node : path) {
+            System.out.print(methods.tuple(node[0], node[1]) + ", ");
+        }
+        System.out.println();
     }
 
     //Pathfind towards the player, one step at a time. This function checks each of the enemy's adjacent walls to see where it can move that reduces

@@ -40,7 +40,7 @@ public class FloatingText {
         this.text = text;
     }
 
-    //Deactivate the text, rendering it invisble.
+    //Deactivate the text, rendering it invisible.
     public void deactivate() {
         this.active = false;
     }

@@ -2,13 +2,15 @@ package com.Entities.Characters.Subsystems;
 
 import com.Entities.Characters.CharacterModel;
 import com.System.Enums;
+import com.methods;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Actor {
-    CharacterModel owner;
-    private HashMap<Enums.actionType, int[]> actions = new HashMap<>();
+    CharacterModel owner;                                                   //The character that owns this actor.
+    private HashMap<Enums.actionType, int[]> actions = new HashMap<>();     //A map of all of the character's actions.
+    public boolean moving = false;                                          //Whether the character is moving on the map.
+    public int node = -1;                                                   //Index of the node on the path the character needs to move through.
 
     public Actor(CharacterModel owner) {
         this.owner = owner;
@@ -107,7 +109,37 @@ public class Actor {
 
     }
 
-    public void move() {
-
+    public boolean move() {
+        moving = false;
+        if (owner.pathfinder.path.size() > node + 1) {
+            if (Math.max(owner.pathfinder.path.size(), Math.min(node, owner.pathfinder.getMove() - 1)) != node) {
+                node += 1;
+                moving = true;
+            }
+        }
+        return moving;
+    }
+    public boolean moveToNode() {
+        if (owner.pathfinder.path.size() > 0) {
+            if (Math.max(0, Math.min(node, owner.pathfinder.path.size() - 1)) == node) {
+                int[] node = owner.pathfinder.path.get(this.node);
+                owner.pathfinder.printPath();
+                if (!owner.moveToCoordinate(node[0] * owner.map.camera.tileSize, node[1] * owner.map.camera.tileSize, 2)) {
+                    this.node += 1;
+                }
+                return true;
+            }
+            if (node < owner.pathfinder.getMove() - 1) {
+                closePath(node, true);
+            } else {
+                closePath(-1, true);
+            }
+        }
+        return false;
+    }
+    public void closePath(int node, boolean clear) {
+        this.node = node;
+        owner.pathfinder.activate(clear);
+        moving = false;
     }
 }
