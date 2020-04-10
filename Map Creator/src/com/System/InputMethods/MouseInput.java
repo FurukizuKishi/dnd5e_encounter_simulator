@@ -5,22 +5,21 @@ import com.GUI.GUI;
 import com.System.Enums;
 import com.methods;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.Area;
-
-import static java.awt.event.MouseEvent.*;
 
 public class MouseInput implements MouseListener, MouseMotionListener {
-    GUI frame;
+    JFrame frame;
     int mx = 0;
     int my = 0;
     int mb;
     String mt;
     boolean pushed = false;
-    public MouseInput(GUI frame) {
+    public MouseInput() {}
+    public MouseInput(JFrame frame) {
         this.frame = frame;
     }
 
@@ -34,34 +33,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         return pushed;
     }
 
-    public void selectPathTile() {
-        if (mb == BUTTON1 || mt.equals("dragged")) {
-            CharacterModel character = frame.hud.getSelected();
-            if (character != null) {
-                Point bigCoords = frame.camera.getAbsoluteCoordinates(mx, my);
-                Point coords = new Point(bigCoords.x / frame.camera.tileSize, bigCoords.y / frame.camera.tileSize);
-                boolean canSelect = false;
-                if (character.pathfinder.pathGrid[coords.y][coords.x] == Enums.pathTile.FREE) {
-                    if (character.pathfinder.path.size() < character.pathfinder.getMove()) {
-                        if (character.pathfinder.path.size() > 0) {
-                            int[] point = character.pathfinder.path.get(character.pathfinder.path.size() - 1);
-                            if (character.pathfinder.adjacentCells(point[0], point[1], coords.x, coords.y)) {
-                                canSelect = true;
-                            }
-                        } else {
-                            if (character.pathfinder.adjacentCells(character.x, character.y, coords.x, coords.y)) {
-                                canSelect = true;
-                            }
-                        }
-                    }
-                }
-                if (canSelect) {
-                    character.pathfinder.path.add(new int[]{coords.x, coords.y});
-                }
-            }
-        }
-    }
-
     public void setMouseLocation(MouseEvent e, String type) {
         mx = e.getX();
         my = e.getY();
@@ -72,29 +43,11 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         setMouseLocation(e, "clicked");
-        switch (mb) {
-            case BUTTON1:
-                for (CharacterModel character : frame.camera.getMap().characterList) {
-                    Point coords = frame.camera.getRelativeCoordinates(character.x * frame.camera.tileSize, character.y * frame.camera.tileSize);
-                    if (coords != null) {
-                        if ((new Rectangle(coords.x, coords.y, frame.camera.tileSize, frame.camera.tileSize)).contains(mx, my)) {
-                            System.out.println(character);
-                            if (!frame.hud.select(character)) {
-                                character.charSheet.display();
-                            }
-                        }
-                    }
-                } break;
-            case BUTTON3:
-                frame.hud.select(null); break;
-        }
-        System.out.println(frame.camera.selected);
     }
     @Override
     public void mousePressed(MouseEvent e) {
         setMouseLocation(e, "pressed");
         pushed = true;
-        selectPathTile();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -113,21 +66,9 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         setMouseLocation(e, "dragged");
         pushed = true;
-        selectPathTile();
     }
     @Override
     public void mouseMoved(MouseEvent e) {
         setMouseLocation(e, "moved");
-        Point mouse = getMouseLocation();
-        Point target = null;
-        if (frame.camera.inDraggableRegion(64, mouse)) {
-            target = frame.camera.getAbsoluteCoordinates(mouse);
-        }
-        if (frame.camera.selected != null) {
-            target = new Point(frame.camera.selected.x * frame.camera.tileSize, frame.camera.selected.y * frame.camera.tileSize);
-        }
-        if (target != null) {
-            frame.camera.moveTowardsPoint(target.x, target.y);
-        }
     }
 }

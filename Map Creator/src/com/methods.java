@@ -1,6 +1,8 @@
 package com;
 
 import com.GUI.System.Fonts;
+import com.System.Enums;
+import com.System.Text.FloatingText;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -128,9 +130,72 @@ public class methods {
 
     //Draw a styled string onscreen.
     public static void drawString(Graphics g, String str, int x, int y, Fonts.font font, Color colour) {
+        drawString(g, str, x, y, font, colour, 0);
+    }
+    public static void drawString(Graphics g, String str, int x, int y, Fonts.font font, Color colour, int alignment) {
+        Enums.alignmentHorizontal he; Enums.alignmentVertical ve;
+        switch (alignment) {
+            default: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
+            case 1: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
+            case 2: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
+            case 3: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
+            case 4: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
+            case 5: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
+            case 6: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
+            case 7: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
+            case 8: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
+        }
+        int h = methods.getNewHorizontalAlignment(g, str, he);
+        int v = methods.getNewVerticalAlignment(g, str, ve);
         g.setColor(colour);
         g.setFont(Fonts.fonts.get(font));
-        g.drawString(str, x, y);
+        g.drawString(str, x - h, y - v);
+    }
+
+    //Align text using its width in pixels. Justifications include LEFT, MIDDLE and RIGHT.
+    public static void alignFloatingText(Graphics g, FloatingText text, Enums.alignmentHorizontal justification) {
+        text.alignmentOffset = getNewHorizontalAlignment(g, text.text, justification);
+    }
+    public static int getNewHorizontalAlignment(Graphics g, String str, Enums.alignmentHorizontal justification) {
+        return getNewHorizontalAlignment(g, str, justification, g.getFont());
+    }
+    public static int getNewHorizontalTextAlignment(Graphics g, String str, Enums.alignmentHorizontal justification, Fonts.font font) {
+        return getNewHorizontalAlignment(g, str, justification, Fonts.fonts.get(font));
+    }
+    public static int getNewHorizontalAlignment(Graphics g, String str, Enums.alignmentHorizontal justification, Font font) {
+        FontMetrics fm = g.getFontMetrics(font);
+        int fontWidth = fm.stringWidth(str);
+        if (justification == Enums.alignmentHorizontal.LEFT) {
+            return 0;
+        }
+        else if (justification == Enums.alignmentHorizontal.MIDDLE) {
+            return fontWidth / 2;
+        }
+        else if (justification == Enums.alignmentHorizontal.RIGHT) {
+            return fontWidth;
+        }
+        return 0;
+    }
+    //Align text using its width in pixels. Justifications include LEFT, MIDDLE and RIGHT.
+    public static int getNewVerticalAlignment(Graphics g, String str, Enums.alignmentVertical justification) {
+        return getNewVerticalAlignment(g, str, justification, g.getFont());
+    }
+    public static int getNewVerticalAlignment(Graphics g, String str, Enums.alignmentVertical justification, Fonts.font font) {
+        return getNewVerticalAlignment(g, str, justification, Fonts.fonts.get(font));
+    }
+    public static int getNewVerticalAlignment(Graphics g, String str, Enums.alignmentVertical justification, Font font) {
+        FontMetrics fm = g.getFontMetrics(font);
+        int fontHeight = (int) fm.getStringBounds(str, g).getHeight();
+        if (justification == Enums.alignmentVertical.TOP) {
+            return 0;
+        }
+        else if (justification == Enums.alignmentVertical.MIDDLE) {
+            return fontHeight / 2;
+        }
+        else if (justification == Enums.alignmentVertical.BOTTOM) {
+            return fontHeight;
+        }
+        return 0;
     }
 
     //Draw a textbox onscreen.

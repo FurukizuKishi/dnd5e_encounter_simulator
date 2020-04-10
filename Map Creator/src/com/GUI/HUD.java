@@ -59,7 +59,7 @@ public class HUD {
     }
 
     //Draw the HUD, including the healthbar and minimap.
-    public void paintHUD(Graphics g, Enums.alignmentHorizontal alignment, Color healthFillColour, Color moveFillColour, Color backColour, Color borderColour) {
+    public void paintHUD(Graphics g, Enums.alignmentHorizontal alignment, Color healthFillColour, Color moveFillColour, Color healthBackColour, Color moveBackColour, Color borderColour) {
         if (selected != null) {
             int barX, barY, barWidth, barHeight;
             if (healthContainer != null) {
@@ -67,7 +67,7 @@ public class HUD {
                 barY = 8;
                 barWidth = healthContainer.getWidth() - (barXOffset * 2);
                 barHeight = healthContainer.getHeight() - (barYOffset * 2);
-                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, backColour, barX + barXOffset, barY + barYOffset, barWidth, barHeight);
+                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, healthBackColour, barX + barXOffset, barY + barYOffset, barWidth, barHeight);
                 g.drawImage(healthContainer, barX, barY, null);
             } else {
                 barX = sw / 96;
@@ -75,7 +75,7 @@ public class HUD {
                 barWidth = sw / 6;
                 barHeight = sw / 24;
                 int border = 2;
-                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
+                methods.paintValueBarSquare(g, selected.charSheet.health(), selected.charSheet.maxHealth(), healthFillColour, healthBackColour, borderColour, barX, barY, barWidth, barHeight, border);
             }
             alignText(alignment);
             int bx = 0;
@@ -91,7 +91,7 @@ public class HUD {
                 barWidth = sw / 6;
                 barHeight = sw / 48;
                 int border = 2;
-                methods.paintValueBarSquare(g, selected.actor.node + 1, selected.pathfinder.getMove(), moveFillColour, backColour, borderColour, barX, barY, barWidth, barHeight, border);
+                methods.paintValueBarSquare(g, selected.actor.node + 1, selected.pathfinder.getMove(), moveFillColour, moveBackColour, borderColour, barX, barY, barWidth, barHeight, border);
             }
             if (selected.map != null) {
                 //character.map.drawMinimap(g, 16, 48, 160, 160);
@@ -145,7 +145,7 @@ public class HUD {
 
     //Draw a styled string of text.
     public void drawString(Graphics g, String str, int x, int y, Fonts.font font, Color colour) {
-        int textAlignment = camera.frame.getNewTextAlignment(str, justification, Fonts.fonts.get(font));
+        int textAlignment = methods.getNewHorizontalTextAlignment(g, str, justification, font);
         methods.drawString(g, str, x - textAlignment, y, font, colour);
     }
 

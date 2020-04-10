@@ -6,10 +6,8 @@ import com.GUI.System.Fonts;
 import com.GUI.System.RoomLinker;
 import com.GUI.System.Transitions.Transition;
 import com.Map.Map;
-import com.System.Enums;
 import com.System.HasImage;
-import com.System.InputMethods.MouseInput;
-import com.System.Text.FloatingText;
+import com.System.InputMethods.*;
 import com.System.Text.TextStore;
 
 import javax.swing.*;
@@ -82,8 +80,8 @@ public class GUI extends JFrame {
         players.get("Kael").teleport(5, 5);
         camera.map.display();
 
-        this.addMouseListener(new MouseInput(this));
-        this.addMouseMotionListener(new MouseInput(this));
+        this.addMouseListener(new MouseGridInput(this));
+        this.addMouseMotionListener(new MouseGridInput(this));
 
         repaint();
     }
@@ -111,30 +109,5 @@ public class GUI extends JFrame {
     public void createPlayer(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         players.put(name, new PlayerModel(name, strength, dexterity, constitution, intelligence, wisdom, charisma));
         players.get(name).setSprite(imageSelector.selectFile("files/images/"));
-    }
-
-    //Align text using its width in pixels. Justifications include LEFT, MIDDLE and RIGHT.
-    public void alignFloatingText(FloatingText text, Enums.alignmentHorizontal justification) {
-        text.alignmentOffset = getNewTextAlignment(text.text, justification);
-    }
-    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification) {
-        return getNewTextAlignment(str, justification, getFont());
-    }
-    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification, Fonts.font font) {
-        return getNewTextAlignment(str, justification, Fonts.fonts.get(font));
-    }
-    public int getNewTextAlignment(String str, Enums.alignmentHorizontal justification, Font font) {
-        FontMetrics fm = getFontMetrics(font);
-        int fontWidth = fm.stringWidth(str);
-        if (justification == Enums.alignmentHorizontal.LEFT) {
-            return 0;
-        }
-        else if (justification == Enums.alignmentHorizontal.MIDDLE) {
-            return fontWidth / 2;
-        }
-        else if (justification == Enums.alignmentHorizontal.RIGHT) {
-            return fontWidth;
-        }
-        return 0;
     }
 }

@@ -1,11 +1,11 @@
 package com.GUI;
 
 import com.Entities.Characters.CharacterModel;
-import com.Entities.Entity;
 import com.Map.Map;
 import com.System.Enums;
 import com.System.InputMethods.MouseInput;
 import com.System.Text.FloatingText;
+import com.globals;
 import com.methods;
 
 import javax.swing.*;
@@ -26,10 +26,6 @@ public class Camera extends JPanel {
     GUI frame;                                  //The camera's parent frame.
     Map map;                                    //The map the camera is currently in.
     HUD hud;                                    //The HUD the camera is using.
-    Color borderColour = new Color(255, 255, 255);
-    Color healthFillColour = new Color(0, 135, 0);
-    Color moveFillColour = new Color(65, 175, 255);
-    Color backColour = new Color(45, 45, 45);
 
     //Camera constructor.
     public Camera(GUI frame, int w, int h, HUD hud, Map map) {
@@ -179,7 +175,7 @@ public class Camera extends JPanel {
         super.paintComponent(g);
         if (map != null) {
             paintRoom((Graphics2D) g);
-            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, healthFillColour, moveFillColour, backColour, borderColour);
+            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, globals.healthFillColour, globals.moveFillColour, globals.healthBackColour, globals.moveBackColour, globals.borderColour);
             if (selected != null) {
                 System.out.println(methods.tuple("selected", selected, selected.actor.moving, selected.actor.node));
             }
@@ -268,7 +264,7 @@ public class Camera extends JPanel {
                         Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                         if (coords != null) {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
-                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, healthFillColour, backColour, borderColour);
+                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, globals.healthFillColour, globals.healthBackColour, globals.borderColour);
                         }
                     }
                 }
@@ -295,7 +291,7 @@ public class Camera extends JPanel {
         }
         //Draw floating text.
         for (FloatingText text : frame.textStores.get("damage").floatingText) {
-            frame.alignFloatingText(text, Enums.alignmentHorizontal.MIDDLE);
+            methods.alignFloatingText(g, text, Enums.alignmentHorizontal.MIDDLE);
             if (cBox.contains(text.x * tileSize, text.y * tileSize)) {
                 int textX = text.x - (int) cBox.getBounds().getX();
                 int textY = text.y - (int) cBox.getBounds().getY();

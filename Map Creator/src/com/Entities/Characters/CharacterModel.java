@@ -1,7 +1,7 @@
 package com.Entities.Characters;
 
 import com.Entities.Characters.Subsystems.Actor;
-import com.Entities.Characters.Subsystems.CharacterSheet;
+import com.Entities.Characters.Subsystems.CharacterSheet.CharacterSheet;
 import com.Entities.Characters.Conditions.Condition;
 import com.Entities.Entity;
 import com.Entities.Characters.Subsystems.Pathfinder;
