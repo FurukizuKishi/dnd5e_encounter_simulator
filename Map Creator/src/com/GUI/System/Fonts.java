@@ -1,8 +1,11 @@
 package com.GUI.System;
 
+import com.main;
+
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 public class Fonts {
@@ -15,8 +18,7 @@ public class Fonts {
     public static boolean addFont(String filepath, font key, int size) {
         try {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //Class thisClass = Class.forName("Fonts");
-            FileInputStream fileInput = new FileInputStream(filepath);
+            InputStream fileInput = main.class.getResource("/com/resources/fonts/" + filepath).openStream();
             Font font = Font.createFont(Font.TRUETYPE_FONT, fileInput).deriveFont((float) size);
             fonts.put(key, font);
             ge.registerFont(font);

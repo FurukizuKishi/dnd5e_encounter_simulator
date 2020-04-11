@@ -176,12 +176,12 @@ public class Camera extends JPanel {
         if (map != null) {
             paintRoom((Graphics2D) g);
             hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, globals.healthFillColour, globals.moveFillColour, globals.healthBackColour, globals.moveBackColour, globals.borderColour);
-            if (selected != null) {
+            /*if (selected != null) {
                 System.out.println(methods.tuple("selected", selected, selected.actor.moving, selected.actor.node));
             }
             else {
                 System.out.println(methods.tuple("selected", null));
-            }
+            }*/
         }
         for (int i = 0; i < frame.transitions.size(); i += 1) {
             frame.transitions.get(i).paintTransition(g);

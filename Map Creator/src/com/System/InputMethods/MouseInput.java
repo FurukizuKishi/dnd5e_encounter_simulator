@@ -1,8 +1,5 @@
 package com.System.InputMethods;
 
-import com.Entities.Characters.CharacterModel;
-import com.GUI.GUI;
-import com.System.Enums;
 import com.methods;
 
 import javax.swing.*;
@@ -12,14 +9,14 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MouseInput implements MouseListener, MouseMotionListener {
-    JFrame frame;
+    JComponent frame;
     int mx = 0;
     int my = 0;
     int mb;
     String mt;
     boolean pushed = false;
     public MouseInput() {}
-    public MouseInput(JFrame frame) {
+    public MouseInput(JComponent frame) {
         this.frame = frame;
     }
 

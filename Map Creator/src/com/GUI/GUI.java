@@ -34,10 +34,10 @@ public class GUI extends JFrame {
     //The GUI constructor. Handles the initial setup of the game, creating fonts, enemy definitions, and setting the window's characteristics.
     public GUI(String title, int width, int height, int cameraWidth, int cameraHeight) {
         textStores.put("damage", new TextStore());
-        Fonts.addFont("fonts/stonehen.ttf", Fonts.font.TEXT, 30);
-        Fonts.addFont("fonts/partybusiness.ttf", Fonts.font.DAMAGE, 20);
-        Fonts.addFont("fonts/DUNGRG__.TTF", Fonts.font.TITLE, 120);
-        Fonts.addFont("fonts/DUNGRG__.TTF", Fonts.font.SUBTITLE, 60);
+        Fonts.addFont("stonehen.ttf", Fonts.font.TEXT, 30);
+        Fonts.addFont("partybusiness.ttf", Fonts.font.DAMAGE, 20);
+        Fonts.addFont("DUNGRG__.TTF", Fonts.font.TITLE, 120);
+        Fonts.addFont("DUNGRG__.TTF", Fonts.font.SUBTITLE, 60);
         this.title = title;
         w = width;
         h = height;

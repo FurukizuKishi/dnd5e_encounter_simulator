@@ -11,6 +11,7 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -230,12 +231,25 @@ public class methods {
     }
 
     //Obtain a sprite from a path.
-    public static BufferedImage getImage(String spritePath) {
+    public static BufferedImage getExternalImage(String spritePath) {
         File file = new File(spritePath);
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
             System.out.println(e);
+            return null;
+        }
+    }
+
+    //Obtain a sprite from a path.
+    public static BufferedImage getImage(String spritePath) {
+        try {
+            URL fileInput = main.class.getResource("/com/resources/" + spritePath + ".png");
+            if (fileInput == null) {
+                return null;
+            }
+            return ImageIO.read(fileInput.openStream());
+        } catch (IOException e) {
             return null;
         }
     }

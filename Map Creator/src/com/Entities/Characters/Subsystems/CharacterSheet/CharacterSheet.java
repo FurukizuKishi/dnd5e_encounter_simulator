@@ -7,13 +7,17 @@ import com.methods;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CharacterSheet extends JPanel {
+    protected JFrame sheet;
+    protected SheetComponents components;
     private String name;
-    private BufferedImage sheetBackground = methods.getImage("images/character_sheet.png");
+    private BufferedImage sheetBackground = methods.getImage("images/character_sheet");
     protected HashMap<String, int[]> abilityScores = new HashMap<>();
     protected HashMap<String, Integer> secondaryScores = new HashMap<>();
     protected HashMap<String, Integer> classLevels = new HashMap<>();
@@ -189,65 +193,57 @@ public class CharacterSheet extends JPanel {
         return false;
     }
 
-    public void paintBar(Graphics g, int value, int maxValue, Color fillColour, Color backColour, int x1, int y1, int width, int height) {
-        methods.paintValueBarSquare(g, value, maxValue, fillColour, backColour, x1, y1, width, height);
-    }
-    public void paintHealthbar(Graphics g, int x1, int y1, int x2, int y2) {
-        paintBar(g, health, maxHealth, globals.healthFillColour, globals.healthBackColour, x1, y1, x2 - x1, y2 - y1);
-    }
-    public void paintExperienceBar(Graphics g, int x1, int y1, int x2, int y2) {
-        paintBar(g, experience(level), experience(level + 1), globals.expFillColour, globals.expBackColour, x1, y1, x2 - x1, y2 - y1);
-    }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintHealthbar(g, 169, 340, 459, 448);
-        paintExperienceBar(g, 61, 182, 235, 215);
+        System.out.println("PAINT");
         g.drawImage(sheetBackground, 0, 0, null);
-        String[] scores = { "str", "dex", "con", "int", "wis", "cha" };
-        for (int i = 0; i < scores.length; i += 1) {
-            methods.drawString(g, Integer.toString(score(scores[i])), 86, 316 + (i * 127), Fonts.font.TEXT, Color.BLACK, 4);
-            methods.drawString(g, Integer.toString(mod(scores[i])), 96, 368 + (i * 127), Fonts.font.DAMAGE, Color.BLACK, 4);
-        }
+        repaint();
     }
-    public void createInterface(JPanel panel, SheetComponents components) {
-        for (Map.Entry<int[], JComponent> component : components.components.entrySet()) {
-            panel.add(component.getValue());
+    public void createInterface(SheetComponents components) {
+        for (Map.Entry<int[], Object[]> component : components.components.entrySet()) {
+            components.add((JComponent) component.getValue()[0]);
         }
     }
     public void display() {
-        JFrame sheet = new JFrame();
-        sheet.addMouseListener(new MouseInput(sheet));
-        SheetComponents components = new SheetComponents(this);
-        components.createComponents();
-
-        setPreferredSize(new Dimension(sheetBackground.getWidth(), sheetBackground.getHeight()));
+        sheet = new JFrame();
+        sheet.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                sheet = null;
+                components = null;
+            }
+        });
+        if (sheetBackground != null) {
+            setSize(new Dimension(sheetBackground.getWidth(), sheetBackground.getHeight()));
+        }
         setLocation(0, 0);
         setVisible(true);
 
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(getPreferredSize());
-        panel.setBackground(new Color(0, true));
-        createInterface(panel, components);
-        panel.setPreferredSize(getPreferredSize());
-        panel.setLocation(0, 0);
-        panel.setVisible(true);
+        components = new SheetComponents(this);
+        components.createComponents();
+        components.setLayout(null);
+        components.setSize(getSize());
+        //components.setOpaque(false);
+        createInterface(components);
+        components.setLocation(0, 0);
+        components.setVisible(true);
 
         JLayeredPane layers = new JLayeredPane();
-        setPreferredSize(getPreferredSize());
+        layers.setPreferredSize(getSize());
+        layers.add(components, new Integer(0));
         layers.add(this, new Integer(1));
-        layers.add(panel, new Integer(0));
         layers.setVisible(true);
 
-        JScrollPane scrollbar = new JScrollPane(this);
+        JScrollPane scrollbar = new JScrollPane(layers);
         scrollbar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollbar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollbar.setVisible(true);
         sheet.add(scrollbar);
 
+        components.addMouseListener(new MouseInput(components));
+        components.addMouseMotionListener(new MouseInput(components));
         sheet.setTitle("Character sheet for " + name);
-        sheet.setSize(new Dimension(getPreferredSize().width, 480));
+        sheet.setSize(new Dimension(getSize().width, 480));
         sheet.setVisible(true);
     }
 }
