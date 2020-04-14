@@ -1,10 +1,10 @@
 package com.Entities.Characters.Subsystems.CharacterSheet;
 
+import com.Entities.Characters.Attacks.Attack;
 import com.Entities.Characters.Classes.CharacterClass;
 import com.GUI.System.Fonts;
 import com.System.Enums;
 import com.System.InputMethods.MouseInput;
-import com.globals;
 import com.methods;
 
 import javax.swing.*;
@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,9 +23,10 @@ public class CharacterSheet extends JPanel {
     private BufferedImage sheetBackground = methods.getImage("images/character_sheet");
     protected HashMap<String, int[]> abilityScores = new HashMap<>();
     protected HashMap<String, Integer> secondaryScores = new HashMap<>();
-    protected HashMap<Enums.characterClass, CharacterClass> classes = new HashMap<>();
+    protected HashMap<String, CharacterClass> classes = new HashMap<>();
     protected HashMap<String, Integer> savingThrows = new HashMap<>();
     protected HashMap<String, Integer> skills = new HashMap<>();
+    protected ArrayList<Attack> attacks = new ArrayList<>();
     private int level = 0;
     private int experience = 0;
     private int maxHealth = 0;
@@ -38,6 +40,7 @@ public class CharacterSheet extends JPanel {
         this.name = name;
         calculateStats(strength, dexterity, constitution, intelligence, wisdom, charisma);
         assignMaxHealth(8 + mod("CON"));
+        assignCharacterLevel();
         assignSpeed();
     }
     public CharacterSheet(String name) {
@@ -166,8 +169,8 @@ public class CharacterSheet extends JPanel {
         secondaryScores.put("Proficiency", value);
     }
     public void assignCharacterLevel() {
-        level = 0;
-        for (HashMap.Entry<Enums.characterClass, CharacterClass> cClass : classes.entrySet()) {
+        level = 1;
+        for (HashMap.Entry<String, CharacterClass> cClass : classes.entrySet()) {
             level += cClass.getValue().getLevel();
         }
     }

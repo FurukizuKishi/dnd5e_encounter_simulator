@@ -1,20 +1,19 @@
 package com.Entities.Characters.Subsystems.Casters;
 
 import com.Entities.Characters.CharacterModel;
-import com.System.Enums;
 
 import java.util.HashMap;
 
 public class Caster {
     CharacterModel owner;
-    Enums.characterClass characterClass;
+    String characterClass;
     HashMap<Integer, Integer> spellSlots = new HashMap<>();
     HashMap<String, Integer> resources = new HashMap<>();
 
     public Caster() {
 
     }
-    public Caster(CharacterModel owner, Enums.characterClass characterClass) {
+    public Caster(CharacterModel owner, String characterClass) {
         this.owner = owner;
         this.characterClass = characterClass;
         calculateSpellSlots(owner.charSheet.level());

@@ -25,14 +25,6 @@ public class Enums {
     public enum animationEnd {
         DESTROY, REPEAT
     }
-    //The types of damage an attack can deal.
-    public enum damageType {
-        BLUDGEONING, PIERCING, SLASHING, ACID, COLD, FIRE, FORCE, LIGHTNING, NECROTIC, POISON, PSYCHIC, THUNDER, RADIANT, ARCANE, RIGHTEOUS, VILE
-    }
-    //The various classes assignable to players.
-    public enum characterClass {
-        ARTIFICER, BARBARIAN, BLOOD_HUNTER, CLERIC, DRUID, FIGHTER, MONK, MYSTIC, PALADIN, RANGER, ROGUE, SORCERER, WARLOCK, WIZARD
-    }
     //Whether a map is randomly generated or static.
     public enum mapLayout {
         RANDOMLY_GENERATED, STATIC
@@ -51,6 +43,14 @@ public class Enums {
     }
     //The actions a character can perform.
     public enum action {
-        DASH, DODGE, ONE_ATTACK, FULL_ATTACK, SPELL, USE_AN_ITEM,
+        DASH, DODGE, ONE_ATTACK, FULL_ATTACK, SPELL, USE_AN_ITEM
+    }
+    //The types of damage an attack can deal.
+    public enum damageType {
+        BLUDGEONING, PIERCING, SLASHING, HEALING, ACID, COLD, FIRE, FORCE, LIGHTNING, NECROTIC, POISON, PSYCHIC, THUNDER, RADIANT, ARCANE, RIGHTEOUS, VILE
+    }
+    //Attack types.
+    public enum attackType {
+        MELEE, RANGED, MELEE_SPELL, RANGED_SPELL, AUTO_HIT
     }
 }

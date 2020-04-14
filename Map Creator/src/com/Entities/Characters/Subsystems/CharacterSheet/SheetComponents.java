@@ -137,9 +137,9 @@ public class SheetComponents extends JPanel {
         for (int i = 0; i < scores.length; i += 1) {
             methods.drawString(g, Integer.toString(sheet.score(scores[i])), 92, 326 + (i * 127), Fonts.font.TEXT, Color.BLACK, 4);
         }
-        methods.drawString(g, Integer.toString(sheet.level()), 1058, 134, Fonts.font.DAMAGE, Color.BLACK, 4);
-        methods.drawString(g, Integer.toString(sheet.experience(sheet.level())), 192, 216, Fonts.font.DAMAGE, Color.WHITE, 3);
-        methods.drawString(g, Integer.toString(sheet.experienceNeeded(sheet.level() + 1)), 80, 216, Fonts.font.DAMAGE, Color.WHITE, 5);
+        methods.drawString(g, Integer.toString(sheet.level()), 1028, 142, Fonts.font.DAMAGE, Color.BLACK, 1);
+        methods.drawString(g, Integer.toString(sheet.experience(sheet.level())), 64, 218, Fonts.font.DAMAGE, Color.WHITE, 3);
+        methods.drawString(g, Integer.toString(sheet.experienceNeeded(sheet.level() + 1)), 218, 214, Fonts.font.DAMAGE, Color.WHITE, 5);
 
         methods.drawString(g, Integer.toString(sheet.health()), 243, 425, Fonts.font.TEXT, Color.WHITE, 4);
         methods.drawString(g, Integer.toString(sheet.maxHealth()), 220, 321, Fonts.font.TEXT, Color.BLACK, 4);
