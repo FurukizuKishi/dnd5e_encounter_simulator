@@ -136,18 +136,20 @@ public class methods {
     public static void drawString(Graphics g, String str, int x, int y, Fonts.font font, Color colour, int alignment) {
         Enums.alignmentHorizontal he; Enums.alignmentVertical ve;
         switch (alignment) {
-            default: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
-            case 1: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
-            case 2: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
-            case 3: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
+            case 0: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
+            case 1: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.TOP; break;
+            case 2: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.TOP; break;
+            case 3: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.MIDDLE; break;
             case 4: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
-            case 5: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
-            case 6: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.TOP; break;
-            case 7: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
+            case 5: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.MIDDLE; break;
+            case 6: he = Enums.alignmentHorizontal.LEFT; ve = Enums.alignmentVertical.BOTTOM; break;
+            case 7: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.BOTTOM; break;
             case 8: he = Enums.alignmentHorizontal.RIGHT; ve = Enums.alignmentVertical.BOTTOM; break;
+            default: he = Enums.alignmentHorizontal.MIDDLE; ve = Enums.alignmentVertical.MIDDLE; break;
         }
-        int h = methods.getNewHorizontalAlignment(g, str, he);
-        int v = methods.getNewVerticalAlignment(g, str, ve);
+        int h = methods.getNewHorizontalAlignment(g, str, he, Fonts.fonts.get(font));
+        int v = methods.getNewVerticalAlignment(g, str, ve, Fonts.fonts.get(font));
+        System.out.println(methods.tuple(alignment, he, ve, h, v));
         g.setColor(colour);
         g.setFont(Fonts.fonts.get(font));
         g.drawString(str, x - h, y - v);

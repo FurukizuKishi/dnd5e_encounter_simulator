@@ -7,10 +7,10 @@ import com.methods;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class SheetComponents extends JPanel {
     private CharacterSheet sheet;
@@ -19,36 +19,73 @@ public class SheetComponents extends JPanel {
         this.sheet = sheet;
     }
 
-    public void createComponents() {
-        createAbilityScoreField("str", 52, 254, 134, 347);
+    public void createAbilityScoreField(String stat, int x, int y, int w, int h) {
+        createStatField(stat, sheet.abilityScores, x, y, w, h);
     }
-    public void createAbilityScoreField(String stat, int x1, int y1, int x2, int y2) {
-        createTextField(stat, sheet.abilityScores, x1, y1, x2, y2);
+    public void createSecondaryStatField(String stat, int x, int y, int w, int h) {
+        createStatField(stat, sheet.secondaryScores, x, y, w, h);
     }
-    public void createSecondaryStatField(String stat, int x1, int y1, int x2, int y2) {
-        createTextField(stat, sheet.secondaryScores, x1, y1, x2, y2);
+    public void createHealthField(int x, int y, int w, int h) {
+        createStatField("hp", null, x, y, w, h);
     }
-    public void createTextField(String stat, HashMap map, int x1, int y1, int x2, int y2) {
-        JTextField field = new JFormattedTextField(map.get(stat));
-        components.put(new int[] {x1, y1, x2, y2}, new Object[] { field, true });
-        field.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JTextField source = (JTextField) e.getSource();
-                if (source.getText().equals("") || !(Pattern.matches("^[0-9]+$", source.getText()))) {
-                    if (map == sheet.abilityScores) {
-                        sheet.assignAbilityScore(stat, Integer.parseInt(source.getText()));
-                        sheet.calculateStats();
-                    } else {
-                        map.put(stat, Integer.parseInt(source.getText()));
+    public void createMaxHealthField(int x, int y, int w, int h) {
+        createStatField("hp", null, x, y, w, h);
+    }
+
+    public JTextField createTextField(String value, int alignment, int x, int y, int w, int h) {
+        JTextField field = new JFormattedTextField(value);
+        components.put(new int[] {x, y, x + w, y + h}, new Object[] { field, true });
+        field.setBounds(x, y, w, h);
+        field.setHorizontalAlignment(alignment);
+        return field;
+    }
+    public JTextField createTextField(int value, int alignment, int x, int y, int w, int h) {
+        return createTextField(Integer.toString(value), alignment, x, y, w, h);
+    }
+    public void createStatField(String stat, HashMap map, int x, int y, int w, int h) {
+        JTextField field = null;
+        if (map == sheet.abilityScores) {
+            field = createTextField(sheet.score(stat), JTextField.CENTER, x, y, w, h);
+        } else if (map != null) {
+            field = createTextField(map.get(stat).toString(), JTextField.CENTER, x, y, w, h);
+        } else {
+            if (stat.equals("hp")) {
+                field = createTextField(sheet.health(), JTextField.CENTER, x, y, w, h);
+            }
+        }
+        if (field != null) {
+            field.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        JTextField source = (JTextField) e.getSource();
+                        System.out.println(stat);
+                        try {
+                            int val = Integer.parseInt(source.getText());
+                            if (!source.getText().equals("")) {
+                                if (map != null) {
+                                    if (map == sheet.abilityScores) {
+                                        sheet.assignAbilityScore(stat, val);
+                                        sheet.calculateStats();
+
+                                    } else {
+                                        map.put(stat, val);
+                                    }
+                                } else {
+                                    if (stat.equals("hp")) {
+                                        sheet.setHealth(val);
+                                    }
+                                }
+                            }
+                        } catch (NumberFormatException ex) {
+
+                        }
                     }
                 }
-            }
-        });
-        field.setBounds(x1, y1, x2 - x1, y2 - y1);
+            });
+        }
     }
     public void hoverComponents() {
-        System.out.println("HOVER");
         MouseInput input = (MouseInput) getMouseMotionListeners()[0];
         Point mouse = input.getMouseLocation();
         for (Map.Entry<int[], Object[]> pair : components.entrySet()) {
@@ -83,16 +120,33 @@ public class SheetComponents extends JPanel {
         paintBar(g, sheet.experience(sheet.level()), sheet.experience(sheet.level() + 1), globals.expFillColour, globals.expBackColour, x1, y1, x2 - x1, y2 - y1);
     }
 
+    public void createComponents() {
+        String[] scores = { "str", "dex", "con", "int", "wis", "cha" };
+        for (int i = 0; i < scores.length; i += 1) {
+            createAbilityScoreField(scores[i], 52, 254 + (i * 127), 83, 95);
+        }
+        createHealthField(185, 343, 116, 105);
+        //createMaxHealthField(169, 249, 102, 84);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
         paintHealthbar(g, 169, 340, 459, 448);
         paintExperienceBar(g, 61, 182, 235, 215);
         String[] scores = { "str", "dex", "con", "int", "wis", "cha" };
         for (int i = 0; i < scores.length; i += 1) {
-            methods.drawString(g, Integer.toString(sheet.score(scores[i])), 86, 316 + (i * 127), Fonts.font.TEXT, Color.BLACK, 4);
-            methods.drawString(g, Integer.toString(sheet.mod(scores[i])), 96, 368 + (i * 127), Fonts.font.DAMAGE, Color.BLACK, 4);
+            methods.drawString(g, Integer.toString(sheet.score(scores[i])), 92, 326 + (i * 127), Fonts.font.TEXT, Color.BLACK, 4);
         }
+        methods.drawString(g, Integer.toString(sheet.level()), 1058, 134, Fonts.font.DAMAGE, Color.BLACK, 4);
+        methods.drawString(g, Integer.toString(sheet.experience(sheet.level())), 192, 216, Fonts.font.DAMAGE, Color.WHITE, 3);
+        methods.drawString(g, Integer.toString(sheet.experienceNeeded(sheet.level() + 1)), 80, 216, Fonts.font.DAMAGE, Color.WHITE, 5);
+
+        methods.drawString(g, Integer.toString(sheet.health()), 243, 425, Fonts.font.TEXT, Color.WHITE, 4);
+        methods.drawString(g, Integer.toString(sheet.maxHealth()), 220, 321, Fonts.font.TEXT, Color.BLACK, 4);
+
+        methods.drawString(g, Integer.toString(sheet.AC()), 320, 302, Fonts.font.TEXT, Color.BLACK, 4);
+        methods.drawString(g, "+" + sheet.prof(), 414, 308, Fonts.font.TEXT, Color.BLACK, 4);
+        super.paintComponent(g);
         if (sheet.sheet != null && sheet.components == this) {
             hoverComponents();
         }

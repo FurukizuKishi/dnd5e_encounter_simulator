@@ -1,6 +1,8 @@
 package com.Entities.Characters.Subsystems.CharacterSheet;
 
+import com.Entities.Characters.Classes.CharacterClass;
 import com.GUI.System.Fonts;
+import com.System.Enums;
 import com.System.InputMethods.MouseInput;
 import com.globals;
 import com.methods;
@@ -20,8 +22,9 @@ public class CharacterSheet extends JPanel {
     private BufferedImage sheetBackground = methods.getImage("images/character_sheet");
     protected HashMap<String, int[]> abilityScores = new HashMap<>();
     protected HashMap<String, Integer> secondaryScores = new HashMap<>();
-    protected HashMap<String, Integer> classLevels = new HashMap<>();
-    protected HashMap<String, Boolean> savingThrows = new HashMap<>();
+    protected HashMap<Enums.characterClass, CharacterClass> classes = new HashMap<>();
+    protected HashMap<String, Integer> savingThrows = new HashMap<>();
+    protected HashMap<String, Integer> skills = new HashMap<>();
     private int level = 0;
     private int experience = 0;
     private int maxHealth = 0;
@@ -29,10 +32,12 @@ public class CharacterSheet extends JPanel {
     private boolean dying = false;
     private boolean dead = false;
     private int[] deathSaves = {0, 0};
+    private int statAlignment = 4;
 
     public CharacterSheet(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.name = name;
         calculateStats(strength, dexterity, constitution, intelligence, wisdom, charisma);
+        assignMaxHealth(8 + mod("CON"));
         assignSpeed();
     }
     public CharacterSheet(String name) {
@@ -44,7 +49,6 @@ public class CharacterSheet extends JPanel {
     }
     public void calculateStats(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         calculateAbilityScores(strength, dexterity, constitution, intelligence, wisdom, charisma);
-        assignMaxHealth(8 + mod("CON"));
         assignProficiency();
         assignInitiative();
         assignArmour();
@@ -74,6 +78,9 @@ public class CharacterSheet extends JPanel {
     }
     public int mod(String score) {
         return abilityScores.get(score.toUpperCase())[1];
+    }
+    public int AC() {
+        return secondaryScores.get("AC");
     }
     public int speed() {
         return secondaryScores.get("Speed");
@@ -160,8 +167,8 @@ public class CharacterSheet extends JPanel {
     }
     public void assignCharacterLevel() {
         level = 0;
-        for (HashMap.Entry<String, Integer> cClass : classLevels.entrySet()) {
-            level += cClass.getValue();
+        for (HashMap.Entry<Enums.characterClass, CharacterClass> cClass : classes.entrySet()) {
+            level += cClass.getValue().getLevel();
         }
     }
     public void assignMaxHealth(int value) {
@@ -169,7 +176,7 @@ public class CharacterSheet extends JPanel {
     }
     public void assignMaxHealth(int value, boolean heal) {
         maxHealth = value;
-        if (heal) {
+        if (heal || health > maxHealth) {
             health = maxHealth;
         }
     }
@@ -196,8 +203,11 @@ public class CharacterSheet extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("PAINT");
         g.drawImage(sheetBackground, 0, 0, null);
+        String[] scores = { "str", "dex", "con", "int", "wis", "cha" };
+        for (int i = 0; i < scores.length; i += 1) {
+            methods.drawString(g, Integer.toString(mod(scores[i])), 92, 362 + (i * 127), Fonts.font.DAMAGE, Color.BLACK, 4);
+        }
         repaint();
     }
     public void createInterface(SheetComponents components) {
@@ -218,20 +228,21 @@ public class CharacterSheet extends JPanel {
         }
         setLocation(0, 0);
         setVisible(true);
+        setOpaque(false);
 
         components = new SheetComponents(this);
         components.createComponents();
         components.setLayout(null);
         components.setSize(getSize());
-        //components.setOpaque(false);
+        components.setOpaque(false);
         createInterface(components);
         components.setLocation(0, 0);
         components.setVisible(true);
 
         JLayeredPane layers = new JLayeredPane();
         layers.setPreferredSize(getSize());
-        layers.add(components, new Integer(0));
-        layers.add(this, new Integer(1));
+        layers.add(components, new Integer(1));
+        layers.add(this, new Integer(2));
         layers.setVisible(true);
 
         JScrollPane scrollbar = new JScrollPane(layers);
