@@ -53,4 +53,8 @@ public class Enums {
     public enum attackType {
         MELEE, RANGED, MELEE_SPELL, RANGED_SPELL, AUTO_HIT
     }
+    //Types of action a file filter can perform.
+    public enum fileAction {
+        SAVE, OPEN
+    }
 }

@@ -5,6 +5,7 @@ import com.Entities.Characters.PlayerModel;
 import com.GUI.System.Fonts;
 import com.GUI.System.RoomLinker;
 import com.GUI.System.Transitions.Transition;
+import com.Map.Creator.EditorFrame;
 import com.Map.Map;
 import com.System.HasImage;
 import com.System.InputMethods.*;
@@ -52,7 +53,7 @@ public class GUI extends JFrame {
                         "#             # #       -                     #",
                         "#             # #                           # #",
                         "# #                   # # # #           # # # #",
-                        "# # # # # #Nv # # # # # # # # # # # # # # # # #"}, null, players, null);
+                        "# # # # # #Nv # # # # # # # # # # # # # # # # #"}, "Cave", players, null);
 
         createPlayer("Akuma", 8, 30, 12, 10, 18, 14);
         players.get("Akuma").charSheet.assignMaxHealth(154);
@@ -83,6 +84,8 @@ public class GUI extends JFrame {
         this.addMouseListener(new MouseGridInput(this));
         this.addMouseMotionListener(new MouseGridInput(this));
 
+        EditorFrame editor = new EditorFrame(this);
+        setResizable(false);
         repaint();
     }
 
@@ -108,6 +111,6 @@ public class GUI extends JFrame {
     //Create a new player character.
     public void createPlayer(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         players.put(name, new PlayerModel(name, strength, dexterity, constitution, intelligence, wisdom, charisma));
-        players.get(name).setSprite(imageSelector.selectFile("files/images/"));
+        players.get(name).setSprite(imageSelector.selectImage("files/images/"));
     }
 }

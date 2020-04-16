@@ -1,11 +1,13 @@
 package com.System;
 
 import com.GUI.GUI;
-import com.methods;
+import com.System.FileFilters.ImageFilter;
+import com.System.FileFilters.MapFilter;
+import com.globals;
 
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.swing.filechooser.FileFilter;
 import java.nio.file.Paths;
 
 public class HasImage {
@@ -17,11 +19,23 @@ public class HasImage {
         this.frame = frame;
     }
 
-    public String selectFile(String file) {
+    public String selectMap(Enums.fileAction action) {
+        return selectFile(globals.defaultFilePath, new MapFilter(action));
+    }
+    public String selectMap(String file, Enums.fileAction action) {
+        return selectFile(file, new MapFilter(action));
+    }
+    public String selectImage() {
+        return selectFile(globals.defaultFilePath, new ImageFilter());
+    }
+    public String selectImage(String file) {
+        return selectFile(file, new ImageFilter());
+    }
+    public String selectFile(String file, FileFilter filter) {
         defaultFilePath = file;
-        defaultFileFolder = Paths.get("files/").toAbsolutePath().toString();
+        defaultFileFolder = Paths.get(file).toAbsolutePath().toString();
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.addChoosableFileFilter(new ImageFilter());
+        fileChooser.addChoosableFileFilter(filter);
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setCurrentDirectory(new File(defaultFileFolder));
         frame.add(fileChooser);

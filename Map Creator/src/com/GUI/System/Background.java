@@ -6,6 +6,7 @@ import com.methods;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
+import static javafx.application.Platform.exit;
 
 public class Background {
     public String backgroundPath = "backgrounds/";                      //The backgrounds filepath.
@@ -31,19 +33,33 @@ public class Background {
         this.map = map;
         getBackground();
     }
+    public Background(String name, Map map, int tileSize) {
+        this(name, map);
+        this.tileSize = tileSize;
+    }
+
+    //Set the tile size.
+    public void setBackground(BufferedImage tileSheet, int tileSize) {
+        this.tileSheet = tileSheet;
+        this.tileSize = tileSize;
+        if (tileSheet != null) {
+            this.tw = tileSheet.getWidth(null) / tileSize;
+        }
+    }
 
     //Fetch the tilesheet for the background.
     public void getBackground() {
-        this.backgroundPath += name + ".png";
-        System.out.println("[DBG]: " + name + " background - " + this.backgroundPath);
-        File file = new File(backgroundPath);
+        this.backgroundPath += name;
+        System.out.println("[DBG]: " + name + " background - " + this.backgroundPath + ".png");
         try {
-            this.tileSheet = ImageIO.read(file);
-            this.tw = tileSheet.getWidth(null) / tileSize;
+            setBackground(ImageIO.read(new File(backgroundPath + ".png")), tileSize);
             initializeTileMap();
         }
-        catch (IOException e) {
-            this.tileSheet = null;
+        catch (Exception e) {
+            e.printStackTrace();
+            setBackground(methods.getImage(backgroundPath), tileSize);
+            System.out.println(tileSheet);
+            exit();
         }
     }
 
@@ -145,6 +161,17 @@ public class Background {
         }
         catch (ArrayIndexOutOfBoundsException e) {
 
+        }
+    }
+
+    public void drawTile(Graphics g, int x, int y, Color colour) {
+        try {
+            g.drawImage(tileSheet, x - 1, y, x + tileSize + 1, x + tileSize, x, y, x + tileSize, y + tileSize, null);
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            g.setColor(colour);
+            g.fillRect(x, y, tileSize, tileSize);
+            g.setColor(BLACK);
         }
     }
 

@@ -67,6 +67,7 @@ public class Map {
         setBackground("");
     }
     public void setBackground(String background) {
+        this.wallChecker = new WallChecker(this);
         this.background = new Background(background, this);
     }
 

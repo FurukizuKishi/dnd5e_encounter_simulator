@@ -1,10 +1,13 @@
-package com.System;
+package com.System.FileFilters;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
 import java.util.Arrays;
 
-public class ImageFilter extends FileFilter {
+public class ExtensionFilter extends FileFilter {
+    protected String fileName;
+    protected String[] extensions;
+
     public boolean accept(File file) {
         if (file.isDirectory()) {
             return true;
@@ -15,7 +18,6 @@ public class ImageFilter extends FileFilter {
             extension = file.getName().substring(i + 1);
         }
         if (!extension.equals("")) {
-            String[] extensions = {"png", "jpg", "jpeg"};
             if (Arrays.asList(extensions).contains(extension.toLowerCase())) {
                 return true;
             }
@@ -26,6 +28,17 @@ public class ImageFilter extends FileFilter {
         return false;
     }
     public String getDescription() {
-        return "Image Files (.jpg, .jpeg, .png)";
+        if (extensions.length > 0) {
+            String str = fileName + " (." + extensions[0];
+            for (int i = 1; i < extensions.length; i += 1) {
+                str += ", ." + extensions[i];
+            }
+            return str + ")";
+        }
+        return "";
+    }
+    public void setExtensions(String fileName, String ... extensions) {
+        this.fileName = fileName;
+        this.extensions = extensions;
     }
 }

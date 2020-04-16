@@ -7,24 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f9eb421-2611-4309-a006-9c0cd2b9d723" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/System/FileFilters/ExtensionFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/System/FileFilters/MapFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/resources/backgrounds/Cave.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$actionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$actionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$damageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$damageType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$mapLayout.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$mapLayout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$pathTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$pathTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$tileType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$tileType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/attack_module.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/resources/images/attack_module.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/character_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/resources/images/character_sheet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/HasImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/System/HasImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/ImageFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/globals.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/globals.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/character_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/character_sheet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GUI/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GUI/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GUI/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GUI/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/GUI/System/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/System/Enums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/System/Enums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/System/HasImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/System/HasImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/System/ImageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/System/FileFilters/ImageFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/globals.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/methods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="135" column="23" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
+            <state relative-caret-position="-7">
+              <caret line="238" column="38" lean-forward="true" selection-start-line="238" selection-start-column="38" selection-end-line="238" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,118 +50,100 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Entities/Entity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="35" column="33" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#288#289#0" expanded="true" />
+                <element signature="e#326#327#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GUI/Camera.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="87" column="76" selection-start-line="87" selection-start-column="76" selection-end-line="87" selection-end-column="76" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2558#2559#0" expanded="true" />
+                <element signature="e#2584#2585#0" expanded="true" />
+                <element signature="e#3717#3718#0" expanded="true" />
+                <element signature="e#4219#4220#0" expanded="true" />
+                <element signature="e#4623#4624#0" expanded="true" />
+                <element signature="e#5220#5221#0" expanded="true" />
+                <element signature="e#6649#6650#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GUI/GUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="80" column="43" lean-forward="true" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/GUI/System/Background.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="129">
-              <caret line="236" selection-start-line="236" selection-end-line="236" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Attacks/Attack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#770#771#0" expanded="true" />
-                <element signature="e#802#803#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-              <folding>
-                <element signature="e#524#525#0" expanded="true" />
-                <element signature="e#558#559#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/System/Die.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-              <folding>
-                <element signature="e#608#609#0" expanded="true" />
-                <element signature="e#638#639#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#259#260#0" expanded="true" />
-                <element signature="e#286#287#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="21" column="27" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
-                <element signature="e#556#557#0" expanded="true" />
-              </folding>
+              <caret line="181" column="53" selection-start-line="181" selection-start-column="53" selection-end-line="181" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Map/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+            <state relative-caret-position="146">
+              <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/MouseGridInput.java">
+        <entry file="file://$PROJECT_DIR$/src/com/System/FileFilters/ImageFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding>
-                <element signature="e#3691#3692#0" expanded="true" />
-                <element signature="e#3729#3730#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/System/DamageTypes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
-                <element signature="e#722#723#0" expanded="true" />
-                <element signature="e#780#781#0" expanded="true" />
-                <element signature="e#833#834#0" expanded="true" />
+                <element signature="e#253#254#0" expanded="true" />
+                <element signature="e#303#304#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,6 +179,7 @@
       <find>selected</find>
       <find>character_sheet</find>
       <find>Can't read input file!</find>
+      <find>frame</find>
     </findStrings>
     <replaceStrings>
       <replace>Condition</replace>
@@ -207,24 +192,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/Entities/Characters/CharacterSheet.java" />
-        <option value="$PROJECT_DIR$/src/com/System/InputMethods/MouseClicked.java" />
-        <option value="$PROJECT_DIR$/src/com/System/InputMethods/KeyInput.java" />
-        <option value="$PROJECT_DIR$/src/com/Entities/Pathfinder.java" />
-        <option value="$PROJECT_DIR$/src/com/Entities/Conditions/Condition.java" />
-        <option value="$PROJECT_DIR$/src/com/Entities/Characters/Children/Pathfinder.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Children/CharacterSheet.java" />
         <option value="$PROJECT_DIR$/src/com/System/ImageFilter.java" />
-        <option value="$PROJECT_DIR$/src/com/GUI/System/Background.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Spells.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casting.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Caster.java" />
-        <option value="$PROJECT_DIR$/src/com/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/com/System/Text/FloatingText.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Actor.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Pathfinder.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/CharacterModel.java" />
-        <option value="$PROJECT_DIR$/src/com/globals.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/FullCaster.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/HalfCaster.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/ThirdCaster.java" />
@@ -236,10 +212,8 @@
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet.java" />
         <option value="$PROJECT_DIR$/src/com/System/InputMethods/MouseGridInput.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetFrame.java" />
-        <option value="$PROJECT_DIR$/src/com/GUI/Camera.java" />
         <option value="$PROJECT_DIR$/src/com/System/InputMethods/MouseInput.java" />
         <option value="$PROJECT_DIR$/src/com/GUI/System/Fonts.java" />
-        <option value="$PROJECT_DIR$/src/com/GUI/GUI.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/PlayerModel.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Classes/MonkClass.java" />
@@ -250,20 +224,31 @@
         <option value="$PROJECT_DIR$/src/com/methods.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/Caster.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" />
-        <option value="$PROJECT_DIR$/src/com/System/Enums.java" />
         <option value="$PROJECT_DIR$/src/com/System/Die.java" />
         <option value="$PROJECT_DIR$/src/com/System/DamageTypes.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Attacks/Attack.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java" />
         <option value="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java" />
+        <option value="$PROJECT_DIR$/src/com/System/Enums.java" />
+        <option value="$PROJECT_DIR$/src/com/System/FileFilters/MapChooser.java" />
+        <option value="$PROJECT_DIR$/src/com/globals.java" />
+        <option value="$PROJECT_DIR$/src/com/System/HasImage.java" />
+        <option value="$PROJECT_DIR$/src/com/System/FileFilters/MapFilter.java" />
+        <option value="$PROJECT_DIR$/src/com/System/FileFilters/ImageFilter.java" />
+        <option value="$PROJECT_DIR$/src/com/System/FileFilters/ExtensionFilter.java" />
+        <option value="$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/GUI/GUI.java" />
+        <option value="$PROJECT_DIR$/src/com/GUI/Camera.java" />
         <option value="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/GUI/System/Background.java" />
+        <option value="$PROJECT_DIR$/src/com/Map/Map.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="404" />
+    <option name="y" value="124" />
     <option name="width" value="697" />
     <option name="height" value="775" />
   </component>
@@ -273,6 +258,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,30 +282,109 @@
               <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+              <item name="Characters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+              <item name="Characters" type="462c0819:PsiDirectoryNode" />
+              <item name="Subsystems" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+              <item name="Characters" type="462c0819:PsiDirectoryNode" />
+              <item name="Subsystems" type="462c0819:PsiDirectoryNode" />
+              <item name="CharacterSheet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="Map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="Map" type="462c0819:PsiDirectoryNode" />
+              <item name="Creator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="backgrounds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="System" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="System" type="462c0819:PsiDirectoryNode" />
+              <item name="InputMethods" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586907712240" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587001239132" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Misc/ce291_team14/project" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\resources" />
-      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\resources\" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\resources\backgrounds" />
+      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\System" />
+      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\GUI\System\Transitions" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.Entities.Characters.Subsystems.CharacterSheet" />
@@ -328,9 +393,9 @@
       <recent name="com" />
       <recent name="com.GUI" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\System" />
-      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\GUI\System\Transitions" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\resources" />
+      <recent name="C:\Users\CK.DESKTOP-BR5NVLN\Documents\Git Repositories\Programming\Game Projects\Generators, Simulators and Editors\D&amp;D\dnd5e_encounter_simulator\Map Creator\src\com\resources\" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -382,7 +447,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31240544" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31694403" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -391,7 +456,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -409,130 +474,36 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31694403" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872504" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/awt/geom/Area.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="521" column="38" selection-start-line="521" selection-start-column="38" selection-end-line="521" selection-end-column="38" />
-          <folding>
-            <element signature="e#21195#21196#0" expanded="true" />
-            <element signature="e#21246#21247#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/ImageFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GUI/System/Background.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="165" column="8" selection-start-line="165" selection-start-column="8" selection-end-line="167" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/KeyInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Map/WallChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Map/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="656" selection-start-line="656" selection-end-line="656" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/WarlockCaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/ThirdCaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/HalfCaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="25" column="60" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/FullCaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/InstanceMethods.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/awt/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="436" column="16" lean-forward="true" selection-start-line="436" selection-start-column="16" selection-end-line="436" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GUI/System/Transitions/Transition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="120" column="41" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetFrame.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/GUI/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -540,52 +511,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/GUI/System/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/MouseInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GUI/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="110" column="30" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/HasImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#350#351#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,18 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/GUI/HUD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="136" column="27" selection-start-line="136" selection-start-column="27" selection-end-line="136" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Abilities/Ability.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -735,24 +652,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/Enums.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Attacks/Attack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="49" column="154" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="154" />
+        <state relative-caret-position="663">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/globals.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+        <state relative-caret-position="85">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/methods.java">
+    <entry file="file://$PROJECT_DIR$/src/com/System/Die.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="135" column="23" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
+        <state relative-caret-position="612">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+          <folding>
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -761,7 +702,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/System/DamageTypes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="136">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -773,43 +714,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/Die.java">
+    <entry file="file://$PROJECT_DIR$/src/com/System/Enums.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-          <folding>
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#638#639#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="538">
+          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Attacks/Attack.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/filechooser/FileFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+        <state relative-caret-position="459">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/JFileChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1326">
+          <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/System/FileFilters/MapChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="40" lean-forward="true" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/System/HasImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#802#803#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#824#825#0" expanded="true" />
+            <element signature="e#858#859#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/MouseGridInput.java">
+    <entry file="file://$PROJECT_DIR$/src/com/System/FileFilters/ExtensionFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/System/FileFilters/MapFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/globals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/JInternalFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/JFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GUI/HUD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-118">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
-            <element signature="e#3691#3692#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1639#1640#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/MouseInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-424">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
+        <state relative-caret-position="21">
           <caret line="236" selection-start-line="236" selection-end-line="236" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -817,45 +835,135 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/border/BevelBorder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        <state relative-caret-position="-118">
+          <caret line="65" column="11" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
           <folding>
-            <element signature="e#524#525#0" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
+            <element signature="e#1573#1574#0" expanded="true" />
+            <element signature="e#1615#1616#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java">
+    <entry file="file://$PROJECT_DIR$/src/com/System/InputMethods/MouseGridInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        <state relative-caret-position="137">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#3691#3692#0" expanded="true" />
+            <element signature="e#3729#3730#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java">
+    <entry file="file://$PROJECT_DIR$/src/com/System/FileFilters/ImageFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" column="27" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="276" selection-start-line="276" selection-end-line="276" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Entities/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#556#557#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/methods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="238" column="38" lean-forward="true" selection-start-line="238" selection-start-column="38" selection-end-line="238" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GUI/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="87" column="76" selection-start-line="87" selection-start-column="76" selection-end-line="87" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2558#2559#0" expanded="true" />
+            <element signature="e#2584#2585#0" expanded="true" />
+            <element signature="e#3717#3718#0" expanded="true" />
+            <element signature="e#4219#4220#0" expanded="true" />
+            <element signature="e#4623#4624#0" expanded="true" />
+            <element signature="e#5220#5221#0" expanded="true" />
+            <element signature="e#6649#6650#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="231">
+          <caret line="35" column="33" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GUI/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="80" column="43" lean-forward="true" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="1300" selection-start-line="1300" selection-end-line="1300" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/GUI/System/Background.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="181" column="53" selection-start-line="181" selection-start-column="53" selection-end-line="181" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Map/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
         </state>
       </provider>
     </entry>

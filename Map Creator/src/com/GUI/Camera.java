@@ -17,24 +17,39 @@ import static java.awt.Color.*;
 public class Camera extends JPanel {
     public int w, h, sw, sh;                    //Camera's tile dimensions and the screen's dimensions.
     int cx, cy; double px, py;                  //The current screen coordinates being accessed.
-    int x, y;                                   //The current x and y position of the camera.
+    int x = 0, y = 0;                           //The current x and y position of the camera.
     int mSpeed = 8;                             //The camera's movement speed.
     double slowdown = 0.01;                     //The camera's slowdown fraction.
-    public int tileSize;                        //The size of tiles in the game.
+    public int tileSize = 32;                   //The size of tiles in the game.
     public CharacterModel selected;             //The object the camera is following.
     public int titleThickness = 32;             //The size of the window's title bar.
-    GUI frame;                                  //The camera's parent frame.
+    private JFrame frame;                       //The camera's parent frame.
     Map map;                                    //The map the camera is currently in.
     HUD hud;                                    //The HUD the camera is using.
 
-    //Camera constructor.
-    public Camera(GUI frame, int w, int h, HUD hud, Map map) {
+    public Camera(JFrame frame, Map map) {
+        this.frame = frame;
+        this.map = map;
+        this.w = map.w;
+        this.h = map.h;
+        this.sw = map.w * map.background.tileSize;
+        this.sh = map.h * map.background.tileSize;
+    }
+    public Camera(JFrame frame, int w, int h, HUD hud, Map map) {
         super();
         this.frame = frame;
         this.w = w;
         this.h = h;
-        this.sw = hud.sw;
-        this.sh = hud.sh;
+        this.sw = w * tileSize;
+        this.sw = w * tileSize;
+        if (hud != null) {
+            this.sw = hud.sw;
+            this.sh = hud.sh;
+        }
+        else if (map != null) {
+            this.sw = w * map.background.tileSize;
+            this.sh = h * map.background.tileSize;
+        }
         this.tileSize = Math.min(this.sw / this.w, this.sh / this.h);
         this.sw = Math.min(this.sw, this.tileSize * this.w);
         this.sh = Math.min(this.sh, this.tileSize * this.h);
@@ -69,9 +84,13 @@ public class Camera extends JPanel {
 
     //Get the camera's bounding box.
     public Rectangle getCameraBox() {
-        int x1 = x - ((w / 2) * tileSize);
-        int y1 = y - ((h / 2) * tileSize);
-        return new Rectangle(x1, y1, w * tileSize, h * tileSize);
+        if (w == map.w && h == map.h) {
+            return new Rectangle(-tileSize, -tileSize, (w + 1) * tileSize, (h + 1) * tileSize);
+        } else {
+            int x = this.x - ((w / 2) * tileSize);
+            int y = this.y - ((h / 2) * tileSize);
+            return new Rectangle(x, y, w * tileSize, h * tileSize);
+        }
     }
 
     //Get an object's relative coordinates to the camera.
@@ -175,16 +194,14 @@ public class Camera extends JPanel {
         super.paintComponent(g);
         if (map != null) {
             paintRoom((Graphics2D) g);
-            hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, globals.healthFillColour, globals.moveFillColour, globals.healthBackColour, globals.moveBackColour, globals.borderColour);
-            /*if (selected != null) {
-                System.out.println(methods.tuple("selected", selected, selected.actor.moving, selected.actor.node));
+            if (hud != null) {
+                hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, globals.healthFillColour, globals.moveFillColour, globals.healthBackColour, globals.moveBackColour, globals.borderColour);
             }
-            else {
-                System.out.println(methods.tuple("selected", null));
-            }*/
         }
-        for (int i = 0; i < frame.transitions.size(); i += 1) {
-            frame.transitions.get(i).paintTransition(g);
+        if (frame instanceof GUI) {
+            for (int i = 0; i < ((GUI) frame).transitions.size(); i += 1) {
+                ((GUI) frame).transitions.get(i).paintTransition(g);
+            }
         }
         repaint();
     }
@@ -264,7 +281,9 @@ public class Camera extends JPanel {
                         Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                         if (coords != null) {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
-                            hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, globals.healthFillColour, globals.healthBackColour, globals.borderColour);
+                            if (hud != null) {
+                                hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, globals.healthFillColour, globals.healthBackColour, globals.borderColour);
+                            }
                         }
                     }
                 }
@@ -289,14 +308,16 @@ public class Camera extends JPanel {
                 }
             }
         }
-        //Draw floating text.
-        for (FloatingText text : frame.textStores.get("damage").floatingText) {
-            methods.alignFloatingText(g, text, Enums.alignmentHorizontal.MIDDLE);
-            if (cBox.contains(text.x * tileSize, text.y * tileSize)) {
-                int textX = text.x - (int) cBox.getBounds().getX();
-                int textY = text.y - (int) cBox.getBounds().getY();
-                Point coords = getRelativeCoordinates((int) (textX + 0.5) * tileSize, (int) (textY + 0.25) * tileSize);
-                text.display(g, coords.x, coords.y - titleThickness, tileSize);
+        if (frame instanceof GUI) {
+            //Draw floating text.
+            for (FloatingText text : ((GUI) frame).textStores.get("damage").floatingText) {
+                methods.alignFloatingText(g, text, Enums.alignmentHorizontal.MIDDLE);
+                if (cBox.contains(text.x * tileSize, text.y * tileSize)) {
+                    int textX = text.x - (int) cBox.getBounds().getX();
+                    int textY = text.y - (int) cBox.getBounds().getY();
+                    Point coords = getRelativeCoordinates((int) (textX + 0.5) * tileSize, (int) (textY + 0.25) * tileSize);
+                    text.display(g, coords.x, coords.y - titleThickness, tileSize);
+                }
             }
         }
     }
