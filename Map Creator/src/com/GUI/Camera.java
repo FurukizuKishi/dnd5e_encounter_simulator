@@ -3,6 +3,7 @@ package com.GUI;
 import com.Entities.Characters.CharacterModel;
 import com.Map.Map;
 import com.System.Enums;
+import com.System.InputMethods.MouseGridInput;
 import com.System.InputMethods.MouseInput;
 import com.System.Text.FloatingText;
 import com.globals;
@@ -34,6 +35,7 @@ public class Camera extends JPanel {
         this.h = map.h;
         this.sw = map.w * map.background.tileSize;
         this.sh = map.h * map.background.tileSize;
+        setSize(w * map.background.tileSize, h * map.background.tileSize);
     }
     public Camera(JFrame frame, int w, int h, HUD hud, Map map) {
         super();
@@ -189,13 +191,23 @@ public class Camera extends JPanel {
         this.y = (int) Math.max((h / 2.0) * tileSize, Math.min(this.y + (y - this.y) * slowdown, (map.h - (h / 2.0)) * tileSize));
     }
 
+    public void moveCamera() {
+        MouseGridInput input = ((MouseGridInput) frame.getMouseListeners()[0]);
+        input.moveCamera();
+    }
+
     //The camera draws all visual elements onto the screen. All objects with a Graphics function offload the painting to the camera.
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (!(w == map.w && h == map.h)) {
+            moveCamera();
+        }
         if (map != null) {
             paintRoom((Graphics2D) g);
             if (hud != null) {
-                hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, globals.healthFillColour, globals.moveFillColour, globals.healthBackColour, globals.moveBackColour, globals.borderColour);
+                if (hud.selected != null) {
+                    hud.paintHUD(g, Enums.alignmentHorizontal.LEFT, hud.selected.charSheet.healthFillColour, globals.moveFillColour, hud.selected.charSheet.healthBackColour, globals.moveBackColour, globals.borderColour);
+                }
             }
         }
         if (frame instanceof GUI) {
@@ -250,19 +262,24 @@ public class Camera extends JPanel {
                             Point absCoords = getAbsoluteCoordinates(bigCoords.x, bigCoords.y);
                             Point coords = new Point(absCoords.x / tileSize, absCoords.y / tileSize);
                             if (methods.containsCoordinate(character.pathfinder.path, coords.x, coords.y) == -1) {
-                                Enums.pathTile node = character.pathfinder.pathGrid[coords.y][coords.x];
-                                if (!(node == Enums.pathTile.NULL || node == Enums.pathTile.ATTACK)) {
-                                    Color colour;
-                                    switch (node) {
-                                        case ATTACK:
-                                            colour = Color.RED;
-                                            break;
-                                        default:
-                                            colour = Color.BLUE;
-                                            break;
+                                try {
+                                    Enums.pathTile node = character.pathfinder.pathGrid[coords.y][coords.x];
+                                    if (!(node == Enums.pathTile.NULL || node == Enums.pathTile.ATTACK)) {
+                                        Color colour;
+                                        switch (node) {
+                                            case ATTACK:
+                                                colour = Color.RED;
+                                                break;
+                                            default:
+                                                colour = Color.BLUE;
+                                                break;
+                                        }
+                                        g.setColor(colour);
+                                        g.fillRect(bigCoords.x + 1, bigCoords.y - titleThickness + 1, tileSize - 3, tileSize - 2);
                                     }
-                                    g.setColor(colour);
-                                    g.fillRect(bigCoords.x + 1, bigCoords.y - titleThickness + 1, tileSize - 3, tileSize - 2);
+                                }
+                                catch (ArrayIndexOutOfBoundsException e) {
+                                    System.out.println("[ERR]: " + e);
                                 }
                             }
                         }
@@ -282,7 +299,8 @@ public class Camera extends JPanel {
                         if (coords != null) {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
                             if (hud != null) {
-                                hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, globals.healthFillColour, globals.healthBackColour, globals.borderColour);
+                                hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, character.charSheet.healthFillColour, character.charSheet.healthBackColour, globals.borderColour);
+                                System.out.println(methods.tuple(character.name, character.charSheet.health()));
                             }
                         }
                     }

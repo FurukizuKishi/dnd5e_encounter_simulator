@@ -43,7 +43,7 @@ public class Enums {
     }
     //The actions a character can perform.
     public enum action {
-        DASH, DODGE, ONE_ATTACK, FULL_ATTACK, SPELL, USE_AN_ITEM
+        DASH, DODGE, DISENGAGE, ONE_ATTACK, FULL_ATTACK, SPELL, USE_AN_ITEM, READY
     }
     //The types of damage an attack can deal.
     public enum damageType {

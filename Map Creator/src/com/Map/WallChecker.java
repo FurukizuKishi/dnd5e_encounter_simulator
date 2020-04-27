@@ -41,7 +41,7 @@ public class WallChecker {
     }
 
     //Get a coordinate's code, applying a 1 to a direction in which a wall is present, and a 0 to a direction in which it is absent. This code is
-    //used to match with a code key in the Backgrounds class to determine what tile should be placed it its coordinate.
+    //used to match with a code key in the Backgrounds class to determine what tile should be placed at its coordinate.
     //This function has two modes, one to obtain just the total number of surrounding walls, and another to actually obtain the code.
     public String getAdjacentTiles(Enums.tileType[][] map, int x, int y) {
         return getAdjacentTiles(map, x, y, true, false);
@@ -198,6 +198,7 @@ public class WallChecker {
                     }
                 }
             }
+            System.out.println(concatenateCode(code));
             return concatenateCode(code);
         }
         else {

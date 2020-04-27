@@ -10,12 +10,12 @@ import java.io.File;
 import javax.swing.filechooser.FileFilter;
 import java.nio.file.Paths;
 
-public class HasImage {
+public class HasFile {
     String defaultFilePath;
     String defaultFileFolder;
     String file;
     GUI frame;
-    public HasImage(GUI frame) {
+    public HasFile(GUI frame) {
         this.frame = frame;
     }
 

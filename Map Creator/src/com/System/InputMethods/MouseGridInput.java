@@ -34,6 +34,20 @@ public class MouseGridInput extends MouseInput {
         return pushed;
     }
 
+    public void moveCamera() {
+        Point mouse = getMouseLocation();
+        Point target = null;
+        if (frame.camera.inDraggableRegion(64, mouse)) {
+            target = frame.camera.getAbsoluteCoordinates(mouse);
+        }
+        if (frame.camera.selected != null) {
+            target = new Point(frame.camera.selected.x * frame.camera.tileSize, frame.camera.selected.y * frame.camera.tileSize);
+        }
+        if (target != null) {
+            frame.camera.moveTowardsPoint(target.x, target.y);
+        }
+    }
+
     public void selectPathTile() {
         if (mb == BUTTON1 || mt.equals("dragged")) {
             CharacterModel character = frame.hud.getSelected();
@@ -115,16 +129,5 @@ public class MouseGridInput extends MouseInput {
     @Override
     public void mouseMoved(MouseEvent e) {
         super.mouseMoved(e);
-        Point mouse = getMouseLocation();
-        Point target = null;
-        if (frame.camera.inDraggableRegion(64, mouse)) {
-            target = frame.camera.getAbsoluteCoordinates(mouse);
-        }
-        if (frame.camera.selected != null) {
-            target = new Point(frame.camera.selected.x * frame.camera.tileSize, frame.camera.selected.y * frame.camera.tileSize);
-        }
-        if (target != null) {
-            frame.camera.moveTowardsPoint(target.x, target.y);
-        }
     }
 }

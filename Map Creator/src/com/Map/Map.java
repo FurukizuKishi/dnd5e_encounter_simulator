@@ -19,6 +19,7 @@ public class Map {
     public boolean encounter = false;                                   //Whether there is an encounter running on this map.
     public int turn = 1;                                                //The current turn in the round.
     public int round = 1;                                               //The current round in the encounter.
+    private boolean editing = false;                                    //Whether the map is being edited.
     public Background background;                                       //The map's tileset background.
     public Camera camera;                                               //The map's camera.
     public int w;                                                       //The map's dimensions.
@@ -36,7 +37,25 @@ public class Map {
         }
         setMapAttributes();
     }
+    public Map(String[] map, Background background) {
+        this(map);
+        this.background = background;
+    }
     public Map(String[] map, String background) {
+        this(map);
+        setBackground(background);
+    }
+    public Map(Enums.tileType[][] map) {
+        if (map != null) {
+            setMap(map);
+        }
+        setMapAttributes();
+    }
+    public Map(Enums.tileType[][] map, Background background) {
+        this(map);
+        this.background = background;
+    }
+    public Map(Enums.tileType[][] map, String background) {
         this(map);
         setBackground(background);
     }
@@ -112,6 +131,13 @@ public class Map {
     public void setMapAttributes() {
         this.characterList = new ArrayList<>();
         setBackground();
+    }
+
+    public void setEditing(boolean value) {
+        editing = value;
+    }
+    public boolean canEdit() {
+        return editing;
     }
 
     //Check whether an entity exists at a particular location on the map.

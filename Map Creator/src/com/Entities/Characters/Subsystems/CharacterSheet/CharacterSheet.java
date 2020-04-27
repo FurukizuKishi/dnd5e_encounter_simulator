@@ -3,7 +3,6 @@ package com.Entities.Characters.Subsystems.CharacterSheet;
 import com.Entities.Characters.Attacks.Attack;
 import com.Entities.Characters.Classes.CharacterClass;
 import com.GUI.System.Fonts;
-import com.System.Enums;
 import com.System.InputMethods.MouseInput;
 import com.methods;
 
@@ -33,6 +32,8 @@ public class CharacterSheet extends JPanel {
     private int health = 0;
     private boolean dying = false;
     private boolean dead = false;
+    public Color healthFillColour = null;
+    public Color healthBackColour = null;
     private int[] deathSaves = {0, 0};
     private int statAlignment = 4;
 
@@ -182,6 +183,7 @@ public class CharacterSheet extends JPanel {
         if (heal || health > maxHealth) {
             health = maxHealth;
         }
+        setHealthColour();
     }
 
     public boolean setHealth(int value) {
@@ -193,14 +195,23 @@ public class CharacterSheet extends JPanel {
                 } else {
                     dying = true;
                 }
+                health = 0;
             }
             else {
-                health = value;
+                health = Math.min(value, maxHealth);
+                setHealthColour();
                 dying = false;
                 return true;
             }
         }
         return false;
+    }
+
+    public void setHealthColour() {
+        int r = (int) (Math.min(1, ((double) ((maxHealth - health) * 2) / maxHealth)) * 135);
+        int g = (int) (Math.min(1, ((double) (health * 2) / maxHealth)) * 135);
+        healthFillColour = new Color(r, g, 0);
+        healthBackColour = new Color(Math.max(0, r - 80), Math.max(0, g - 80), 0);
     }
 
     @Override

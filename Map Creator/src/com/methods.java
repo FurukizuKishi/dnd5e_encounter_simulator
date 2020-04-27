@@ -149,7 +149,7 @@ public class methods {
         }
         int h = methods.getNewHorizontalAlignment(g, str, he, Fonts.fonts.get(font));
         int v = methods.getNewVerticalAlignment(g, str, ve, Fonts.fonts.get(font));
-        System.out.println(methods.tuple(alignment, he, ve, h, v));
+        //System.out.println(methods.tuple(alignment, he, ve, h, v));
         g.setColor(colour);
         g.setFont(Fonts.fonts.get(font));
         g.drawString(str, x - h, y - v);

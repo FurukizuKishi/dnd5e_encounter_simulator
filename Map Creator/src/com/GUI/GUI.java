@@ -7,7 +7,7 @@ import com.GUI.System.RoomLinker;
 import com.GUI.System.Transitions.Transition;
 import com.Map.Creator.EditorFrame;
 import com.Map.Map;
-import com.System.HasImage;
+import com.System.HasFile;
 import com.System.InputMethods.*;
 import com.System.Text.TextStore;
 
@@ -30,7 +30,7 @@ public class GUI extends JFrame {
     public ArrayList<Transition> transitions = new ArrayList<>();           //A list of the game's transitions.
     public RoomLinker roomLinker = new RoomLinker(this);            //The room linker that allows for transitions between rooms.
     public HashMap<String, TextStore> textStores = new HashMap<>();         //A map storing all of the game's floating text.
-    public HasImage imageSelector = new HasImage(this);             //The image selector for the game.
+    public HasFile imageSelector = new HasFile(this);               //The image selector for the game.
 
     //The GUI constructor. Handles the initial setup of the game, creating fonts, enemy definitions, and setting the window's characteristics.
     public GUI(String title, int width, int height, int cameraWidth, int cameraHeight) {

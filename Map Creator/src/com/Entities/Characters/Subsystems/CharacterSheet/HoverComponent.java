@@ -74,9 +74,11 @@ public class HoverComponent extends JPanel {
                                     } else {
                                         map.put(stat, val);
                                     }
+                                    source.setText(map.get(stat).toString());
                                 } else {
                                     if (stat.equals("hp")) {
                                         sheet.setHealth(val);
+                                        source.setText(Integer.toString(sheet.health()));
                                     }
                                 }
                             }
@@ -117,7 +119,7 @@ public class HoverComponent extends JPanel {
         methods.paintValueBarSquare(g, value, maxValue, fillColour, backColour, x1, y1, width, height);
     }
     public void paintHealthbar(Graphics g, int x1, int y1, int x2, int y2) {
-        paintBar(g, sheet.health(), sheet.maxHealth(), globals.healthFillColour, globals.healthBackColour, x1, y1, x2 - x1, y2 - y1);
+        paintBar(g, sheet.health(), sheet.maxHealth(), sheet.healthFillColour, sheet.healthBackColour, x1, y1, x2 - x1, y2 - y1);
     }
     public void paintExperienceBar(Graphics g, int x1, int y1, int x2, int y2) {
         paintBar(g, sheet.experience(sheet.level()), sheet.experience(sheet.level() + 1), globals.expFillColour, globals.expBackColour, x1, y1, x2 - x1, y2 - y1);
