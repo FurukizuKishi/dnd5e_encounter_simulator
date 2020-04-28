@@ -1,5 +1,7 @@
 package com.Connection.Hosts;
 
+import com.Connection.CreateSessionGUI;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerHost extends Host {
-    public ServerHost(int portNumber) {
+    public ServerHost(CreateSessionGUI frame, int portNumber) {
+        this.frame = frame;
         this.hostName = "localhost";
         this.portNumber = portNumber;
         connect(portNumber);
@@ -40,6 +43,8 @@ public class ServerHost extends Host {
         }
         catch (IOException e) {
             System.out.println(e);
+            frame.connectButton.setEnabled(true);
+            frame.portNumber.setEditable(true);
         }
     }
 }

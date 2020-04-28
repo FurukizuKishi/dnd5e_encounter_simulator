@@ -64,7 +64,7 @@ public class SessionGUI extends JFrame {
 
     public void createSession() {
         if (createSessionGUI == null) {
-            createSessionGUI = new CreateSessionGUI(this);
+            createSessionGUI = new CreateSessionGUI(this, getWidth() / 2, getHeight() / 3);
         }
     }
 

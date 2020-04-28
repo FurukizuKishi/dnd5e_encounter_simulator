@@ -1,5 +1,8 @@
 package com.Connection.Hosts;
 
+import com.Connection.JoinSessionGUI;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,7 +10,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientHost extends Host {
-    public ClientHost(String hostName, int portNumber) {
+    public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
+        this.frame = frame;
         this.hostName = hostName;
         this.portNumber = portNumber;
         connect(hostName, portNumber);
@@ -35,8 +39,11 @@ public class ClientHost extends Host {
             }
             System.exit(0);
         }
-        catch (IOException e) {
+        catch (Exception e) {
             System.out.println(e);
+            frame.connectButton.setEnabled(true);
+            frame.hostField.setEditable(true);
+            frame.portNumber.setEditable(true);
         }
     }
 }
