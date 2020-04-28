@@ -1,7 +1,6 @@
 package com.Connection.Hosts;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -36,29 +35,5 @@ public abstract class SingleHost extends Host {
 
     public void endThread(Exception e) {
         super.endThread(e);
-    }
-
-    public void run() {
-        while (canRun()) {
-            if (frame.connectionLog != null) {
-                try {
-                    String input;
-                    while (in != null) {
-                        if ((input = in.readLine()) != null) {
-                            System.out.println("Server: " + input);
-                            addLog(out, input);
-
-                            String cInput = stdIn.readLine();
-                            if (cInput != null) {
-                                System.out.println("Client: " + cInput);
-                            }
-                        }
-                    }
-                } catch (IOException e) {
-                    addLog(out, "[ERR]: " + e.getMessage());
-                    endThread(e);
-                }
-            }
-        }
     }
 }

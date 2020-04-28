@@ -29,13 +29,21 @@ public class JoinSessionGUI extends ConnectionGUI {
     }
 
     public void changeConnectionButtons(boolean active) {
-        hostField.setEditable(!active);
         super.changeConnectionButtons(active);
+        hostField.setEditable(!active);
+        if (host != null) {
+            if (active) {
+                host.startThread();
+            }
+            else {
+                host.endThread();
+            }
+        }
     }
 
     public void createConnectionLog(JPanel panel, int w, int h) {
         super.createConnectionLog(panel, w, h);
-        JComponent[] comp = swingMethods.createList("Connection Log", 0, h + 1, w - 8, getHeight() - h - 32, 20);
+        JComponent[] comp = createLogList("Connection Log", w, h);
         connectionLog = (JList) comp[0];
         panel.add(comp[1]);
         connectionLog.setBackground(Color.GRAY);

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0abba1a-6946-41ba-9624-4db8c61b2fe1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/ConnectionThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/HostThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ServerThreadHost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/SingleHost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/ConnectionGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/CreateSessionGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/CreateSessionGUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/CreateSessionGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/CreateSessionGUI.class" afterDir="false" />
@@ -17,15 +14,14 @@
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/Hosts/ServerHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/Hosts/ServerHost.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/JoinSessionGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/JoinSessionGUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/JoinSessionGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Connection/JoinSessionGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Map/Creator/EditorFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/Map/Creator/EditorFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/swingMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/out/production/Map Creator/com/swingMethods.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/ConnectionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/ConnectionGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/CreateSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/CreateSessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ClientHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ClientHost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/HostThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/HostThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/Host.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ServerHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ServerHost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ServerThreadHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/ServerThreadHost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/SingleHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/Hosts/SingleHost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/Connection/JoinSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/Connection/JoinSessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Map Creator/src/com/swingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Map Creator/src/com/swingMethods.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ClientTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+            <state relative-caret-position="408">
+              <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -211,8 +207,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ClientTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+        <state relative-caret-position="408">
+          <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

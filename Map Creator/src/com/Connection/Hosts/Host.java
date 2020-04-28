@@ -3,6 +3,8 @@ package com.Connection.Hosts;
 import com.Connection.ConnectionGUI;
 import com.Connection.HostThread;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,16 +15,25 @@ public class Host implements Runnable {
     public String hostName;
     public int portNumber;
     public ArrayList<String> connectionLog = new ArrayList<>();
+    public JList logList;
     protected PrintWriter out;
     protected BufferedReader in;
     protected BufferedReader stdIn;
     private HostThread thread = new HostThread(this);
 
+    public void addLog(String message) {
+        addLog(null, message);
+    }
     public void addLog(PrintWriter out, String message) {
-        out.println(message);
-        connectionLog.add(message);
-        if (frame.connectionLog != null) {
-            frame.connectionLog.setListData(connectionLog.toArray());
+        if (out != null) {
+            out.println(message);
+            connectionLog.add("Me: " + message);
+        }
+        else {
+            connectionLog.add("Remote: " + message);
+        }
+        if (logList != null) {
+            logList.setListData(connectionLog.toArray());
         }
         frame.repaint();
     }
@@ -49,14 +60,19 @@ public class Host implements Runnable {
     public void endThread(Exception e) {
         thread.end();
         if (e != null) {
-            System.out.println(e);
-            e.printStackTrace();
+            String message = "[ERR/" + e.getCause().toString() + "]: " + e.getMessage();
+            System.out.println(message);
+            addLog(out, message);
         }
         try {
-            out.close();
-            out = null;
-            in.close();
-            in = null;
+            if (out != null) {
+                out.close();
+                out = null;
+            }
+            if (in != null) {
+                in.close();
+                in = null;
+            }
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -70,20 +86,26 @@ public class Host implements Runnable {
                     String input;
                     while (in != null) {
                         if ((input = in.readLine()) != null) {
-                            System.out.println("Server: " + input);
-                            addLog(out, input);
-
+                            addLog(input);
+                            if (input.contains("ERR")) {
+                                break;
+                            }
+                            else {
+                                addLog(out, "Hello");
+                            }
+                            /*
                             String cInput = stdIn.readLine();
                             if (cInput != null) {
                                 System.out.println("Client: " + cInput);
-                            }
+                            }*/
                         }
                     }
-                } catch (IOException e) {
-                    addLog(out, "[ERR]: " + e.getMessage());
+                    endThread();
+                } catch (Exception e) {
                     endThread(e);
                 }
             }
         }
+        getThread().interrupt();
     }
 }

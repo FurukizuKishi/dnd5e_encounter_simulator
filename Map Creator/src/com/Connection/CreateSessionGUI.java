@@ -1,16 +1,16 @@
 package com.Connection;
 
 import com.Connection.Hosts.ServerHost;
+import com.Connection.Hosts.SingleHost;
 import com.swingMethods;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 
 public class CreateSessionGUI extends ConnectionGUI {
-    private JTabbedPane connectionTabs = new JTabbedPane();
+    public JTabbedPane connectionTabs = new JTabbedPane();
     private HashMap<Integer, JList> connectionLogs = new HashMap<>();
 
     public CreateSessionGUI(SessionGUI frame, int w, int h) {
@@ -23,7 +23,7 @@ public class CreateSessionGUI extends ConnectionGUI {
             public void windowClosing(WindowEvent e) {
                 frame.createSessionGUI = null;
                 if (host != null) {
-                    host.getThread().end();
+                    host.endThread();
                 }
             }
         });
@@ -32,17 +32,30 @@ public class CreateSessionGUI extends ConnectionGUI {
         panel.add(portNumber);
     }
 
+    public void changeConnectionButtons(boolean active) {
+        super.changeConnectionButtons(active);
+        if (host != null) {
+            if (active) {
+                host.startThread();
+            } else {
+                host.endThread();
+            }
+        }
+    }
+
     public void createConnectionLog(JPanel panel, int w, int h) {
         super.createConnectionLog(panel, w, h);
+        connectionTabs.setSize(w, h);
+        connectionTabs.setLocation(0, h + 1);
         panel.add(connectionTabs);
     }
 
-    public JList addConnection(int w, int h) {
+    public JList addConnection(int w, int h, SingleHost host) {
         int n = connectionTabs.getTabCount() + 1;
-        JComponent[] comp = swingMethods.createList("Connection Log", 0, h + 1, w - 8, getHeight() - h - 32, 20);
-        comp[0].setBackground(Color.GRAY);
-        connectionTabs.addTab("Connection " + n, comp[0]);
+        JComponent[] comp = createLogList(null, w, h);
+        connectionTabs.addTab("Connection " + n, comp[1]);
         connectionLogs.put(n, (JList) comp[0]);
+        host.logList = (JList) comp[0];
         return (JList) comp[0];
     }
 
@@ -50,7 +63,6 @@ public class CreateSessionGUI extends ConnectionGUI {
         super.closeConnectionLog(panel, w, h);
         panel.remove(connectionTabs);
         connectionLogs.clear();
-        connectionTabs.removeAll();
     }
 
     public boolean attemptConnection() {

@@ -10,10 +10,14 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ServerThreadHost extends SingleHost {
-    public ServerThreadHost(CreateSessionGUI frame, Socket socket) {
+    private ServerHost server;
+    public ServerThreadHost(CreateSessionGUI frame, ServerHost server, Socket socket) {
         this.frame = frame;
+        this.server = server;
         if (connect(socket)) {
-            frame.addConnection(frame.w, frame.h);
+            getThread().start();
+            frame.addConnection(frame.w, frame.h, this);
+            addLog(out, "Connection established.");
         }
     }
 

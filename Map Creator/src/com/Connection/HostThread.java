@@ -15,11 +15,9 @@ public class HostThread extends Thread {
     public void end() {
         try {
             running = false;
-            interrupt();
-            join();
         }
-        catch (InterruptedException e) {
-
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

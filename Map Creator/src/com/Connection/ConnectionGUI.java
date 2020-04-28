@@ -5,6 +5,7 @@ import com.Connection.Hosts.Host;
 import com.swingMethods;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -73,18 +74,16 @@ public class ConnectionGUI extends JFrame {
         terminateButton.setEnabled(active);
         connectButton.setEnabled(!active);
         portNumber.setEditable(!active);
-        if (host != null) {
-            if (active) {
-                host.startThread();
-            }
-            else {
-                host.endThread();
-            }
-        }
     }
 
     public void createConnectionLog(JPanel panel, int w, int h) {
         setSize(w, (int) (h * 2.5));
+    }
+
+    public JComponent[] createLogList(String title, int w, int h) {
+        JComponent[] comp = swingMethods.createList(title, 0, h + 1, w - 8, getHeight() - h - 64, 20);
+        comp[0].setBackground(Color.GRAY);
+        return comp;
     }
 
     public void closeConnectionLog(JPanel panel, int w, int h) {

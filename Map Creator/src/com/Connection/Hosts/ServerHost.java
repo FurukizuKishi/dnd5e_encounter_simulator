@@ -4,6 +4,8 @@ import com.Connection.CreateSessionGUI;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public class ServerHost extends Host {
@@ -13,33 +15,56 @@ public class ServerHost extends Host {
         this.frame = frame;
         this.hostName = "localhost";
         this.portNumber = portNumber;
-        connect(portNumber);
-    }
-
-    public void connect(int portNumber) {
-        this.portNumber = portNumber;
-
         try {
             serverSocket = new ServerSocket(portNumber);
-            System.out.print("Attempting to establish a connection... ");
-            clients.add(new ServerThreadHost((CreateSessionGUI) frame, serverSocket.accept()));
-            System.out.println("Connection established.");
-
-            addLog(out, "Connection established.");
         }
         catch (IOException e) {
+            System.err.println("Could not listen on port " + portNumber);
             endThread(e);
         }
     }
 
+    public void connect(ServerSocket socket) {
+        try {
+            System.out.print("Attempting to establish a connection... ");
+            clients.add(new ServerThreadHost((CreateSessionGUI) frame, this, socket.accept()));
+            System.out.println("Connection established.");
+        }
+        catch (Exception e) {
+            endThread(e);
+        }
+    }
+
+    public void startClients() {
+        for (int i = 0; i < clients.size(); i += 1) {
+            clients.get(i).startThread();
+        }
+    }
+    public void endClients() {
+        int n = clients.size();
+        for (int i = 0; i < n; i += 1) {
+            endClient(clients.get(0));
+        }
+    }
+    public void endClient(ServerThreadHost client) {
+        addLog(client.out, "Connection closed.");
+        System.out.println("Connection closed.");
+        client.endThread();
+        if (clients.contains(client)) {
+            ((CreateSessionGUI) frame).connectionTabs.remove(clients.indexOf(client));
+            clients.remove(client);
+        }
+    }
+
+    public void startThread() {
+        super.startThread();
+        startClients();
+    }
     public void endThread(Exception e) {
         super.endThread(e);
         try {
-            addLog(out, "Connection closed.");
-            for (int i = 0; i < clients.size(); i += 1) {
-                clients.get(0).endThread();
-                serverSocket.close();
-            }
+            endClients();
+            serverSocket.close();
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -50,23 +75,8 @@ public class ServerHost extends Host {
 
     public void run() {
         while (canRun()) {
-            if (frame.connectionLog != null) {
-                try {
-                    System.out.println();
-                    String input;
-                    while (in != null) {
-                        if ((input = in.readLine()) != null) {
-                            addLog(out, input);
-                            if (input.equals("bye")) {
-                                break;
-                            }
-                        }
-                    }
-                } catch (IOException e) {
-                    addLog(out, "[ERR]: " + e.getMessage());
-                    endThread(e);
-                }
-            }
+            connect(serverSocket);
         }
+        getThread().interrupt();
     }
 }

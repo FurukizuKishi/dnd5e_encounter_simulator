@@ -6,12 +6,16 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientHost extends SingleHost {
-    public ClientHost(JoinSessionGUI frame, Socket socket) {
+    public ClientHost(JoinSessionGUI frame) {
         this.frame = frame;
+        logList = frame.connectionLog;
+    }
+    public ClientHost(JoinSessionGUI frame, Socket socket) {
+        this(frame);
         connect(socket);
     }
     public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
-        this.frame = frame;
+        this(frame);
         connect(hostName, portNumber);
     }
 
