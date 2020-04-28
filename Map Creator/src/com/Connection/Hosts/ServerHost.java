@@ -2,14 +2,13 @@ package com.Connection.Hosts;
 
 import com.Connection.CreateSessionGUI;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerHost extends Host {
+    private ServerSocket serverSocket;
+    private ArrayList<ServerThreadHost> clients = new ArrayList<>();
     public ServerHost(CreateSessionGUI frame, int portNumber) {
         this.frame = frame;
         this.hostName = "localhost";
@@ -21,30 +20,53 @@ public class ServerHost extends Host {
         this.portNumber = portNumber;
 
         try {
-            ServerSocket serverSocket = new ServerSocket(portNumber);
+            serverSocket = new ServerSocket(portNumber);
             System.out.print("Attempting to establish a connection... ");
-            Socket clientSocket = serverSocket.accept();
+            clients.add(new ServerThreadHost((CreateSessionGUI) frame, serverSocket.accept()));
             System.out.println("Connection established.");
 
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-            out.println("Connection established.");
-
-            System.out.println();
-            String input;
-            while ((input = in.readLine()) != null) {
-                out.println(input);
-                if (input.equals("bye")) {
-                    break;
-                }
-            }
-            System.exit(0);
+            addLog(out, "Connection established.");
         }
         catch (IOException e) {
-            System.out.println(e);
-            frame.connectButton.setEnabled(true);
-            frame.portNumber.setEditable(true);
+            endThread(e);
+        }
+    }
+
+    public void endThread(Exception e) {
+        super.endThread(e);
+        try {
+            addLog(out, "Connection closed.");
+            for (int i = 0; i < clients.size(); i += 1) {
+                clients.get(0).endThread();
+                serverSocket.close();
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        frame.connectButton.setEnabled(true);
+        frame.portNumber.setEditable(true);
+    }
+
+    public void run() {
+        while (canRun()) {
+            if (frame.connectionLog != null) {
+                try {
+                    System.out.println();
+                    String input;
+                    while (in != null) {
+                        if ((input = in.readLine()) != null) {
+                            addLog(out, input);
+                            if (input.equals("bye")) {
+                                break;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    addLog(out, "[ERR]: " + e.getMessage());
+                    endThread(e);
+                }
+            }
         }
     }
 }

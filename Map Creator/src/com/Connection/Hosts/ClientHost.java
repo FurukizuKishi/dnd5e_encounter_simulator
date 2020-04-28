@@ -2,48 +2,41 @@ package com.Connection.Hosts;
 
 import com.Connection.JoinSessionGUI;
 
-import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientHost extends Host {
+public class ClientHost extends SingleHost {
+    public ClientHost(JoinSessionGUI frame, Socket socket) {
+        this.frame = frame;
+        connect(socket);
+    }
     public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
         this.frame = frame;
-        this.hostName = hostName;
-        this.portNumber = portNumber;
         connect(hostName, portNumber);
     }
 
     public void connect(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
-
         try {
-            Socket socket = new Socket(hostName, portNumber);
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-
-            String input;
-            while ((input = in.readLine()) != null) {
-                System.out.println("Server: " + input);
-                out.println(input);
-
-                input = stdIn.readLine();
-                if (input != null) {
-                    System.out.println("Client: " + input);
-                }
-            }
-            System.exit(0);
+            connect(new Socket(hostName, portNumber));
         }
         catch (Exception e) {
-            System.out.println(e);
-            frame.connectButton.setEnabled(true);
-            frame.hostField.setEditable(true);
-            frame.portNumber.setEditable(true);
+            endThread(e);
         }
+    }
+
+    public void endThread(Exception e) {
+        super.endThread(e);
+        try {
+            socket.close();
+            stdIn.close();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        frame.connectButton.setEnabled(true);
+        ((JoinSessionGUI) frame).hostField.setEditable(true);
+        frame.portNumber.setEditable(true);
     }
 }

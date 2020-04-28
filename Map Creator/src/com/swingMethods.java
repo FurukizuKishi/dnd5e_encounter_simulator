@@ -54,8 +54,8 @@ public class swingMethods {
 
         return new JComponent[] {pane, bar};
     }
-    public static JComponent[] createList(String title, int x, int y, int w, int h, int ch, String ... items) {
-        JList list = new JList(items);
+    public static <T> JComponent[] createList(String title, int x, int y, int w, int h, int ch, T ... items) {
+        JList<T> list = new JList<>(items);
         list.setDragEnabled(true);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setFixedCellWidth(w);
