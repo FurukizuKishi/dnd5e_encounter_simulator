@@ -36,34 +36,11 @@ public class ServerThreadHost extends SingleHost {
     public void run() {
         while (canRun()) {
             if (connectionLog != null) {
-                try {
-                    String input;
-                    int i = 0;
-                    while (in != null) {
-                        TimeUnit.SECONDS.sleep(3);
-                        addLog(out, Integer.toString(i));
-                        /*Object[] stream = in.lines().toArray();
-                        if (stream.length > 0) {
-                            if ((input = (String) stream[stream.length - 1]) != null) {
-                                addLog(input);
-                                if (input.contains("ERR")) {
-                                    break;
-                                }
-                            }
-                        }*/
-                        if ((input = in.readLine()) != null) {
-                            addLog(input);
-                            if (input.contains("ERR")) {
-                                addLog(out, "Error Received.");
-                                break;
-                            }
-                        }
-                        i += 1;
-                    }
-                    endThread();
-                } catch (Exception e) {
-                    endThread(e);
+                int i = 0;
+                while (in != null) {
+                    i = sendMessage(i);
                 }
+                endThread();
             }
         }
         getThread().interrupt();
