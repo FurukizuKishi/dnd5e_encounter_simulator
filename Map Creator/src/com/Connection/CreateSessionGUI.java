@@ -43,8 +43,8 @@ public class CreateSessionGUI extends ConnectionGUI {
         }
     }
 
-    public void createConnectionLog(JPanel panel, int w, int h) {
-        super.createConnectionLog(panel, w, h);
+    public void createConnectionLog(int w, int h) {
+        super.createConnectionLog(w, h);
         connectionTabs.setSize(w, h);
         connectionTabs.setLocation(0, h + 1);
         panel.add(connectionTabs);
@@ -53,14 +53,19 @@ public class CreateSessionGUI extends ConnectionGUI {
     public JList addConnection(int w, int h, SingleHost host) {
         int n = connectionTabs.getTabCount() + 1;
         JComponent[] comp = createLogList(null, w, h);
-        connectionTabs.addTab("Connection " + n, comp[1]);
+        if (host != null) {
+            connectionTabs.addTab(host.toString(), comp[1]);
+        }
+        else {
+            connectionTabs.addTab("Connection " + n, comp[1]);
+        }
         connectionLogs.put(n, (JList) comp[0]);
         host.logList = (JList) comp[0];
         return (JList) comp[0];
     }
 
-    public void closeConnectionLog(JPanel panel, int w, int h) {
-        super.closeConnectionLog(panel, w, h);
+    public void closeConnectionLog(int w, int h) {
+        super.closeConnectionLog(w, h);
         panel.remove(connectionTabs);
         connectionLogs.clear();
     }
@@ -68,6 +73,7 @@ public class CreateSessionGUI extends ConnectionGUI {
     public boolean attemptConnection() {
         try {
             host = new ServerHost(this, Integer.parseInt(portNumber.getText()));
+            createConnectionLog(w, h);
             return true;
         }
         catch (Exception e) {

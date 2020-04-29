@@ -1,6 +1,5 @@
 package com.Connection;
 
-import com.Connection.Hosts.ClientHost;
 import com.Connection.Hosts.Host;
 import com.swingMethods;
 
@@ -17,6 +16,7 @@ public class ConnectionGUI extends JFrame {
     public JButton connectButton;
     public JButton terminateButton;
     public JList connectionLog;
+    public JScrollPane connectionScrollbar;
     public int w, h;
     protected int bx, by, bw, bh, bxo;
     public ConnectionGUI() {
@@ -45,7 +45,6 @@ public class ConnectionGUI extends JFrame {
         connectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (attemptConnection()) {
-                    createConnectionLog(panel, w, h);
                     changeConnectionButtons(true);
                 }
             }
@@ -55,7 +54,7 @@ public class ConnectionGUI extends JFrame {
         terminateButton = swingMethods.createButton("Terminate", bx - (bw / 2), by * 2, bw, bh);
         terminateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                closeConnectionLog(panel, w, h);
+                closeConnectionLog(w, h);
                 changeConnectionButtons(false);
             }
         });
@@ -76,7 +75,7 @@ public class ConnectionGUI extends JFrame {
         portNumber.setEditable(!active);
     }
 
-    public void createConnectionLog(JPanel panel, int w, int h) {
+    public void createConnectionLog(int w, int h) {
         setSize(w, (int) (h * 2.5));
     }
 
@@ -86,6 +85,9 @@ public class ConnectionGUI extends JFrame {
         return comp;
     }
 
+    public void closeConnectionLog(int w, int h) {
+        closeConnectionLog(null, w, h);
+    }
     public void closeConnectionLog(JPanel panel, int w, int h) {
         setSize(w, h);
     }

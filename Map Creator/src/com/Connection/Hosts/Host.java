@@ -2,6 +2,7 @@ package com.Connection.Hosts;
 
 import com.Connection.ConnectionGUI;
 import com.Connection.HostThread;
+import com.methods;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +27,7 @@ public class Host implements Runnable {
     }
     public void addLog(PrintWriter out, String message) {
         if (out != null) {
+            out.flush();
             out.println(message);
             connectionLog.add("Me: " + message);
         }
@@ -60,7 +62,7 @@ public class Host implements Runnable {
     public void endThread(Exception e) {
         thread.end();
         if (e != null) {
-            String message = "[ERR/" + e.getCause().toString() + "]: " + e.getMessage();
+            String message = "[ERR]: " + e.getMessage();
             System.out.println(message);
             addLog(out, message);
         }
@@ -81,23 +83,32 @@ public class Host implements Runnable {
 
     public void run() {
         while (canRun()) {
-            if (frame.connectionLog != null) {
+            if (connectionLog != null) {
                 try {
                     String input;
                     while (in != null) {
+                        /*Object[] stream = in.lines().toArray();
+                        addLog(out, methods.tuple(stream));
+                        if (stream.length > 0) {
+                            if ((input = (String) stream[stream.length - 1]) != null) {
+                                addLog(input);
+                                if (input.contains("ERR")) {
+                                    break;
+                                }
+                                else {
+                                    addLog(out, "Hello. You gave me an input of '" + input + "'.");
+                                }
+                            }
+                        }*/
                         if ((input = in.readLine()) != null) {
                             addLog(input);
                             if (input.contains("ERR")) {
+                                addLog(out, "Error Received.");
                                 break;
                             }
                             else {
-                                addLog(out, "Hello");
+                                addLog(out, "Hello. You gave me an input of '" + input + "'.");
                             }
-                            /*
-                            String cInput = stdIn.readLine();
-                            if (cInput != null) {
-                                System.out.println("Client: " + cInput);
-                            }*/
                         }
                     }
                     endThread();

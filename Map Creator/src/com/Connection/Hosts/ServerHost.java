@@ -47,7 +47,7 @@ public class ServerHost extends Host {
         }
     }
     public void endClient(ServerThreadHost client) {
-        addLog(client.out, "Connection closed.");
+        client.addLog(client.out, "Connection closed.");
         System.out.println("Connection closed.");
         client.endThread();
         if (clients.contains(client)) {
@@ -69,8 +69,6 @@ public class ServerHost extends Host {
         catch (IOException ex) {
             ex.printStackTrace();
         }
-        frame.connectButton.setEnabled(true);
-        frame.portNumber.setEditable(true);
     }
 
     public void run() {

@@ -31,32 +31,42 @@ public class JoinSessionGUI extends ConnectionGUI {
     public void changeConnectionButtons(boolean active) {
         super.changeConnectionButtons(active);
         hostField.setEditable(!active);
-        if (host != null) {
+        /*if (host != null) {
             if (active) {
                 host.startThread();
             }
             else {
                 host.endThread();
             }
-        }
+        }*/
     }
 
-    public void createConnectionLog(JPanel panel, int w, int h) {
-        super.createConnectionLog(panel, w, h);
-        JComponent[] comp = createLogList("Connection Log", w, h);
+    public void createConnectionLog(int w, int h) {
+        super.createConnectionLog(w, h);
+        JComponent[] comp;
+        if (host != null) {
+            comp = createLogList(host.toString(), w, h);
+        }
+        else {
+            comp = createLogList("Connection Log", w, h);
+        }
         connectionLog = (JList) comp[0];
-        panel.add(comp[1]);
+        connectionScrollbar = (JScrollPane) comp[1];
+        panel.add(connectionScrollbar);
         connectionLog.setBackground(Color.GRAY);
     }
 
-    public void closeConnectionLog(JPanel panel, int w, int h) {
+    public void closeConnectionLog(int w, int h) {
         super.closeConnectionLog(panel, w, h);
-        panel.remove(connectionLog);
-        connectionLog = null;
+        if (!(panel == null || connectionScrollbar == null)) {
+            panel.remove(connectionScrollbar);
+        }
     }
 
     public boolean attemptConnection() {
         try {
+            System.out.println(500);
+            createConnectionLog(w, h);
             host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()));
             return true;
         }

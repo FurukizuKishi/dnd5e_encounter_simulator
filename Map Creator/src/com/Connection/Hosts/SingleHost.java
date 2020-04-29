@@ -9,14 +9,15 @@ public abstract class SingleHost extends Host {
     protected Socket socket;
     protected BufferedReader stdIn;
 
-    public void connect(String hostName, int portNumber) {
+    public boolean connect(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
         try {
-            connect(new Socket(hostName, portNumber));
+            return connect(new Socket(hostName, portNumber));
         }
         catch (Exception e) {
             endThread(e);
+            return false;
         }
     }
     public boolean connect(Socket socket) {

@@ -16,17 +16,9 @@ public class ClientHost extends SingleHost {
     }
     public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
         this(frame);
-        connect(hostName, portNumber);
-    }
-
-    public void connect(String hostName, int portNumber) {
-        this.hostName = hostName;
-        this.portNumber = portNumber;
-        try {
-            connect(new Socket(hostName, portNumber));
-        }
-        catch (Exception e) {
-            endThread(e);
+        if (connect(hostName, portNumber)) {
+            getThread().start();
+            addLog(out, "Connection received.");
         }
     }
 
@@ -39,8 +31,7 @@ public class ClientHost extends SingleHost {
         catch (IOException ex) {
             ex.printStackTrace();
         }
-        frame.connectButton.setEnabled(true);
-        ((JoinSessionGUI) frame).hostField.setEditable(true);
-        frame.portNumber.setEditable(true);
+        frame.closeConnectionLog(frame.w, frame.h);
+        frame.changeConnectionButtons(false);
     }
 }
