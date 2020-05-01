@@ -85,7 +85,7 @@ public class Host implements Runnable {
     public int sendMessage(int i) {
         try {
             String input;
-            TimeUnit.SECONDS.sleep(3);
+            //TimeUnit.SECONDS.sleep(3);
             addLog(out, Integer.toString(i));
             /*Object[] stream = in.lines().toArray();
             if (stream.length > 0) {
@@ -125,6 +125,10 @@ public class Host implements Runnable {
                         addLog(out, "Hello. You gave me an input of '" + input + "'.");
                     }
                 }
+            }*/
+            /*if (in.lines() != null) {
+                Object[] stream = in.lines().toArray();
+                addLog("[IN]: " + stream.length);
             }*/
             if ((input = in.readLine()) != null) {
                 addLog(input);
