@@ -1,6 +1,7 @@
 package com.Connection.Hosts;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -8,6 +9,7 @@ import java.net.Socket;
 public abstract class SingleHost extends Host {
     protected Socket socket;
     protected BufferedReader stdIn;
+    protected String message = null;
 
     public boolean connect(String hostName, int portNumber) {
         this.hostName = hostName;
@@ -32,6 +34,60 @@ public abstract class SingleHost extends Host {
             endThread(e);
             return false;
         }
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public void setMessage() {
+        setMessage(null);
+    }
+    public String getMessage() {
+        return message;
+    }
+    public boolean holdingMessage() {
+        return (message != null);
+    }
+
+    public int sendMessage(int i) {
+        sendMessage(Integer.toString(i));
+        return i + 1;
+    }
+    public void sendMessage(String message) {
+        //TimeUnit.SECONDS.sleep(3);
+        addLog(out, message);
+        setMessage();
+    }
+
+    public void recieveMessage() {
+        String input;
+        try {
+            if ((input = in.readLine()) != null) {
+                addLog(input);
+                if (input.contains("ERR")) {
+                    addLog(out, "Error Received.");
+                }
+            }
+        }
+        catch (IOException e) {
+            endThread(e);
+        }
+    }
+
+    public void sendAndRecieve() {
+        if (message != null) {
+            sendMessage(message);
+        }
+        recieveMessage();
+    }
+
+    public void run() {
+        while (canRun()) {
+            if (!(connectionLog == null && in == null)) {
+                sendAndRecieve();
+            }
+        }
+        getThread().interrupt();
     }
 
     public void endThread(Exception e) {

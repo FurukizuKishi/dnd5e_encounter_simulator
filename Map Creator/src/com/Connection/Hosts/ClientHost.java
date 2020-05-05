@@ -8,6 +8,7 @@ import java.net.Socket;
 public class ClientHost extends SingleHost {
     public ClientHost(JoinSessionGUI frame) {
         this.frame = frame;
+        System.out.println(frame.connectionLog);
         logList = frame.connectionLog;
     }
     public ClientHost(JoinSessionGUI frame, Socket socket) {

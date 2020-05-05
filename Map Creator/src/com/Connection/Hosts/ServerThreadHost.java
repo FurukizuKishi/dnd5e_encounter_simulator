@@ -22,6 +22,12 @@ public class ServerThreadHost extends SingleHost {
         }
     }
 
+    public void sendMessage(String message) {
+        super.sendMessage(message);
+        server.addCommand(this, message);
+        System.out.println(message);
+    }
+
     public void endThread(Exception e) {
         super.endThread(e);
         try {
@@ -31,18 +37,5 @@ public class ServerThreadHost extends SingleHost {
         catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public void run() {
-        while (canRun()) {
-            if (connectionLog != null) {
-                int i = 0;
-                while (in != null) {
-                    i = sendMessage(i);
-                }
-                endThread();
-            }
-        }
-        getThread().interrupt();
     }
 }

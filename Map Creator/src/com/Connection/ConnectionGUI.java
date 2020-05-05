@@ -77,6 +77,7 @@ public class ConnectionGUI extends JFrame {
 
     public void createConnectionLog(int w, int h) {
         setSize(w, (int) (h * 2.5));
+        panel.setSize(getSize());
     }
 
     public JComponent[] createLogList(String title, int w, int h) {

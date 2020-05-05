@@ -1,15 +1,19 @@
 package com.Connection;
 
 import com.Connection.Hosts.ClientHost;
+import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class JoinSessionGUI extends ConnectionGUI {
     public JTextField hostField;
+    public JTextField messageField;
     public JoinSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Join", w, h);
     }
@@ -45,15 +49,27 @@ public class JoinSessionGUI extends ConnectionGUI {
         super.createConnectionLog(w, h);
         JComponent[] comp;
         if (host != null) {
-            comp = createLogList(host.toString(), w, h);
+            comp = createLogList(host.toString(), w, h - 64);
+            host.logList = (JList) comp[0];
         }
         else {
-            comp = createLogList("Connection Log", w, h);
+            comp = createLogList("Connection Log", w, h - 64);
         }
         connectionLog = (JList) comp[0];
         connectionScrollbar = (JScrollPane) comp[1];
         panel.add(connectionScrollbar);
         connectionLog.setBackground(Color.GRAY);
+        messageField = swingMethods.createTextField("Type a message here:", panel, 0, (h * 2) + 16, w, 32);
+        messageField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTextField field = (JTextField) e.getSource();
+                if (field.getText() != null) {
+                    ((ClientHost) host).setMessage(field.getText());
+                    field.setText("");
+                }
+            }
+        });
     }
 
     public void closeConnectionLog(int w, int h) {
@@ -65,9 +81,8 @@ public class JoinSessionGUI extends ConnectionGUI {
 
     public boolean attemptConnection() {
         try {
-            System.out.println(500);
-            createConnectionLog(w, h);
             host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()));
+            createConnectionLog(w, h);
             return true;
         }
         catch (Exception e) {
