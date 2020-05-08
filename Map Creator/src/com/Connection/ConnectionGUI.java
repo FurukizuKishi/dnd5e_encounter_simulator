@@ -74,10 +74,22 @@ public class ConnectionGUI extends JFrame {
         connectButton.setEnabled(!active);
         portNumber.setEditable(!active);
     }
+    public void alterConnectionThread(boolean active) {
+        if (host != null) {
+            if (active) {
+                if (!host.canRun()) {
+                    host.startThread();
+                }
+            } else {
+                if (host.canRun()) {
+                    host.endThread();
+                }
+            }
+        }
+    }
 
     public void createConnectionLog(int w, int h) {
         setSize(w, (int) (h * 2.5));
-        panel.setSize(getSize());
     }
 
     public JComponent[] createLogList(String title, int w, int h) {

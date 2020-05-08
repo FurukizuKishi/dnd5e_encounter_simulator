@@ -4,40 +4,34 @@ import com.Connection.Hosts.ServerHost;
 import com.GUI.GUI;
 import com.methods;
 
-public class ActionSignalProtocol implements Runnable {
-    private ActionCommand command;
+public class ActionSignalProtocol extends HostRunnable {
+    private ActionCommand command = null;
     private ServerHost server;
     private GUI frame;
-    private HostThread thread = new HostThread(this);
     public ActionSignalProtocol(ServerHost server) {
         this.server = server;
-        thread.start();
-    }
-
-    public boolean canRun() {
-        if (thread != null) {
-            if (thread.running) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public HostThread getThread() {
-        return thread;
+        startThread();
     }
 
     public void takeCommand() {
         if (!holdingCommand()) {
             if (!server.queue.isEmpty()) {
-                setCommand(server.queue.remove());
+                if (!setCommand(server.queue.remove())) {
+                    server.endThread();
+                }
             }
         }
     }
-    public void setCommand(ActionCommand command) {
-        System.out.println(methods.tuple(this, "SET", command.command));
-        this.command = command;
-        releaseCommand();
+    public boolean setCommand(ActionCommand command) {
+        if (command != null) {
+            if (command.command != null) {
+                System.out.println(methods.tuple("SET", command.host, command.command));
+                this.command = command;
+                releaseCommand();
+                return true;
+            }
+        }
+        return false;
     }
     public void setCommand() {
         setCommand(null);
@@ -49,7 +43,7 @@ public class ActionSignalProtocol implements Runnable {
         return (command != null);
     }
     public void releaseCommand() {
-        System.out.println(methods.tuple(this, "RELEASE", command.command));
+        System.out.println(methods.tuple("RELEASE", command.host, command.command));
         server.sendToThread(command);
         setCommand();
     }
@@ -58,6 +52,6 @@ public class ActionSignalProtocol implements Runnable {
         while (canRun()) {
             takeCommand();
         }
-        thread.interrupt();
+        getThread().interrupt();
     }
 }

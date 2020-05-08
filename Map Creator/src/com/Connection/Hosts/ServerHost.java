@@ -3,10 +3,11 @@ package com.Connection.Hosts;
 import com.Connection.ActionCommand;
 import com.Connection.ActionSignalProtocol;
 import com.Connection.CreateSessionGUI;
-import com.methods;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -31,9 +32,8 @@ public class ServerHost extends Host {
 
     public void connect(ServerSocket socket) {
         try {
-            System.out.print("Attempting to establish a connection... ");
             clients.add(new ServerThreadHost((CreateSessionGUI) frame, this, socket.accept()));
-            System.out.println("Connection established.");
+            createProtocol();
         }
         catch (Exception e) {
             endThread(e);
@@ -52,17 +52,15 @@ public class ServerHost extends Host {
         }
     }
     public void endClient(ServerThreadHost client) {
-        client.addLog(client.out, "Connection closed.");
-        System.out.println("Connection closed.");
         client.endThread();
         if (clients.contains(client)) {
             ((CreateSessionGUI) frame).connectionTabs.remove(clients.indexOf(client));
             clients.remove(client);
+            frame.repaint();
         }
     }
 
     public void startThread() {
-        protocol = new ActionSignalProtocol(this);
         super.startThread();
         startClients();
     }
@@ -70,22 +68,38 @@ public class ServerHost extends Host {
         super.endThread(e);
         try {
             endClients();
-            protocol.getThread().end();
             serverSocket.close();
+            destroyProtocol();
         }
         catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
+    public boolean createProtocol() {
+        if (protocol == null) {
+            protocol = new ActionSignalProtocol(this);
+            return true;
+        }
+        return false;
+    }
+    public boolean destroyProtocol() {
+        if (protocol != null) {
+            protocol.endThread();
+            protocol = null;
+            return true;
+        }
+        return false;
+    }
+
     public void addCommand(ServerThreadHost host, String command) {
         queue.add(new ActionCommand(host, command));
     }
-
     public void sendToThread(ActionCommand command) {
         command.host.setMessage("Processed command '" + command.command + "'.");
     }
 
+    @Override
     public void run() {
         while (canRun()) {
             connect(serverSocket);

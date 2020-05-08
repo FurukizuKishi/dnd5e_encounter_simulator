@@ -1,7 +1,8 @@
 package com.Connection.Hosts;
 
+import com.methods;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -10,6 +11,8 @@ public abstract class SingleHost extends Host {
     protected Socket socket;
     protected BufferedReader stdIn;
     protected String message = null;
+    protected int disconnectTime = 50;
+    protected int disconnectTimer = disconnectTime;
 
     public boolean connect(String hostName, int portNumber) {
         this.hostName = hostName;
@@ -49,51 +52,65 @@ public abstract class SingleHost extends Host {
         return (message != null);
     }
 
+    public void lockToBottom() {
+        if (logList != null) {
+            logList.setSelectedIndex(connectionLog.size() - 1);
+            logList.ensureIndexIsVisible(logList.getSelectedIndex());
+            frame.repaint();
+        }
+    }
+    public void sendMessage(String message) {
+        super.sendMessage(message);
+        //lockToBottom();
+    }
     public int sendMessage(int i) {
         sendMessage(Integer.toString(i));
         return i + 1;
     }
-    public void sendMessage(String message) {
-        addLog(out, message);
-        setMessage();
+    public String receiveMessage() {
+        return super.receiveMessage();
+        //lockToBottom();
+    }
+    public boolean sendAndReceive() {
+        return false;
     }
 
-    public void recieveMessage() {
-        String input;
-        try {
-            if ((input = in.readLine()) != null) {
-                addLog(input);
-                if (input.contains("ERR")) {
-                    addLog(out, "Error Received.");
-                }
-                if (input.equals("Connection closed.")) {
-                    endThread();
-                }
+    public boolean disconnect(String message) {
+        if (message != null) {
+            disconnectTimer = disconnectTime;
+            if (message.equals("Connection closed.")) {
+                closeThread();
+                return true;
             }
         }
-        catch (IOException e) {
-            endThread(e);
-        }
+        return false;
     }
 
-    public void sendAndRecieve() {
-        if (message != null) {
-            System.out.println(message);
-            sendMessage(message);
+    public boolean timedown() {
+        if (disconnectTimer < 1) {
+            closeThread();
+            return false;
         }
-        recieveMessage();
+        disconnectTimer -= 1;
+        return true;
     }
-
     public void run() {
         while (canRun()) {
-            System.out.println(getClass().getSimpleName() + ": " + connectionLog);
-            if (!(connectionLog == null || in == null)) {
-                sendAndRecieve();
+            if (connectionLog != null) {
+                while (in != null) {
+                    sendAndReceive();
+                    System.out.println();
+                }
+                endThread();
             }
         }
         getThread().interrupt();
     }
 
+    public void closeThread() {
+        addLog(out, "Connection closed.");
+        endThread();
+    }
     public void endThread(Exception e) {
         super.endThread(e);
     }

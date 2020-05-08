@@ -1,19 +1,16 @@
 package com.Connection;
 
 import com.Connection.Hosts.ClientHost;
-import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class JoinSessionGUI extends ConnectionGUI {
     public JTextField hostField;
-    public JTextField messageField;
+    public String clientName;
     public JoinSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Join", w, h);
     }
@@ -35,42 +32,22 @@ public class JoinSessionGUI extends ConnectionGUI {
     public void changeConnectionButtons(boolean active) {
         super.changeConnectionButtons(active);
         hostField.setEditable(!active);
-        /*if (host != null) {
-            if (active) {
-                host.startThread();
-            }
-            else {
-                host.endThread();
-            }
-        }*/
+        alterConnectionThread(active);
     }
 
     public void createConnectionLog(int w, int h) {
         super.createConnectionLog(w, h);
         JComponent[] comp;
         if (host != null) {
-            comp = createLogList(host.toString(), w, h - 64);
-            host.logList = (JList) comp[0];
+            comp = createLogList(host.toString(), w, h);
         }
         else {
-            comp = createLogList("Connection Log", w, h - 64);
+            comp = createLogList("Connection Log", w, h);
         }
         connectionLog = (JList) comp[0];
         connectionScrollbar = (JScrollPane) comp[1];
         panel.add(connectionScrollbar);
         connectionLog.setBackground(Color.GRAY);
-        messageField = swingMethods.createTextField("Type a message here:", panel, 0, (h * 2) + 16, w, 32);
-        messageField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JTextField field = (JTextField) e.getSource();
-                if (field.getText() != null) {
-                    ((ClientHost) host).setMessage(field.getText());
-                    field.setText("");
-                }
-            }
-        });
-        repaint();
     }
 
     public void closeConnectionLog(int w, int h) {
@@ -82,12 +59,12 @@ public class JoinSessionGUI extends ConnectionGUI {
 
     public boolean attemptConnection() {
         try {
-            host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()));
             createConnectionLog(w, h);
+            host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()));
             return true;
         }
         catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return false;
         }
     }

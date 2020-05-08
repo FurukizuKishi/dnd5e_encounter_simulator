@@ -19,8 +19,15 @@ public class methods {
     //Print multiples of variables inside brackets.
     public static String tuple(Object ... str) {
         String tuple = "(" + str[0];
+        if (str[0] instanceof String) {
+            tuple = "('" + str[0] + "'";
+        }
         for (int i = 1; i < str.length; i += 1) {
-            tuple += ", " + str[i];
+            if (str[i] instanceof String) {
+                tuple += ", '" + str[i] + "'";
+            } else {
+                tuple += ", " + str[i];
+            }
         }
         tuple += ")";
         return tuple;

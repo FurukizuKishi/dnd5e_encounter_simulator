@@ -1,6 +1,7 @@
 package com.Connection.Hosts;
 
 import com.Connection.ConnectionGUI;
+import com.Connection.HostRunnable;
 import com.Connection.HostThread;
 import com.methods;
 
@@ -12,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class Host implements Runnable {
+public class Host extends HostRunnable {
     public ConnectionGUI frame;
     public String hostName;
     public int portNumber;
@@ -21,11 +22,7 @@ public class Host implements Runnable {
     protected PrintWriter out;
     protected BufferedReader in;
     protected BufferedReader stdIn;
-    private HostThread thread = new HostThread(this);
 
-    public PrintWriter getOutput() {
-        return out;
-    }
     public void addLog(String message) {
         addLog(null, message);
     }
@@ -44,27 +41,8 @@ public class Host implements Runnable {
         frame.repaint();
     }
 
-    public HostThread getThread() {
-        return thread;
-    }
-
-    public boolean canRun() {
-        if (thread != null) {
-            if (thread.running) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void startThread() {
-        thread.start();
-    }
-    public void endThread() {
-        endThread(null);
-    }
     public void endThread(Exception e) {
-        thread.end();
+        super.endThread(e);
         if (e != null) {
             String message = "[ERR]: " + e.getMessage();
             System.out.println(message);
@@ -85,7 +63,55 @@ public class Host implements Runnable {
         }
     }
 
-    public void run() {
+    public void sendMessage(String message) {
+        try {
+            String input;
+            addLog(out, message);
+            /*if ((input = in.readLine()) != null) {
+                addLog(input);
+                if (input.contains("ERR")) {
+                    addLog(out, "Error Received.");
+                }
+            }*/
+        }
+        catch (Exception e) {
+            endThread(e);
+        }
+    }
+    public int sendMessage(int i) {
+        sendMessage(Integer.toString(i));
+        return i + 1;
+    }
 
+    public String receiveMessage() {
+        try {
+            String input, message;
+            if ((input = in.readLine()) != null) {
+                addLog(input);
+                message = input;
+                if (input.contains("ERR")) {
+                    message = "Error Received.";
+                    addLog(out, message);
+                }
+                return message;
+            }
+        }
+        catch (Exception e) {
+            endThread(e);
+        }
+        return null;
+    }
+
+    @Override
+    public void run() {
+        while (canRun()) {
+            if (connectionLog != null) {
+                while (in != null) {
+                    receiveMessage();
+                }
+                endThread();
+            }
+        }
+        getThread().interrupt();
     }
 }

@@ -1,20 +1,46 @@
 package com.Connection;
 
 import com.Connection.Hosts.ServerHost;
+import com.Connection.Hosts.ServerThreadHost;
 import com.Connection.Hosts.SingleHost;
+import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CreateSessionGUI extends ConnectionGUI {
     public JTabbedPane connectionTabs = new JTabbedPane();
-    private HashMap<Integer, JList> connectionLogs = new HashMap<>();
+    private HashMap<String, JList> connectionLogs = new HashMap<>();
 
     public CreateSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Create", w, h);
+    }
+
+    public String getConnectionKey(ServerThreadHost host) {
+        String key = null;
+        for (Map.Entry<String, JList> log : connectionLogs.entrySet()) {
+            System.out.println(log.getValue() == host.logList);
+            if (log.getValue() == host.logList) {
+                key = log.getKey();
+            }
+        }
+        return key;
+    }
+    public void renameConnectionLog(ServerThreadHost host, String name) {
+        String key = getConnectionKey(host);
+        System.out.println(methods.tuple("logs", connectionLogs.size()));
+        if (key != null) {
+            connectionTabs.setTitleAt(Integer.parseInt(key) - 1, name);
+            connectionLogs.put(name, connectionLogs.get(key));
+            connectionLogs.remove(host.toString());
+            connectionLogs.remove("Connection " + key);
+            System.out.println(methods.tuple("key", Integer.parseInt(key) - 1));
+        }
     }
 
     public void createInterface(int w, int h) {
@@ -34,13 +60,7 @@ public class CreateSessionGUI extends ConnectionGUI {
 
     public void changeConnectionButtons(boolean active) {
         super.changeConnectionButtons(active);
-        if (host != null) {
-            if (active) {
-                host.startThread();
-            } else {
-                host.endThread();
-            }
-        }
+        alterConnectionThread(active);
     }
 
     public void createConnectionLog(int w, int h) {
@@ -48,7 +68,6 @@ public class CreateSessionGUI extends ConnectionGUI {
         connectionTabs.setSize(w, h);
         connectionTabs.setLocation(0, h + 1);
         panel.add(connectionTabs);
-        repaint();
     }
 
     public JList addConnection(int w, int h, SingleHost host) {
@@ -60,7 +79,7 @@ public class CreateSessionGUI extends ConnectionGUI {
         else {
             connectionTabs.addTab("Connection " + n, comp[1]);
         }
-        connectionLogs.put(n, (JList) comp[0]);
+        connectionLogs.put(Integer.toString(n), (JList) comp[0]);
         host.logList = (JList) comp[0];
         return (JList) comp[0];
     }
