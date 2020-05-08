@@ -48,6 +48,7 @@ public class CreateSessionGUI extends ConnectionGUI {
         connectionTabs.setSize(w, h);
         connectionTabs.setLocation(0, h + 1);
         panel.add(connectionTabs);
+        repaint();
     }
 
     public JList addConnection(int w, int h, SingleHost host) {

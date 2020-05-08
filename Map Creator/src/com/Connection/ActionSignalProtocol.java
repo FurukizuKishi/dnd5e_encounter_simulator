@@ -2,6 +2,7 @@ package com.Connection;
 
 import com.Connection.Hosts.ServerHost;
 import com.GUI.GUI;
+import com.methods;
 
 public class ActionSignalProtocol implements Runnable {
     private ActionCommand command;
@@ -27,15 +28,15 @@ public class ActionSignalProtocol implements Runnable {
     }
 
     public void takeCommand() {
-        if (!server.queue.isEmpty()) {
-            if (!holdingCommand()) {
+        if (!holdingCommand()) {
+            if (!server.queue.isEmpty()) {
                 setCommand(server.queue.remove());
             }
         }
     }
     public void setCommand(ActionCommand command) {
+        System.out.println(methods.tuple(this, "SET", command.command));
         this.command = command;
-        System.out.println(command.command);
         releaseCommand();
     }
     public void setCommand() {
@@ -48,6 +49,7 @@ public class ActionSignalProtocol implements Runnable {
         return (command != null);
     }
     public void releaseCommand() {
+        System.out.println(methods.tuple(this, "RELEASE", command.command));
         server.sendToThread(command);
         setCommand();
     }

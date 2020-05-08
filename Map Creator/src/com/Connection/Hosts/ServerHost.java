@@ -65,7 +65,6 @@ public class ServerHost extends Host {
         protocol = new ActionSignalProtocol(this);
         super.startThread();
         startClients();
-
     }
     public void endThread(Exception e) {
         super.endThread(e);

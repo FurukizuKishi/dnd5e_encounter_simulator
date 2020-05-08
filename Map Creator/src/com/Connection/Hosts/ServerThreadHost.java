@@ -25,7 +25,8 @@ public class ServerThreadHost extends SingleHost {
     public void sendMessage(String message) {
         super.sendMessage(message);
         server.addCommand(this, message);
-        System.out.println(message);
+        System.out.println(server.queue.size() + " command(s)");
+        //System.out.println(message);
     }
 
     public void endThread(Exception e) {

@@ -70,6 +70,7 @@ public class JoinSessionGUI extends ConnectionGUI {
                 }
             }
         });
+        repaint();
     }
 
     public void closeConnectionLog(int w, int h) {

@@ -39,7 +39,6 @@ public class Host implements Runnable {
             connectionLog.add("Remote: " + message);
         }
         if (logList != null) {
-            //System.out.println(this);
             logList.setListData(connectionLog.toArray());
         }
         frame.repaint();

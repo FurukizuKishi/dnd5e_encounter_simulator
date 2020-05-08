@@ -54,7 +54,6 @@ public abstract class SingleHost extends Host {
         return i + 1;
     }
     public void sendMessage(String message) {
-        //TimeUnit.SECONDS.sleep(3);
         addLog(out, message);
         setMessage();
     }
@@ -67,6 +66,9 @@ public abstract class SingleHost extends Host {
                 if (input.contains("ERR")) {
                     addLog(out, "Error Received.");
                 }
+                if (input.equals("Connection closed.")) {
+                    endThread();
+                }
             }
         }
         catch (IOException e) {
@@ -76,6 +78,7 @@ public abstract class SingleHost extends Host {
 
     public void sendAndRecieve() {
         if (message != null) {
+            System.out.println(message);
             sendMessage(message);
         }
         recieveMessage();
@@ -83,7 +86,8 @@ public abstract class SingleHost extends Host {
 
     public void run() {
         while (canRun()) {
-            if (!(connectionLog == null && in == null)) {
+            System.out.println(getClass().getSimpleName() + ": " + connectionLog);
+            if (!(connectionLog == null || in == null)) {
                 sendAndRecieve();
             }
         }
