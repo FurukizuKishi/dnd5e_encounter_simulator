@@ -57,10 +57,10 @@ public class JoinSessionGUI extends ConnectionGUI {
         }
     }
 
-    public boolean attemptConnection() {
+    public boolean attemptConnection(boolean master) {
         try {
             createConnectionLog(w, h);
-            host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()));
+            host = new ClientHost(this, hostField.getText(), Integer.parseInt(portNumber.getText()), master);
             return true;
         }
         catch (Exception e) {

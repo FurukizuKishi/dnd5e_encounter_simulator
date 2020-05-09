@@ -1,5 +1,6 @@
 package com.Connection;
 
+import com.Connection.Hosts.ClientHost;
 import com.Connection.Hosts.ServerHost;
 import com.Connection.Hosts.ServerThreadHost;
 import com.Connection.Hosts.SingleHost;
@@ -7,7 +8,6 @@ import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ import java.util.Map;
 public class CreateSessionGUI extends ConnectionGUI {
     public JTabbedPane connectionTabs = new JTabbedPane();
     private HashMap<String, JList> connectionLogs = new HashMap<>();
+    public JoinSessionGUI clientFrame;
 
     public CreateSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Create", w, h);
@@ -34,13 +35,23 @@ public class CreateSessionGUI extends ConnectionGUI {
     public void renameConnectionLog(ServerThreadHost host, String name) {
         String key = getConnectionKey(host);
         System.out.println(methods.tuple("logs", connectionLogs.size()));
+        String tabName = name;
+        if (((ServerHost) this.host).master == host) {
+            tabName += " (DM)";
+        }
         if (key != null) {
             host.name = name;
-            connectionTabs.setTitleAt(Integer.parseInt(key) - 1, name);
+            int id = Integer.parseInt(key);
+            String previousTabName = "Connection " + id;
+            if (host.nameAssigned) {
+                id = host.pos;
+                previousTabName = host.name;
+            }
+            connectionTabs.setTitleAt(id - 1, tabName);
             connectionLogs.put(name, connectionLogs.get(key));
             connectionLogs.remove(host.toString());
-            connectionLogs.remove("Connection " + key);
-            System.out.println(methods.tuple("key", Integer.parseInt(key) - 1));
+            connectionLogs.remove(previousTabName);
+            System.out.println(methods.tuple("key", id - 1, previousTabName));
         }
     }
 
@@ -91,7 +102,7 @@ public class CreateSessionGUI extends ConnectionGUI {
         connectionLogs.clear();
     }
 
-    public boolean attemptConnection() {
+    public boolean attemptConnection(boolean master) {
         try {
             host = new ServerHost(this, Integer.parseInt(portNumber.getText()));
             createConnectionLog(w, h);

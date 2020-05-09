@@ -7,21 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f9eb421-2611-4309-a006-9c0cd2b9d723" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ClientHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ClientHost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/ActionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ActionSignalProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/ActionSignalProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/HostRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/HostRunnable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Die.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/System/Die.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/methods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +25,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="62" column="107" selection-start-line="62" selection-start-column="107" selection-end-line="62" selection-end-column="107" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="287">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#282#283#0" expanded="true" />
@@ -49,11 +63,91 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="93" column="37" selection-start-line="93" selection-start-column="37" selection-end-line="93" selection-end-column="37" />
+            <state relative-caret-position="255">
+              <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1201#1202#0" expanded="true" />
+                <element signature="e#1243#1244#0" expanded="true" />
+                <element signature="e#1201#1202#0" expanded="true" />
+                <element signature="e#1257#1258#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="138" column="33" lean-forward="true" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1026#1027#0" expanded="true" />
+                <element signature="e#1056#1057#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#877#878#0" expanded="true" />
+                <element signature="e#1438#1439#0" expanded="true" />
+                <element signature="e#1479#1480#0" expanded="true" />
+                <element signature="e#2061#2062#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#210#211#0" expanded="true" />
+                <element signature="e#296#297#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="901">
+              <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -142,26 +236,26 @@
         <option value="$PROJECT_DIR$/src/com/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/com/GUI/System/Background.java" />
         <option value="$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java" />
-        <option value="$PROJECT_DIR$/src/com/main.java" />
         <option value="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/SessionGUI.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ConnectionThread.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/HostThread.java" />
         <option value="$PROJECT_DIR$/src/com/swingMethods.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java" />
         <option value="$PROJECT_DIR$/src/com/methods.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ActionCommand.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/HostRunnable.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" />
         <option value="$PROJECT_DIR$/src/com/System/Die.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ActionSignalProtocol.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" />
+        <option value="$PROJECT_DIR$/src/com/main.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" />
       </list>
     </option>
   </component>
@@ -290,7 +384,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589059568877" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589068642758" />
     <property name="last_opened_file_path" value="D:/Java/Year 2/CE203/Weeks 3 and 4" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -568,16 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
@@ -745,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/HostThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -763,26 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="707" selection-start-line="707" selection-end-line="707" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -822,13 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-478">
-          <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/System/Die.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -836,31 +886,6 @@
           <folding>
             <element signature="e#663#664#0" expanded="true" />
             <element signature="e#698#699#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1026#1027#0" expanded="true" />
-            <element signature="e#2672#2673#0" expanded="true" />
-            <element signature="e#2731#2732#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1681#1920#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -896,31 +921,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="78" column="53" lean-forward="true" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+        <state relative-caret-position="901">
+          <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
+    <entry file="file://$PROJECT_DIR$/src/com/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="93" column="37" selection-start-line="93" selection-start-column="37" selection-end-line="93" selection-end-column="37" />
+        <state relative-caret-position="187">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+            <element signature="e#1438#1439#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+            <element signature="e#2061#2062#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+        <state relative-caret-position="287">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#282#283#0" expanded="true" />
             <element signature="e#318#319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1201#1202#0" expanded="true" />
+            <element signature="e#1243#1244#0" expanded="true" />
+            <element signature="e#1201#1202#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="62" column="107" selection-start-line="62" selection-start-column="107" selection-end-line="62" selection-end-column="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="138" column="33" lean-forward="true" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
           </folding>
         </state>
       </provider>

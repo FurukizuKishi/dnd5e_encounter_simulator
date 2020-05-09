@@ -14,12 +14,15 @@ import java.util.concurrent.TimeUnit;
 
 public class ServerThreadHost extends SingleHost {
     private ServerHost server;
-    public String name;
+    public int pos;
+    public String name = null;
     boolean sentNameRequest = false;
+    public boolean nameAssigned = false;
     public ServerThreadHost(CreateSessionGUI frame, ServerHost server, Socket socket) {
         this.frame = frame;
         this.server = server;
-        name = Integer.toString(server.getClients().size() + 1);
+        pos = server.getClients().size() + 1;
+        System.out.println(methods.tuple("POS", pos));
         if (connect(socket)) {
             logList = frame.addConnection(frame.w, frame.h, this);
             getThread().start();
@@ -69,10 +72,16 @@ public class ServerThreadHost extends SingleHost {
             if (disconnect(message)) {
                 return false;
             }
-            if (message.contains("Hello, I am ")) {
+            if (message.contains("Hello, I am ") && !nameAssigned) {
                 String name = message.substring("Hello, I am ".length(), message.length() - 1);
                 ((CreateSessionGUI) frame).renameConnectionLog(this, name);
                 sendMessage("Very well. " + name + ", welcome to the game.");
+                nameAssigned = true;
+            }
+            if (message.contains("I am the dungeon master's client.") && name != null) {
+                ((CreateSessionGUI) frame).renameConnectionLog(this, name);
+                sendMessage("Very well. " + name + ", I have assigned you to the dungeon master.");
+                server.master = this;
             }
             if (methods.messageIsFlag(message)) {
                 try {

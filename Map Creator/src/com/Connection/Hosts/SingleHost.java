@@ -62,15 +62,16 @@ public abstract class SingleHost extends Host {
     }
     public void sendMessage(String message) {
         super.sendMessage(message);
-        //lockToBottom();
+        lockToBottom();
     }
     public int sendMessage(int i) {
         sendMessage(Integer.toString(i));
         return i + 1;
     }
     public String receiveMessage() {
-        return super.receiveMessage();
-        //lockToBottom();
+        String message = super.receiveMessage();
+        lockToBottom();
+        return message;
     }
     public boolean sendAndReceive() {
         return false;

@@ -2,6 +2,7 @@ package com.Connection.Hosts;
 
 import com.Connection.ActionUnpackProtocol;
 import com.Connection.JoinSessionGUI;
+import com.GUI.GUI;
 import com.methods;
 import com.swingMethods;
 
@@ -10,27 +11,38 @@ import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 
 public class ClientHost extends SingleHost {
-    String prevMessage = null;
     private ActionUnpackProtocol protocol;
     boolean sentName = false;
     boolean receivedNameConfirmation = false;
     String name;
-    public ClientHost(JoinSessionGUI frame) {
+    GUI game;
+    boolean master;
+    public ClientHost(JoinSessionGUI frame, boolean master) {
         this.frame = frame;
+        this.master = master;
         logList = frame.connectionLog;
         name = Integer.toString(hashCode());
         frame.clientName = name;
         frame.connectionScrollbar.setBorder(swingMethods.createBorder(name));
     }
-    public ClientHost(JoinSessionGUI frame, Socket socket) {
-        this(frame);
+    public ClientHost(JoinSessionGUI frame, Socket socket, boolean master) {
+        this(frame, master);
         connect(socket);
     }
-    public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
-        this(frame);
+    public ClientHost(JoinSessionGUI frame, String hostName, int portNumber, boolean master) {
+        this(frame, master);
         if (connect(hostName, portNumber)) {
             getThread().start();
         }
+    }
+    public ClientHost(JoinSessionGUI frame) {
+        this(frame, false);
+    }
+    public ClientHost(JoinSessionGUI frame, Socket socket) {
+        this(frame, socket, false);
+    }
+    public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
+        this(frame, hostName, portNumber, false);
     }
 
     public void startThread() {
@@ -98,6 +110,9 @@ public class ClientHost extends SingleHost {
             if (!sentName) {
                 if (message.equals("Who are you? I need your name.")) {
                     sendMessage("Hello, I am " + name + ".");
+                    if (master) {
+                        sendMessage("I am the dungeon master's client.");
+                    }
                     sentName = true;
                 }
             }

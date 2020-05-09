@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ConnectionGUI extends JFrame {
     protected SessionGUI frame;
+    protected boolean master;
     protected Host host;
     protected JPanel panel;
     public JTextField portNumber;
@@ -28,6 +29,10 @@ public class ConnectionGUI extends JFrame {
         createInterface(w, h);
     }
 
+    public SessionGUI getFrame() {
+        return frame;
+    }
+
     public void createInterface(int w, int h) {
         this.w = w;
         this.h = h;
@@ -44,9 +49,7 @@ public class ConnectionGUI extends JFrame {
         connectButton = swingMethods.createButton("Connect", bx - (bw / 2), (by * 2) - 32, bw, bh);
         connectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (attemptConnection()) {
-                    changeConnectionButtons(true);
-                }
+                connect(master);
             }
         });
         panel.add(connectButton);
@@ -65,8 +68,14 @@ public class ConnectionGUI extends JFrame {
         setVisible(true);
     }
 
-    public boolean attemptConnection() {
+    public boolean attemptConnection(boolean master) {
         return false;
+    }
+
+    public void connect(boolean master) {
+        if (attemptConnection(master)) {
+            changeConnectionButtons(true);
+        }
     }
 
     public void changeConnectionButtons(boolean active) {

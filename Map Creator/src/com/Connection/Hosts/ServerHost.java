@@ -3,8 +3,10 @@ package com.Connection.Hosts;
 import com.Connection.ActionCommand;
 import com.Connection.ActionSignalProtocol;
 import com.Connection.CreateSessionGUI;
+import com.Connection.JoinSessionGUI;
 import com.methods;
 
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -16,8 +18,13 @@ public class ServerHost extends Host {
     private ArrayList<ServerThreadHost> clients = new ArrayList<>();
     private ActionSignalProtocol protocol;
     public Queue<ActionCommand> queue = new LinkedList<>();
+    public ServerThreadHost master;
+    public boolean masterCreated = false;
+    public int cx, cy;
     public ServerHost(CreateSessionGUI frame, int portNumber) {
         this.frame = frame;
+        cx = frame.getX();
+        cy = frame.getY();
         this.hostName = "localhost";
         this.portNumber = portNumber;
         try {
@@ -81,6 +88,11 @@ public class ServerHost extends Host {
             endClients();
             serverSocket.close();
             destroyProtocol();
+            if (((CreateSessionGUI) frame).clientFrame != null) {
+                cx = ((CreateSessionGUI) frame).clientFrame.getX();
+                cy = ((CreateSessionGUI) frame).clientFrame.getY();
+                ((CreateSessionGUI) frame).clientFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            }
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -118,6 +130,14 @@ public class ServerHost extends Host {
 
     @Override
     public void run() {
+        if (!masterCreated) {
+            ((CreateSessionGUI) frame).clientFrame = new JoinSessionGUI(frame.getFrame(), frame.w, frame.h);
+            ((CreateSessionGUI) frame).clientFrame.setLocation(cx, cy);
+            ((CreateSessionGUI) frame).clientFrame.hostField.setText("localhost");
+            ((CreateSessionGUI) frame).clientFrame.portNumber.setText("7777");
+            ((CreateSessionGUI) frame).clientFrame.connect(true);
+            masterCreated = true;
+        }
         while (canRun()) {
             connect(serverSocket);
         }
