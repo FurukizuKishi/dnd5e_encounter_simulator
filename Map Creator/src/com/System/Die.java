@@ -25,17 +25,16 @@ public class Die {
     }
 
     public int roll() {
-        int roll = 0;
-        for (int die : rollOut()) {
-            roll += die;
-        }
-        return roll;
+        return rollOut()[0];
     }
     public int[] rollOut() {
-        int[] roll = new int[sides];
-        for (int i = 0; i < roll.length; i += 1) {
+        int[] roll = new int[number + 1];
+        int total = 0;
+        for (int i = 1; i < roll.length; i += 1) {
             roll[i] = (int) Math.round(Math.random() * (sides - 1)) + 1;
+            total += roll[i];
         }
+        roll[0] = total;
         return roll;
     }
 

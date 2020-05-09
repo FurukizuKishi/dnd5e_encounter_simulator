@@ -41,11 +41,19 @@ public class Host extends HostRunnable {
         frame.repaint();
     }
 
-    public void endThread(Exception e) {
-        super.endThread(e);
+    public void endThread(String reason) {
+        endThread(null, reason);
+    }
+    public void endThread(Exception e, String reason) {
+        super.endThread(e, reason);
         if (e != null) {
-            String message = "[ERR]: " + e.getMessage();
-            System.out.println(message);
+            String message = e.getMessage() + ".";
+            System.out.println(methods.tuple("ERR", this, message, reason));
+            addLog(out, "[ERR]: " + message);
+        }
+        else {
+            String message = "Connection closed gracefully.";
+            System.out.println(methods.tuple("DBG", this, message, reason));
             addLog(out, message);
         }
         try {
@@ -75,7 +83,7 @@ public class Host extends HostRunnable {
             }*/
         }
         catch (Exception e) {
-            endThread(e);
+            endThread(e, "sendMessage(\"" + message + "\")");
         }
     }
     public int sendMessage(int i) {
@@ -97,7 +105,7 @@ public class Host extends HostRunnable {
             }
         }
         catch (Exception e) {
-            endThread(e);
+            endThread(e, "receiveMessage()");
         }
         return null;
     }
@@ -109,7 +117,7 @@ public class Host extends HostRunnable {
                 while (in != null) {
                     receiveMessage();
                 }
-                endThread();
+                endThread("run()");
             }
         }
         getThread().interrupt();

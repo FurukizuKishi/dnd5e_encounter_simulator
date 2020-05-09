@@ -82,7 +82,7 @@ public class ConnectionGUI extends JFrame {
                 }
             } else {
                 if (host.canRun()) {
-                    host.endThread();
+                    host.endThread("alterConnectionThread()");
                 }
             }
         }

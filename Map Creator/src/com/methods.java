@@ -20,17 +20,25 @@ public class methods {
     public static String tuple(Object ... str) {
         String tuple = "(" + str[0];
         if (str[0] instanceof String) {
-            tuple = "('" + str[0] + "'";
+            tuple = "(\"" + str[0] + "\"";
         }
         for (int i = 1; i < str.length; i += 1) {
             if (str[i] instanceof String) {
-                tuple += ", '" + str[i] + "'";
+                tuple += ", \"" + str[i] + "\"";
             } else {
                 tuple += ", " + str[i];
             }
         }
         tuple += ")";
         return tuple;
+    }
+
+    //Check if the message is an action flag.
+    public static boolean messageIsFlag(String message) {
+        if (message.contains(":")) {
+            return true;
+        }
+        return false;
     }
 
     //Check whether a number is positive, negative or zero.

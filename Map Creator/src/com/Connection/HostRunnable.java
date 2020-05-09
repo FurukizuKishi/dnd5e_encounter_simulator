@@ -19,9 +19,15 @@ public class HostRunnable implements Runnable {
         thread.start();
     }
     public void endThread() {
-        endThread(null);
+        endThread((Exception) null);
     }
     public void endThread(Exception e) {
         thread.end();
+    }
+    public void endThread(String reason) {
+        endThread(null, reason);
+    }
+    public void endThread(Exception e, String reason) {
+        endThread(e);
     }
 }

@@ -3,11 +3,10 @@ package com.Connection.Hosts;
 import com.Connection.ActionCommand;
 import com.Connection.ActionSignalProtocol;
 import com.Connection.CreateSessionGUI;
+import com.methods;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -26,8 +25,20 @@ public class ServerHost extends Host {
         }
         catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);
-            endThread(e);
+            endThread(e, "port(null)");
         }
+    }
+
+    public ArrayList<ServerThreadHost> getClients() {
+        return clients;
+    }
+    public ServerThreadHost getClient(String name) {
+        for (ServerThreadHost client : clients) {
+            if (client.name.equals(name)) {
+                return client;
+            }
+        }
+        return null;
     }
 
     public void connect(ServerSocket socket) {
@@ -36,7 +47,7 @@ public class ServerHost extends Host {
             createProtocol();
         }
         catch (Exception e) {
-            endThread(e);
+            endThread(e, "connect()");
         }
     }
 
@@ -52,7 +63,7 @@ public class ServerHost extends Host {
         }
     }
     public void endClient(ServerThreadHost client) {
-        client.endThread();
+        client.endThread("endClient()");
         if (clients.contains(client)) {
             ((CreateSessionGUI) frame).connectionTabs.remove(clients.indexOf(client));
             clients.remove(client);
@@ -64,8 +75,8 @@ public class ServerHost extends Host {
         super.startThread();
         startClients();
     }
-    public void endThread(Exception e) {
-        super.endThread(e);
+    public void endThread(Exception e, String reason) {
+        super.endThread(e, reason);
         try {
             endClients();
             serverSocket.close();
@@ -85,7 +96,7 @@ public class ServerHost extends Host {
     }
     public boolean destroyProtocol() {
         if (protocol != null) {
-            protocol.endThread();
+            protocol.endThread("destroyProtocol()");
             protocol = null;
             return true;
         }
@@ -96,7 +107,13 @@ public class ServerHost extends Host {
         queue.add(new ActionCommand(host, command));
     }
     public void sendToThread(ActionCommand command) {
-        command.host.setMessage("Processed command '" + command.command + "'.");
+        for (String name : command.recipients) {
+            ServerThreadHost host = getClient(name);
+            if (host != null) {
+                System.out.println(methods.tuple("SEND", command.result, host, host.name));
+                host.setMessage(command.result);
+            }
+        }
     }
 
     @Override

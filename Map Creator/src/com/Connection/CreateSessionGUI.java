@@ -35,6 +35,7 @@ public class CreateSessionGUI extends ConnectionGUI {
         String key = getConnectionKey(host);
         System.out.println(methods.tuple("logs", connectionLogs.size()));
         if (key != null) {
+            host.name = name;
             connectionTabs.setTitleAt(Integer.parseInt(key) - 1, name);
             connectionLogs.put(name, connectionLogs.get(key));
             connectionLogs.remove(host.toString());
@@ -49,7 +50,7 @@ public class CreateSessionGUI extends ConnectionGUI {
             public void windowClosing(WindowEvent e) {
                 frame.createSessionGUI = null;
                 if (host != null) {
-                    host.endThread();
+                    host.endThread("createInterface()");
                 }
             }
         });

@@ -21,7 +21,7 @@ public abstract class SingleHost extends Host {
             return connect(new Socket(hostName, portNumber));
         }
         catch (Exception e) {
-            endThread(e);
+            endThread(e, "connect()");
             return false;
         }
     }
@@ -34,13 +34,14 @@ public abstract class SingleHost extends Host {
             return true;
         }
         catch (Exception e) {
-            endThread(e);
+            endThread(e, "connect()");
             return false;
         }
     }
 
     public void setMessage(String message) {
         this.message = message;
+        System.out.println(this.message);
     }
     public void setMessage() {
         setMessage(null);
@@ -78,7 +79,7 @@ public abstract class SingleHost extends Host {
     public boolean disconnect(String message) {
         if (message != null) {
             disconnectTimer = disconnectTime;
-            if (message.equals("Connection closed.")) {
+            if (message.contains("Connection closed")) {
                 closeThread();
                 return true;
             }
@@ -101,17 +102,18 @@ public abstract class SingleHost extends Host {
                     sendAndReceive();
                     System.out.println();
                 }
-                endThread();
+                endThread("run()");
             }
         }
+        System.out.println(methods.tuple("INTERRUPT_THREAD", this));
         getThread().interrupt();
     }
 
     public void closeThread() {
         addLog(out, "Connection closed.");
-        endThread();
+        endThread("closeThread()");
     }
-    public void endThread(Exception e) {
-        super.endThread(e);
+    public void endThread(Exception e, String reason) {
+        super.endThread(e, reason);
     }
 }
