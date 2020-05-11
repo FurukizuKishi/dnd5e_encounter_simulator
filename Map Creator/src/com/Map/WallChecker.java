@@ -198,7 +198,7 @@ public class WallChecker {
                     }
                 }
             }
-            System.out.println(concatenateCode(code));
+            //System.out.println(concatenateCode(code));
             return concatenateCode(code);
         }
         else {

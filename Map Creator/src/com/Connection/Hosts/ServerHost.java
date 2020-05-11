@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -120,11 +121,45 @@ public class ServerHost extends Host {
     }
     public void sendToThread(ActionCommand command) {
         for (String name : command.recipients) {
-            ServerThreadHost host = getClient(name);
-            if (host != null) {
-                System.out.println(methods.tuple("SEND", command.result, host, host.name));
-                host.setMessage(command.result);
+            if (name.contains("ALL")) {
+                if (name.equals("ALL")) {
+                    for (ServerThreadHost currentHost : clients) {
+                        sendToHost(currentHost, command);
+                    }
+                }
+                else {
+                    String[] exclusions = name.substring("ALL(".length(), name.length() - 1).split(",");
+                    System.out.println(methods.tuple("EXCLUSIONS", exclusions));
+                    for (ServerThreadHost currentHost : clients) {
+                        System.out.println(!methods.arrayToList(exclusions).contains(currentHost.name));
+                        if (!methods.arrayToList(exclusions).contains(currentHost.name)) {
+                            sendToHost(currentHost, "Processed command \"" + command.result + "\".");
+                        }
+                        else {
+                            sendToHost(currentHost, "Sent the command \"" + command.result + "\".");
+                        }
+                    }
+                }
             }
+            else if (name.equals("DM")) {
+                sendToHost(master, command);
+            }
+            else {
+                sendToHost(getClient(name), command);
+            }
+        }
+    }
+
+    public void sendToHost(ServerThreadHost host, ActionCommand command) {
+        if (host != null) {
+            System.out.println(methods.tuple("SEND", command.result, host, host.name));
+            host.setMessage(command.result);
+        }
+    }
+    public void sendToHost(ServerThreadHost host, String message) {
+        if (host != null) {
+            System.out.println(methods.tuple("SEND", message, host, host.name));
+            host.setMessage(message);
         }
     }
 
@@ -134,7 +169,8 @@ public class ServerHost extends Host {
             ((CreateSessionGUI) frame).clientFrame = new JoinSessionGUI(frame.getFrame(), frame.w, frame.h);
             ((CreateSessionGUI) frame).clientFrame.setLocation(cx, cy);
             ((CreateSessionGUI) frame).clientFrame.hostField.setText("localhost");
-            ((CreateSessionGUI) frame).clientFrame.portNumber.setText("7777");
+            ((CreateSessionGUI) frame).clientFrame.portNumber.setText(Integer.toString(serverSocket.getLocalPort()));
+            ((CreateSessionGUI) frame).clientFrame.connectButton.setEnabled(false);
             ((CreateSessionGUI) frame).clientFrame.connect(true);
             masterCreated = true;
         }

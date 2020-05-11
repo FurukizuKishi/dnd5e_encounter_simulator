@@ -35,7 +35,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         my = e.getY();
         mb = e.getButton();
         mt = type;
-        System.out.println(methods.tuple(mt.toUpperCase(), mb, pushed, mx, my));
+        //System.out.println(methods.tuple(mt.toUpperCase(), mb, pushed, mx, my));
     }
     @Override
     public void mouseClicked(MouseEvent e) {

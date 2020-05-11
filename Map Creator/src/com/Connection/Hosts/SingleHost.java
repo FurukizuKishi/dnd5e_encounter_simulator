@@ -41,7 +41,7 @@ public abstract class SingleHost extends Host {
 
     public void setMessage(String message) {
         this.message = message;
-        System.out.println(this.message);
+        System.out.println(methods.tuple(this.message, this, connectionLog.size()));
     }
     public void setMessage() {
         setMessage(null);
@@ -101,7 +101,6 @@ public abstract class SingleHost extends Host {
             if (connectionLog != null) {
                 while (in != null) {
                     sendAndReceive();
-                    System.out.println();
                 }
                 endThread("run()");
             }

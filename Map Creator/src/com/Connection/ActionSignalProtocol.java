@@ -8,7 +8,6 @@ import com.methods;
 public class ActionSignalProtocol extends HostRunnable {
     private ActionCommand command = null;
     private ServerHost server;
-    private GUI frame;
     public ActionSignalProtocol(ServerHost server) {
         this.server = server;
         startThread();
@@ -82,10 +81,11 @@ public class ActionSignalProtocol extends HostRunnable {
                 result[2] = summation + "=" + roll[0];
                 break;
             case "MOVE":
-                result = new String[] {flag, args[0] + "," + args[1]};
+                result = new String[] {flag, args[0] + "," + args[1] + "," + args[2]};
                 break;
             case "CHAR":
-                result = new String[] {flag, args[0] + "," + args[1]};
+                result = new String[] {flag, args[0] + "," + args[1] + "," + args[2]};
+                break;
         }
         if (result != null) {
             command.result = methods.concencateList(result, ":");

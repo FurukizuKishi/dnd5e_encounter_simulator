@@ -1,7 +1,9 @@
 package com.Entities.Characters.Subsystems.CharacterSheet;
 
 import com.Entities.Characters.Attacks.Attack;
+import com.Entities.Characters.CharacterModel;
 import com.Entities.Characters.Classes.CharacterClass;
+import com.GUI.GUI;
 import com.GUI.System.Fonts;
 import com.System.InputMethods.MouseInput;
 import com.methods;
@@ -16,8 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CharacterSheet extends JPanel {
+    protected GUI game;
     protected JFrame sheet;
     protected SheetComponents components;
+    protected CharacterModel character;
     private String name;
     private BufferedImage sheetBackground = methods.getImage("images/character_sheet");
     protected HashMap<String, int[]> abilityScores = new HashMap<>();
@@ -37,15 +41,26 @@ public class CharacterSheet extends JPanel {
     private int[] deathSaves = {0, 0};
     private int statAlignment = 4;
 
-    public CharacterSheet(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+    public CharacterSheet(CharacterModel character, String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.name = name;
+        this.character = character;
         calculateStats(strength, dexterity, constitution, intelligence, wisdom, charisma);
         assignMaxHealth(8 + mod("CON"));
         assignCharacterLevel();
         assignSpeed();
     }
-    public CharacterSheet(String name) {
-        this(name, 10, 10, 10, 10, 10, 10);
+    public CharacterSheet(CharacterModel character, String name) {
+        this(character, name, 10, 10, 10, 10, 10, 10);
+    }
+
+    public SheetComponents getSheetComponents() {
+        return components;
+    }
+    public GUI getGame() {
+        return game;
+    }
+    public void setGame(GUI game) {
+        this.game = game;
     }
 
     public void calculateStats() {

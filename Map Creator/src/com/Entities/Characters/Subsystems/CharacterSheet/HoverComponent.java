@@ -14,6 +14,7 @@ import java.util.Map;
 public class HoverComponent extends JPanel {
     protected CharacterSheet sheet;
     public HashMap<int[], Object[]> components = new HashMap<>();
+    public HashMap<String, JTextField> componentKeys = new HashMap<>();
 
     public HoverComponent() {
 
@@ -57,6 +58,7 @@ public class HoverComponent extends JPanel {
             }
         }
         if (field != null) {
+            componentKeys.put(stat, field);
             field.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
@@ -66,21 +68,9 @@ public class HoverComponent extends JPanel {
                         try {
                             int val = Integer.parseInt(source.getText());
                             if (!source.getText().equals("")) {
-                                if (map != null) {
-                                    if (map == sheet.abilityScores) {
-                                        sheet.assignAbilityScore(stat, val);
-                                        sheet.calculateStats();
-
-                                    } else {
-                                        map.put(stat, val);
-                                    }
-                                    source.setText(map.get(stat).toString());
-                                } else {
-                                    if (stat.equals("hp")) {
-                                        sheet.setHealth(val);
-                                        source.setText(Integer.toString(sheet.health()));
-                                    }
-                                }
+                                updateStat(source, map, stat, val);
+                                System.out.println(methods.tuple("FLAG", sheet, sheet.character));
+                                sheet.getGame().host.setFlag("CHAR", sheet.character,  stat, val);
                             }
                         } catch (NumberFormatException ex) {
 
@@ -88,6 +78,46 @@ public class HoverComponent extends JPanel {
                     }
                 }
             });
+        }
+    }
+    public HashMap getMapForStat(String stat) {
+        if (sheet.abilityScores.get(stat) != null) {
+            return sheet.abilityScores;
+        }
+        else if (sheet.secondaryScores.get(stat) != null) {
+            return sheet.abilityScores;
+        }
+        return null;
+    }
+
+    public void updateStat(String stat, int value) {
+        updateStat(null, null, stat, value);
+    }
+    public void updateStat(JTextField source, HashMap map, String stat, int value) {
+        if (map == null && !stat.equals("hp")) {
+            map = getMapForStat(stat);
+        }
+        if (source == null) {
+            source = componentKeys.get(stat);
+        }
+        try {
+            if (map != null) {
+                if (map == sheet.abilityScores) {
+                    sheet.assignAbilityScore(stat, value);
+                    sheet.calculateStats();
+                } else {
+                    map.put(stat, value);
+                }
+                source.setText(map.get(stat).toString());
+            } else {
+                if (stat.equals("hp")) {
+                    sheet.setHealth(value);
+                    source.setText(Integer.toString(sheet.health()));
+                }
+            }
+        }
+        catch (NullPointerException e) {
+            System.out.println("Could not find a field for '" + stat + "'.");
         }
     }
     public void hoverComponents() {

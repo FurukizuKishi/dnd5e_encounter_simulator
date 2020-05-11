@@ -1,5 +1,7 @@
 package com.GUI;
 
+import com.Connection.Hosts.ClientHost;
+import com.Connection.Hosts.ServerThreadHost;
 import com.Entities.Characters.CharacterModel;
 import com.Entities.Characters.PlayerModel;
 import com.GUI.System.Fonts;
@@ -23,6 +25,7 @@ public class GUI extends JFrame {
     public int h;
     public int wCam;
     public int hCam;
+    public ClientHost host;                                                 //The client host where the GUI sends and receives commands.
     public HUD hud;                                                         //The game's HUD.
     public Camera camera;                                                   //The game's camera.
     public HashMap<String, PlayerModel> players = new HashMap<>();          //A list of all of the game's players.
@@ -33,7 +36,8 @@ public class GUI extends JFrame {
     public HasFile imageSelector = new HasFile(this);               //The image selector for the game.
 
     //The GUI constructor. Handles the initial setup of the game, creating fonts, enemy definitions, and setting the window's characteristics.
-    public GUI(String title, int width, int height, int cameraWidth, int cameraHeight) {
+    public GUI(String title, int width, int height, int cameraWidth, int cameraHeight, ClientHost host) {
+        this.host = host;
         textStores.put("damage", new TextStore());
         Fonts.addFont("stonehen.ttf", Fonts.font.TEXT, 30);
         Fonts.addFont("partybusiness.ttf", Fonts.font.DAMAGE, 20);
@@ -84,7 +88,7 @@ public class GUI extends JFrame {
         this.addMouseListener(new MouseGridInput(this));
         this.addMouseMotionListener(new MouseGridInput(this));
 
-        EditorFrame editor = new EditorFrame(this);
+        //EditorFrame editor = new EditorFrame(this);
         setResizable(false);
         repaint();
     }

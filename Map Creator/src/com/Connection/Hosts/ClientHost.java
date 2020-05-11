@@ -2,7 +2,9 @@ package com.Connection.Hosts;
 
 import com.Connection.ActionUnpackProtocol;
 import com.Connection.JoinSessionGUI;
+import com.Entities.Characters.CharacterModel;
 import com.GUI.GUI;
+import com.main;
 import com.methods;
 import com.swingMethods;
 
@@ -14,9 +16,10 @@ public class ClientHost extends SingleHost {
     private ActionUnpackProtocol protocol;
     boolean sentName = false;
     boolean receivedNameConfirmation = false;
-    String name;
+    public String name;
     GUI game;
     boolean master;
+    public boolean sentFlag = false;
     public ClientHost(JoinSessionGUI frame, boolean master) {
         this.frame = frame;
         this.master = master;
@@ -24,6 +27,7 @@ public class ClientHost extends SingleHost {
         name = Integer.toString(hashCode());
         frame.clientName = name;
         frame.connectionScrollbar.setBorder(swingMethods.createBorder(name));
+        game = main.main2(this);
     }
     public ClientHost(JoinSessionGUI frame, Socket socket, boolean master) {
         this(frame, master);
@@ -43,6 +47,10 @@ public class ClientHost extends SingleHost {
     }
     public ClientHost(JoinSessionGUI frame, String hostName, int portNumber) {
         this(frame, hostName, portNumber, false);
+    }
+
+    public GUI getGame() {
+        return game;
     }
 
     public void startThread() {
@@ -78,6 +86,13 @@ public class ClientHost extends SingleHost {
         return false;
     }
 
+    public void setFlag(String flag, CharacterModel character, String stat, int value) {
+        switch (flag) {
+            case "CHAR":
+                setMessage(("ALL(" + name + "):" + flag + ":" + character.name + "," + stat + "," + value));
+                break;
+        }
+    }
     public boolean holdingFlag() {
         if (holdingMessage()) {
             if (methods.messageIsFlag(message)) {
@@ -91,40 +106,66 @@ public class ClientHost extends SingleHost {
         super.sendMessage(message);
     }
     public boolean sendAndReceive() {
-        String message = receiveMessage();
-        System.out.println(methods.tuple("holding", this.message, "received", message));
-        if (message == null) {
-            if (!holdingMessage()) {
-                if (!timedown()) {
-                    return false;
+        if (message != null) {
+            System.out.println(methods.tuple("holding", message));
+        }
+        if (receivedNameConfirmation) {
+            if (holdingFlag() && !sentFlag) {
+                sendMessage(this.message);
+                sentFlag = true;
+                /*try {
+                    TimeUnit.MILLISECONDS.sleep(100);
                 }
+                catch (InterruptedException e) {
+                    addLog("[ERR]: " + e);
+                    return false;
+                }*/
             }
         }
-        else {
-            if (methods.messageIsFlag(message)) {
-                if (protocol == null) {
-                    createProtocol();
-                }
-                protocol.setCommand(message);
-            }
-            if (!sentName) {
-                if (message.equals("Who are you? I need your name.")) {
-                    sendMessage("Hello, I am " + name + ".");
-                    if (master) {
-                        sendMessage("I am the dungeon master's client.");
+        if (!receivedNameConfirmation || holdingFlag()) {
+            System.out.println(70);
+            String message = receiveMessage();
+            System.out.println(methods.tuple("received", message));
+            if (message == null) {
+                if (!holdingMessage()) {
+                    if (!timedown()) {
+                        return false;
                     }
-                    sentName = true;
                 }
-            }
-            else if (!receivedNameConfirmation) {
-                if (message.equals("Very well. " + name + ", welcome to the game.")) {
-                    receivedNameConfirmation = true;
+            } else {
+                try {
+                    String message2 = message.substring("Processed command \"".length(), message.length() - 2);
+                    System.out.println(methods.tuple("PROCESSED_COMMAND", message2));
+                    if (methods.messageIsFlag(message2)) {
+                        if (protocol == null) {
+                            createProtocol();
+                        }
+                        protocol.setCommand(message2);
+                        addLog("Unpacked command \"" + message2 + "\".");
+                        setMessage();
+                    }
                 }
-            }
-            if (disconnect(message)) {
-                return false;
-            }
-            if (!holdingFlag() && receivedNameConfirmation) {
+                catch (IndexOutOfBoundsException e) {
+
+                }
+                System.out.println(methods.tuple("SKIP_COMMAND"));
+                if (!sentName) {
+                    if (message.equals("Who are you? I need your name.")) {
+                        sendMessage("Hello, I am " + name + ".");
+                        if (master) {
+                            sendMessage("I am the dungeon master's client.");
+                        }
+                        sentName = true;
+                    }
+                } else if (!receivedNameConfirmation) {
+                    if ((!master && message.equals("Very well. " + name + ", welcome to the game.")) || (master && message.equals("Very well. " + name + ", I have assigned you to the dungeon master."))) {
+                        receivedNameConfirmation = true;
+                    }
+                }
+                if (disconnect(message)) {
+                    return false;
+                }
+            /*if (!holdingFlag() && receivedNameConfirmation) {
                 try {
                     TimeUnit.SECONDS.sleep(3);
                     sendMessage(createFlag());
@@ -133,6 +174,7 @@ public class ClientHost extends SingleHost {
                     addLog("[ERR]: " + e);
                     return false;
                 }
+            }*/
             }
         }
         return true;

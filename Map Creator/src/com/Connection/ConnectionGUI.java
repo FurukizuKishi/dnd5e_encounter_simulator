@@ -1,6 +1,7 @@
 package com.Connection;
 
 import com.Connection.Hosts.Host;
+import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
@@ -99,6 +100,7 @@ public class ConnectionGUI extends JFrame {
 
     public void createConnectionLog(int w, int h) {
         setSize(w, (int) (h * 2.5));
+        System.out.println(methods.tuple(90, this));
     }
 
     public JComponent[] createLogList(String title, int w, int h) {

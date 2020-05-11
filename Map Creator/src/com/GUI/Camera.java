@@ -1,6 +1,7 @@
 package com.GUI;
 
 import com.Entities.Characters.CharacterModel;
+import com.GUI.System.Background;
 import com.Map.Map;
 import com.System.Enums;
 import com.System.InputMethods.MouseGridInput;
@@ -33,9 +34,9 @@ public class Camera extends JPanel {
         this.map = map;
         this.w = map.w;
         this.h = map.h;
-        this.sw = map.w * map.background.tileSize;
-        this.sh = map.h * map.background.tileSize;
-        setSize(w * map.background.tileSize, h * map.background.tileSize);
+        this.sw = map.w * map.layers.get(0).tileSize;
+        this.sh = map.h * map.layers.get(0).tileSize;
+        setSize(w * map.layers.get(0).tileSize, h * map.layers.get(0).tileSize);
     }
     public Camera(JFrame frame, int w, int h, HUD hud, Map map) {
         super();
@@ -49,8 +50,8 @@ public class Camera extends JPanel {
             this.sh = hud.sh;
         }
         else if (map != null) {
-            this.sw = w * map.background.tileSize;
-            this.sh = h * map.background.tileSize;
+            this.sw = w * map.layers.get(0).tileSize;
+            this.sh = h * map.layers.get(0).tileSize;
         }
         this.tileSize = Math.min(this.sw / this.w, this.sh / this.h);
         this.sw = Math.min(this.sw, this.tileSize * this.w);
@@ -218,17 +219,15 @@ public class Camera extends JPanel {
         repaint();
     }
 
-    //Paint the room the camera is in, drawing its tiles using the Background class' autotiling functionality. The separate for loops draw the tiles
-    //in layers, making sure everything is properly positioned in the z-axis.
-    public void paintRoom(Graphics2D g) {
-        int cBorder = 3;
+    //Paint one of the map's background layers.
+    public void paintBackgroundLayer(Graphics g, Background background, int cBorder) {
         //Draw floor.
         for (int y = -cBorder; y < map.h + cBorder; y += 1) {
             for (int x = -cBorder; x < map.w + cBorder; x += 1) {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    map.background.drawRoomFloor(g, x, y, coords.x, coords.y - titleThickness, tileSize);
+                    background.drawRoomFloor(g, x, y, coords.x, coords.y - titleThickness, tileSize);
                 }
             }
         }
@@ -238,7 +237,7 @@ public class Camera extends JPanel {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    map.background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WATER, new Color(55, 55,255));
+                    background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WATER, new Color(55, 55,255));
                 }
             }
         }
@@ -248,9 +247,18 @@ public class Camera extends JPanel {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    map.background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WALL, new Color(0, 0, 0));
+                    background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WALL, new Color(0, 0, 0));
                 }
             }
+        }
+    }
+
+    //Paint the room the camera is in, drawing its tiles using the Background class' autotiling functionality. The separate for loops draw the tiles
+    //in layers, making sure everything is properly positioned in the z-axis.
+    public void paintRoom(Graphics2D g) {
+        int cBorder = 3;
+        for (Background background : map.layers) {
+            paintBackgroundLayer(g, background, cBorder);
         }
         //Draw movement path tiles.
         for (CharacterModel character : map.characterList) {
@@ -300,7 +308,7 @@ public class Camera extends JPanel {
                             character.drawSelf(g, coords.x, coords.y - titleThickness, tileSize, RED);
                             if (hud != null) {
                                 hud.paintHealthbar(g, Enums.alignmentHorizontal.LEFT, coords.x, coords.y - titleThickness, character, character.charSheet.healthFillColour, character.charSheet.healthBackColour, globals.borderColour);
-                                System.out.println(methods.tuple(character.name, character.charSheet.health()));
+                                //System.out.println(methods.tuple(character.name, character.charSheet.health()));
                             }
                         }
                     }

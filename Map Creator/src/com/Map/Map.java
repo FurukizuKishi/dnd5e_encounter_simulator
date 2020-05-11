@@ -20,7 +20,7 @@ public class Map {
     public int turn = 1;                                                //The current turn in the round.
     public int round = 1;                                               //The current round in the encounter.
     private boolean editing = false;                                    //Whether the map is being edited.
-    public Background background;                                       //The map's tileset background.
+    public ArrayList<Background> layers = new ArrayList<>();            //The map's tileset background.
     public Camera camera;                                               //The map's camera.
     public int w;                                                       //The map's dimensions.
     public int h;
@@ -39,11 +39,15 @@ public class Map {
     }
     public Map(String[] map, Background background) {
         this(map);
-        this.background = background;
+        layers.add(background);
     }
     public Map(String[] map, String background) {
         this(map);
         setBackground(background);
+    }
+    public Map(String[] map, ArrayList<Background> layers) {
+        this(map);
+        this.layers = layers;
     }
     public Map(Enums.tileType[][] map) {
         if (map != null) {
@@ -53,7 +57,11 @@ public class Map {
     }
     public Map(Enums.tileType[][] map, Background background) {
         this(map);
-        this.background = background;
+        layers.add(background);
+    }
+    public Map(Enums.tileType[][] map, ArrayList<Background> layers) {
+        this(map);
+        this.layers = layers;
     }
     public Map(Enums.tileType[][] map, String background) {
         this(map);
@@ -85,9 +93,11 @@ public class Map {
     public void setBackground() {
         setBackground("");
     }
-    public void setBackground(String background) {
+    public void setBackground(String ... backgrounds) {
         this.wallChecker = new WallChecker(this);
-        this.background = new Background(background, this);
+        for (int i = 0; i < backgrounds.length; i += 1) {
+            layers.add(new Background(backgrounds[i], this));
+        }
     }
 
     //Add a player to the map and align the entity lists to match.

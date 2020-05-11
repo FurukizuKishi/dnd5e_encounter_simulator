@@ -23,7 +23,7 @@ public class EditorFrame extends JFrame {
     int tileSize = 32;
     public EditorFrame(GUI frame, Map map) {
         setSize(frame.getSize());
-        this.map = new Map(map.map, map.background);
+        this.map = new Map(map.map, map.layers);
         this.map.setEditing(true);
         this.addMouseListener(new MouseInput());
         this.addMouseMotionListener(new MouseInput());

@@ -14,29 +14,47 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class methods {
     //Print multiples of variables inside brackets.
-    public static String tuple(Object ... str) {
-        String tuple = "(" + str[0];
+    public static String encapsulatedTuple(char beginChar, char endChar, Object ... str) {
+        String tuple = Character.toString(beginChar) + str[0];
         if (str[0] instanceof String) {
-            tuple = "(\"" + str[0] + "\"";
+            tuple = beginChar + "\"" + str[0] + "\"";
         }
         for (int i = 1; i < str.length; i += 1) {
             if (str[i] instanceof String) {
                 tuple += ", \"" + str[i] + "\"";
-            } else {
+            }
+            else if (str[i] instanceof Collection) {
+                tuple += ", " + encapsulatedTuple('<', '>', (Collection) str[i]);
+            }
+            else if (str[i].getClass().isArray()) {
+                tuple += ", " + encapsulatedTuple('[', ']', (Object[]) str[i]);
+            }
+            else {
                 tuple += ", " + str[i];
             }
         }
-        tuple += ")";
+        tuple += Character.toString(endChar);
         return tuple;
+    }
+
+    public static String tuple(Object ... str) {
+        return encapsulatedTuple('(', ')', str);
     }
 
     //Check if the message is an action flag.
     public static boolean messageIsFlag(String message) {
         if (message.contains(":")) {
-            return true;
+            if (message.startsWith("ROLL") || message.startsWith("MOVE") || message.startsWith("CHAR")) {
+                return true;
+            }
+            String[] flags = { "ROLL", "MOVE", "CHAR" };
+            if (arrayToList(flags).contains(message.split(":")[1])) {
+                return true;
+            }
         }
         return false;
     }
@@ -283,6 +301,14 @@ public class methods {
         return resizedImg;
     }
 
+    //Cast a primitive array to a list.
+    public static <T> ArrayList<T> arrayToList(T[] array) {
+        ArrayList<T> list = new ArrayList<>();
+        for (T element : array) {
+            list.add(element);
+        }
+        return list;
+    }
     //Combine a list into a string with a delimiter.
     public static String concencateList(Object[] list, String limit) {
         if (list.length > 0) {

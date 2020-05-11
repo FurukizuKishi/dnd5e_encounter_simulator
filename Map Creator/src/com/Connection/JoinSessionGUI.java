@@ -1,6 +1,7 @@
 package com.Connection;
 
 import com.Connection.Hosts.ClientHost;
+import com.methods;
 import com.swingMethods;
 
 import javax.swing.*;
@@ -52,6 +53,7 @@ public class JoinSessionGUI extends ConnectionGUI {
 
     public void closeConnectionLog(int w, int h) {
         super.closeConnectionLog(panel, w, h);
+        System.out.println(methods.tuple(91, this));
         if (!(panel == null || connectionScrollbar == null)) {
             panel.remove(connectionScrollbar);
         }
