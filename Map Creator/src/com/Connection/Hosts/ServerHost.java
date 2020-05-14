@@ -1,24 +1,22 @@
 package com.Connection.Hosts;
 
-import com.Connection.ActionCommand;
-import com.Connection.ActionSignalProtocol;
-import com.Connection.CreateSessionGUI;
-import com.Connection.JoinSessionGUI;
-import com.methods;
+import com.Connection.Action.ActionCommand;
+import com.Connection.Action.ActionSignalProtocol;
+import com.Connection.GUI.CreateSessionGUI;
+import com.Connection.GUI.JoinSessionGUI;
+import com.Game.methods;
 
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class ServerHost extends Host {
+public class ServerHost extends Host<ActionCommand> {
     private ServerSocket serverSocket;
     private ArrayList<ServerThreadHost> clients = new ArrayList<>();
+    private ArrayList<ActionCommand> completedCommands = new ArrayList<>();
     private ActionSignalProtocol protocol;
-    public Queue<ActionCommand> queue = new LinkedList<>();
     public ServerThreadHost master;
     public boolean masterCreated = false;
     public int cx, cy;
@@ -61,13 +59,21 @@ public class ServerHost extends Host {
 
     public void startClients() {
         for (int i = 0; i < clients.size(); i += 1) {
-            clients.get(i).startThread();
+            startClient(clients.get(i));
+        }
+    }
+    public void startClient(ServerThreadHost client) {
+        client.startThread();
+        for (ActionCommand command : completedCommands) {
+            ActionCommand copiedCommand = new ActionCommand(command.host, command.command, client.name);
+            copiedCommand.setReplaceable(false);
+            addCommand(copiedCommand);
         }
     }
     public void endClients() {
         int n = clients.size();
         for (int i = 0; i < n; i += 1) {
-            endClient(clients.get(0));
+            clients.get(0).closeThread();
         }
     }
     public void endClient(ServerThreadHost client) {
@@ -94,6 +100,8 @@ public class ServerHost extends Host {
                 cy = ((CreateSessionGUI) frame).clientFrame.getY();
                 ((CreateSessionGUI) frame).clientFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
+            frame.closeConnectionLog(frame.w, frame.h);
+            frame.changeConnectionButtons(false);
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -117,8 +125,9 @@ public class ServerHost extends Host {
     }
 
     public void addCommand(ServerThreadHost host, String command) {
-        queue.add(new ActionCommand(host, command));
+        addCommand(new ActionCommand(host, command));
     }
+
     public void sendToThread(ActionCommand command) {
         for (String name : command.recipients) {
             if (name.contains("ALL")) {
@@ -129,9 +138,8 @@ public class ServerHost extends Host {
                 }
                 else {
                     String[] exclusions = name.substring("ALL(".length(), name.length() - 1).split(",");
-                    System.out.println(methods.tuple("EXCLUSIONS", exclusions));
+                    //System.out.println(methods.tuple("EXCLUSIONS", exclusions));
                     for (ServerThreadHost currentHost : clients) {
-                        System.out.println(!methods.arrayToList(exclusions).contains(currentHost.name));
                         if (!methods.arrayToList(exclusions).contains(currentHost.name)) {
                             sendToHost(currentHost, "Processed command \"" + command.result + "\".");
                         }
@@ -147,20 +155,41 @@ public class ServerHost extends Host {
             else {
                 sendToHost(getClient(name), command);
             }
+            if (command.isReplaceable()) {
+                completedCommands.add(command);
+            }
         }
     }
 
     public void sendToHost(ServerThreadHost host, ActionCommand command) {
         if (host != null) {
-            System.out.println(methods.tuple("SEND", command.result, host, host.name));
-            host.setMessage(command.result);
+            //System.out.println(methods.tuple("SEND", command.result, host, host.name));
+            host.sendMessage(command.result);
         }
     }
     public void sendToHost(ServerThreadHost host, String message) {
         if (host != null) {
-            System.out.println(methods.tuple("SEND", message, host, host.name));
-            host.setMessage(message);
+            //System.out.println(methods.tuple("SEND", message, host, host.name));
+            host.sendMessage(message);
         }
+    }
+
+    public void setInput(BufferedReader in) {
+        this.in = in;
+    }
+
+    public String receiveMessage() {
+        try {
+            String input;
+            if ((input = in.readLine()) != null) {
+                addLog(input);
+                return input;
+            }
+        }
+        catch (Exception e) {
+            endThread(e, "receiveMessage()");
+        }
+        return null;
     }
 
     @Override
@@ -170,6 +199,8 @@ public class ServerHost extends Host {
             ((CreateSessionGUI) frame).clientFrame.setLocation(cx, cy);
             ((CreateSessionGUI) frame).clientFrame.hostField.setText("localhost");
             ((CreateSessionGUI) frame).clientFrame.portNumber.setText(Integer.toString(serverSocket.getLocalPort()));
+            ((CreateSessionGUI) frame).clientFrame.hostField.setEditable(false);
+            ((CreateSessionGUI) frame).clientFrame.portNumber.setEditable(false);
             ((CreateSessionGUI) frame).clientFrame.connectButton.setEnabled(false);
             ((CreateSessionGUI) frame).clientFrame.connect(true);
             masterCreated = true;

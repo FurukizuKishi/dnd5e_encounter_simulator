@@ -1,35 +1,32 @@
 package com.Connection.Hosts;
 
-import com.Connection.ConnectionGUI;
-import com.Connection.HostRunnable;
-import com.Connection.HostThread;
-import com.methods;
+import com.Connection.GUI.ConnectionGUI;
+import com.Connection.Threads.HostRunnable;
+import com.Game.methods;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Host extends HostRunnable {
+public abstract class Host<T> extends HostRunnable {
     public ConnectionGUI frame;
     public String hostName;
     public int portNumber;
     public ArrayList<String> connectionLog = new ArrayList<>();
+    public Queue<T> queue = new LinkedList<>();
     public JList logList;
     protected PrintWriter out;
-    protected BufferedReader in;
-    protected BufferedReader stdIn;
+    protected BufferedReader in = null;
 
     public void addLog(String message) {
         addLog(null, message);
     }
     public void addLog(PrintWriter out, String message) {
         if (out != null) {
-            out.flush();
-            out.println(message);
             connectionLog.add("Me: " + message);
         }
         else {
@@ -39,6 +36,23 @@ public class Host extends HostRunnable {
             logList.setListData(connectionLog.toArray());
         }
         frame.repaint();
+        if (out != null) {
+            out.flush();
+            out.println(message);
+        }
+    }
+
+    public boolean isReceiving() {
+        return (getInput() != null);
+    }
+    public BufferedReader getInput() {
+        return in;
+    }
+    public abstract void setInput(BufferedReader input);
+
+    public void closeThread() {
+        addLog(out, "Connection closed.");
+        endThread("closeThread()");
     }
 
     public void endThread(String reason) {
@@ -48,65 +62,34 @@ public class Host extends HostRunnable {
         super.endThread(e, reason);
         if (e != null) {
             String message = e.getMessage() + ".";
-            System.out.println(methods.tuple("ERR", this, message, reason));
-            addLog(out, "[ERR]: " + message);
+            //System.out.println(methods.tuple("ERR", this.toString(), message, reason));
+            addLog(out, "Connection closed with an error: " + message);
         }
         else {
             String message = "Connection closed gracefully.";
-            System.out.println(methods.tuple("DBG", this, message, reason));
+            //System.out.println(methods.tuple("DBG", this.toString(), message, reason));
             addLog(out, message);
         }
-        try {
-            if (out != null) {
-                out.close();
-                out = null;
-            }
-            if (in != null) {
-                in.close();
-                in = null;
-            }
+        if (out != null) {
+            out.close();
+            out = null;
         }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    }
+
+    public void addCommand(T command) {
+        queue.add(command);
     }
 
     public void sendMessage(String message) {
         try {
-            String input;
             addLog(out, message);
-            /*if ((input = in.readLine()) != null) {
-                addLog(input);
-                if (input.contains("ERR")) {
-                    addLog(out, "Error Received.");
-                }
-            }*/
         }
         catch (Exception e) {
             endThread(e, "sendMessage(\"" + message + "\")");
         }
     }
-    public int sendMessage(int i) {
-        sendMessage(Integer.toString(i));
-        return i + 1;
-    }
 
     public String receiveMessage() {
-        try {
-            String input, message;
-            if ((input = in.readLine()) != null) {
-                addLog(input);
-                message = input;
-                if (input.contains("ERR")) {
-                    message = "Error Received.";
-                    addLog(out, message);
-                }
-                return message;
-            }
-        }
-        catch (Exception e) {
-            endThread(e, "receiveMessage()");
-        }
         return null;
     }
 
@@ -114,7 +97,7 @@ public class Host extends HostRunnable {
     public void run() {
         while (canRun()) {
             if (connectionLog != null) {
-                while (in != null) {
+                while (isReceiving()) {
                     receiveMessage();
                 }
                 endThread("run()");

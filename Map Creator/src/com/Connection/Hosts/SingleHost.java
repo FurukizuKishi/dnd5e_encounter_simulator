@@ -1,18 +1,29 @@
 package com.Connection.Hosts;
 
-import com.methods;
+import com.Connection.Threads.ReceiveThread;
+import com.Game.methods;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public abstract class SingleHost extends Host {
+public abstract class SingleHost extends Host<String> {
     protected Socket socket;
+    protected ReceiveThread in;
     protected BufferedReader stdIn;
     protected String message = null;
+    public String name = null;
+    protected boolean messageProcessed = false;
     protected int disconnectTime = 50;
     protected int disconnectTimer = disconnectTime;
+
+    public String toString() {
+        if (name != null) {
+            return getClass().getSimpleName() + ":" + name;
+        }
+        return getClass().getSimpleName() + "@" + super.toString().replace(getClass().getCanonicalName() + "@", "");
+    }
 
     public boolean connect(String hostName, int portNumber) {
         this.hostName = hostName;
@@ -29,7 +40,7 @@ public abstract class SingleHost extends Host {
         try {
             this.socket = socket;
             out = new PrintWriter(socket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            in = new ReceiveThread(this, new BufferedReader(new InputStreamReader(socket.getInputStream())));
             stdIn = new BufferedReader(new InputStreamReader(System.in));
             return true;
         }
@@ -39,9 +50,17 @@ public abstract class SingleHost extends Host {
         }
     }
 
+    public void setInput(BufferedReader in) {
+        this.in.setInput(in);
+    }
+    public boolean isReceiving() {
+        return (in.isRunning());
+    }
+
     public void setMessage(String message) {
         this.message = message;
-        System.out.println(methods.tuple(this.message, this, connectionLog.size()));
+        messageProcessed = false;
+        System.out.println(methods.tuple("MSG_SET"));
     }
     public void setMessage() {
         setMessage(null);
@@ -64,13 +83,12 @@ public abstract class SingleHost extends Host {
         super.sendMessage(message);
         lockToBottom();
     }
-    public int sendMessage(int i) {
-        sendMessage(Integer.toString(i));
-        return i + 1;
-    }
-    public String receiveMessage() {
-        String message = super.receiveMessage();
-        lockToBottom();
+    public String receiveMessage(String message) {
+        if (message != null) {
+            addLog(message);
+            setMessage(message);
+            lockToBottom();
+        }
         return message;
     }
     public boolean sendAndReceive() {
@@ -80,7 +98,8 @@ public abstract class SingleHost extends Host {
     public boolean disconnect(String message) {
         if (message != null) {
             disconnectTimer = disconnectTime;
-            if (message.contains("Connection closed")) {
+            if (message.toLowerCase().contains("connection closed")) {
+                //System.out.println(methods.tuple("CLS", this));
                 closeThread();
                 return true;
             }
@@ -90,6 +109,7 @@ public abstract class SingleHost extends Host {
 
     public boolean timedown() {
         if (disconnectTimer < 1) {
+            //System.out.println(methods.tuple("TMD", this));
             closeThread();
             return false;
         }
@@ -99,21 +119,23 @@ public abstract class SingleHost extends Host {
     public void run() {
         while (canRun()) {
             if (connectionLog != null) {
-                while (in != null) {
+                while (isReceiving()) {
+                    if (connectionLog.size() > 0) {
+                        //System.out.println(methods.tuple(60, message, this, connectionLog.get(connectionLog.size() - 1)));
+                    }
                     sendAndReceive();
+                    //System.out.println(methods.tuple(isReceiving(), in.canRun(), messageProcessed, this));
                 }
+                //System.out.println(methods.tuple(101, this));
                 endThread("run()");
             }
         }
-        System.out.println(methods.tuple("INTERRUPT_THREAD", this));
+        //System.out.println(methods.tuple("INTERRUPT_THREAD", this));
         getThread().interrupt();
     }
 
-    public void closeThread() {
-        addLog(out, "Connection closed.");
-        endThread("closeThread()");
-    }
     public void endThread(Exception e, String reason) {
+        in.endThread();
         super.endThread(e, reason);
     }
 }

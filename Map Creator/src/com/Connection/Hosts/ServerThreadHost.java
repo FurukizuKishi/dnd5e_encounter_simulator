@@ -1,28 +1,22 @@
 package com.Connection.Hosts;
 
-import com.Connection.CreateSessionGUI;
-import com.Connection.JoinSessionGUI;
-import com.methods;
+import com.Connection.GUI.CreateSessionGUI;
+import com.Game.methods;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 public class ServerThreadHost extends SingleHost {
     private ServerHost server;
     public int pos;
-    public String name = null;
     boolean sentNameRequest = false;
     public boolean nameAssigned = false;
     public ServerThreadHost(CreateSessionGUI frame, ServerHost server, Socket socket) {
         this.frame = frame;
         this.server = server;
         pos = server.getClients().size() + 1;
-        System.out.println(methods.tuple("POS", pos));
+        //System.out.println(methods.tuple("POS", pos));
         if (connect(socket)) {
             logList = frame.addConnection(frame.w, frame.h, this);
             getThread().start();
@@ -45,11 +39,11 @@ public class ServerThreadHost extends SingleHost {
         server.endClient(this);
     }
 
-    public String receiveMessage() {
-        String message = super.receiveMessage();
-        System.out.println(server.queue.size() + " command(s), message \"" + message + "\"");
+    public String receiveMessage(String message) {
+        super.receiveMessage(message);
+        //System.out.println(server.queue.size() + " command(s), message \"" + message + "\"");
         if (message != null) {
-            System.out.println(methods.messageIsFlag(message));
+            //System.out.println(methods.messageIsFlag(message));
             if (methods.messageIsFlag(message)) {
                 server.addCommand(this, message);
             }
@@ -58,20 +52,16 @@ public class ServerThreadHost extends SingleHost {
     }
 
     public boolean sendAndReceive() {
+        //System.out.println(methods.tuple("holding", message, messageProcessed, this));
+        if (disconnect(message)) {
+            return false;
+        }
         if (!sentNameRequest) {
             sendMessage("Who are you? I need your name.");
             sentNameRequest = true;
         }
-        if (holdingMessage()) {
-            System.out.println(60 + " " + this.message);
-            sendMessage(this.message);
-        }
-        String message = receiveMessage();
-        if (message != null) {
-            System.out.println(61 + " " + message);
-            if (disconnect(message)) {
-                return false;
-            }
+        if (holdingMessage() && !messageProcessed) {
+            //System.out.println(methods.tuple("MSG", message, this));
             if (message.contains("Hello, I am ") && !nameAssigned) {
                 String name = message.substring("Hello, I am ".length(), message.length() - 1);
                 ((CreateSessionGUI) frame).renameConnectionLog(this, name);
@@ -91,11 +81,7 @@ public class ServerThreadHost extends SingleHost {
                     endThread(e, "sendAndReceive()");
                 }
             }
-        } else {
-            System.out.println(62);
-            if (!timedown()) {
-                return false;
-            }
+            messageProcessed = true;
         }
         return true;
     }

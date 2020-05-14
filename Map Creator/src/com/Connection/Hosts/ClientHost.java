@@ -1,24 +1,23 @@
 package com.Connection.Hosts;
 
-import com.Connection.ActionUnpackProtocol;
-import com.Connection.JoinSessionGUI;
-import com.Entities.Characters.CharacterModel;
-import com.GUI.GUI;
-import com.main;
-import com.methods;
-import com.swingMethods;
+import com.Connection.Action.ActionUnpackProtocol;
+import com.Connection.GUI.JoinSessionGUI;
+import com.Game.Entities.Characters.CharacterModel;
+import com.Game.GUI.GUI;
+import com.Game.main;
+import com.Game.methods;
+import com.Game.swingMethods;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 public class ClientHost extends SingleHost {
     private ActionUnpackProtocol protocol;
-    boolean sentName = false;
-    boolean receivedNameConfirmation = false;
-    public String name;
+    private boolean sentName = false;
+    private boolean sentMaster = false;
+    private boolean receivedNameConfirmation = false;
     GUI game;
-    boolean master;
+    private boolean master;
     public boolean sentFlag = false;
     public ClientHost(JoinSessionGUI frame, boolean master) {
         this.frame = frame;
@@ -106,76 +105,48 @@ public class ClientHost extends SingleHost {
         super.sendMessage(message);
     }
     public boolean sendAndReceive() {
-        if (message != null) {
-            System.out.println(methods.tuple("holding", message));
+        //System.out.println(methods.tuple("holding", message, messageProcessed, this));
+        if (disconnect(message)) {
+            return false;
         }
         if (receivedNameConfirmation) {
             if (holdingFlag() && !sentFlag) {
                 sendMessage(this.message);
                 sentFlag = true;
-                /*try {
-                    TimeUnit.MILLISECONDS.sleep(100);
-                }
-                catch (InterruptedException e) {
-                    addLog("[ERR]: " + e);
-                    return false;
-                }*/
             }
         }
-        if (!receivedNameConfirmation || holdingFlag()) {
-            System.out.println(70);
-            String message = receiveMessage();
-            System.out.println(methods.tuple("received", message));
-            if (message == null) {
-                if (!holdingMessage()) {
-                    if (!timedown()) {
-                        return false;
-                    }
-                }
-            } else {
-                try {
-                    String message2 = message.substring("Processed command \"".length(), message.length() - 2);
-                    System.out.println(methods.tuple("PROCESSED_COMMAND", message2));
-                    if (methods.messageIsFlag(message2)) {
-                        if (protocol == null) {
+        if (holdingMessage() && !messageProcessed) {
+            String message = this.message;
+            System.out.println(message);
+            if (!receivedNameConfirmation || holdingFlag() || message.startsWith("Processed command")) {
+                System.out.println(methods.tuple("MSG", message, this));
+                if (!messageProcessed) {
+                    try {
+                        String substring = message.substring("Processed command \"".length(), message.length() - 2);
+                        if (methods.messageIsFlag(substring)) {
                             createProtocol();
+                            addCommand(substring);
+                            addLog("Unpacked command \"" + substring + "\".");
+                            System.out.println(methods.tuple("MSG_FLAG", substring, protocol));
+                            setMessage();
                         }
-                        protocol.setCommand(message2);
-                        addLog("Unpacked command \"" + message2 + "\".");
-                        setMessage();
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println(methods.tuple("MSG_FLAG", null));
                     }
-                }
-                catch (IndexOutOfBoundsException e) {
-
-                }
-                System.out.println(methods.tuple("SKIP_COMMAND"));
-                if (!sentName) {
-                    if (message.equals("Who are you? I need your name.")) {
+                    if (message.equals("Who are you? I need your name.") && !sentName) {
                         sendMessage("Hello, I am " + name + ".");
-                        if (master) {
-                            sendMessage("I am the dungeon master's client.");
-                        }
                         sentName = true;
+                    } else if (message.equals("Very well. " + name + ", welcome to the game.") && (master && !sentMaster)) {
+                        sendMessage("I am the dungeon master's client.");
+                        sentMaster = true;
+                    } else if (!receivedNameConfirmation) {
+                        if ((!master && sentName) || (master && sentMaster)) {
+                            receivedNameConfirmation = true;
+                        }
                     }
-                } else if (!receivedNameConfirmation) {
-                    if ((!master && message.equals("Very well. " + name + ", welcome to the game.")) || (master && message.equals("Very well. " + name + ", I have assigned you to the dungeon master."))) {
-                        receivedNameConfirmation = true;
-                    }
                 }
-                if (disconnect(message)) {
-                    return false;
-                }
-            /*if (!holdingFlag() && receivedNameConfirmation) {
-                try {
-                    TimeUnit.SECONDS.sleep(3);
-                    sendMessage(createFlag());
-                }
-                catch (InterruptedException e) {
-                    addLog("[ERR]: " + e);
-                    return false;
-                }
-            }*/
             }
+            messageProcessed = true;
         }
         return true;
     }
@@ -205,23 +176,4 @@ public class ClientHost extends SingleHost {
         }
         return null;
     }
-
-    /*public void run() {
-        while (canRun()) {
-            if (connectionLog != null) {
-                int i = 0;
-                while (in != null) {
-                    try {
-                        TimeUnit.SECONDS.sleep(3);
-                        i = sendMessage(i);
-                    }
-                    catch (InterruptedException e) {
-                        sendMessage("[ERR]: " + e.getMessage());
-                    }
-                }
-                endThread();
-            }
-        }
-        getThread().interrupt();
-    }*/
 }
