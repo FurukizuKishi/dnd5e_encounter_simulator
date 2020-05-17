@@ -227,7 +227,8 @@ public class Camera extends JPanel {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    background.drawRoomFloor(g, x, y, coords.x, coords.y - titleThickness, tileSize);
+                    Rectangle tile = new Rectangle(x, y, tileSize, tileSize);
+                    background.drawRoomFloor(g, tile.x, tile.y, coords.x, coords.y - titleThickness, tile.width, tile.height);
                 }
             }
         }
@@ -237,7 +238,8 @@ public class Camera extends JPanel {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WATER, new Color(55, 55,255));
+                    Rectangle tile = new Rectangle(x, y, tileSize, tileSize);
+                    background.drawRoomTiles(g, tile.x, tile.y, coords.x, coords.y - titleThickness, tile.width, tile.height, Enums.tileType.WATER, new Color(55, 55,255));
                 }
             }
         }
@@ -247,7 +249,8 @@ public class Camera extends JPanel {
                 calculateCoordinates(x, y);
                 Point coords = getRelativeCoordinates(x * tileSize, y * tileSize);
                 if (coords != null) {
-                    background.drawRoomTiles(g, x, y, coords.x, coords.y - titleThickness, tileSize, Enums.tileType.WALL, new Color(0, 0, 0));
+                    Rectangle tile = new Rectangle(x, y, tileSize, tileSize);
+                    background.drawRoomTiles(g, tile.x, tile.y, coords.x, coords.y - titleThickness, tile.width, tile.height, Enums.tileType.WALL, new Color(0, 0, 0));
                 }
             }
         }

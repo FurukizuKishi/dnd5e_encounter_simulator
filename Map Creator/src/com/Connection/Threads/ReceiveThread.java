@@ -19,7 +19,7 @@ public class ReceiveThread extends HostRunnable {
         if (host.name != null) {
             return getClass().getSimpleName() + ":" + host.name;
         }
-        return super.toString();
+        return getClass().getSimpleName() + "@" + super.toString().replace(getClass().getCanonicalName() + "@", "");
     }
 
     public boolean isRunning() {

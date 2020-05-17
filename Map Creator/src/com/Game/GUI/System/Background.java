@@ -66,11 +66,11 @@ public class Background {
         this.backgroundPath += name;
         //System.out.println("[DBG]: " + name + " background - " + this.backgroundPath + ".png");
         try {
-            setTilesheet(ImageIO.read(new File(backgroundPath + ".png")), tileSize);
+            setTilesheet(methods.getImage(backgroundPath), tileSize);
             initializeTileMap();
         }
         catch (Exception e) {
-            //System.out.println("[ERR]: " + e);
+            System.out.println("[ERR]: " + e + " " +  backgroundPath);
             setTilesheet(methods.getImage(backgroundPath), tileSize);
             //System.out.println(tileSheet);
             exit();
@@ -149,7 +149,7 @@ public class Background {
     }
 
     //Draw the default square boxes for the walls if no tiles are available.
-    public void drawWall(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize) {
+    public void drawWall(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileW, int screenTileH) {
         String text = "";
         if (map.isWall(tileX, tileY)) {
             g.setColor(new Color(55, 55, 55, 105));
@@ -167,24 +167,28 @@ public class Background {
             g.setColor(BLACK);
         }
         if (g.getColor() != BLACK) {
-            g.fillRect(screenX - 1, screenY, screenTileSize + 2, screenTileSize);
+            int[] td = getTileDimensions(0, 0, tileSize, tileSize, screenX, screenY, screenTileW, screenTileH);
+            g.fillRect(td[4], td[5], td[6] - td[4], td[7] - td[5]);
             if (map.canEdit()) {
-                methods.drawString(g, text, screenX - 1 + (screenTileSize / 2), screenY + (screenTileSize / 2), Fonts.font.TEXT, WHITE, 4);
+                methods.drawString(g, text, screenX - 1 + (screenTileW / 2), screenY + (screenTileH / 2), Fonts.font.TEXT, WHITE, 4);
             }
         }
     }
 
     //Draw the repeating pattern for the room's floor.
-    public void drawRoomFloor(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize) {
-        g.drawImage(tileSheet, screenX - 1, screenY, screenX + screenTileSize + 1, screenY + screenTileSize, 0, 0, tileSize, tileSize, null);
+    public void drawRoomFloor(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileW, int screenTileH) {
+        System.out.println(methods.tuple("floor"));
+        int[] td = getTileDimensions(0, 0, tileSize, tileSize, screenX, screenY, screenTileW, screenTileH);
+        g.drawImage(tileSheet, td[4], td[5], td[6], td[7], 0, 0, tileSize, tileSize, null);
+        //g.drawImage(tileSheet, screenX - 1, screenY, screenX + screenTileW + 1, screenY + screenTileH, 0, 0, tileSize, tileSize, null);
     }
 
     //Draw a tile at a specified location.
-    public void drawTile(Graphics g, int x, int y, int sx, int sy, int ts, Enums.tileType tile, Color colour) {
+    public void drawTile(Graphics g, int x, int y, int sx, int sy, int tw, int th, Enums.tileType tile, Color colour) {
         try {
             if (map.map[y][x] == tile) {
                 g.setColor(colour);
-                drawWall(g, x, y, sx, sy, ts);
+                drawWall(g, x, y, sx, sy, tw, th);
                 g.setColor(BLACK);
             }
         }
@@ -193,51 +197,61 @@ public class Background {
         }
     }
 
-    public void drawTile(Graphics g, int x, int y, int ix, int iy, Color colour) {
-        drawTile(g, x, y, ix, iy, 1, colour);
+    public void drawTile(Graphics g, int x, int y, int ix, int iy, int tw, int th, Color colour) {
+        drawTile(g, x, y, ix, iy, tw, th, 1, colour);
     }
-    public int drawTile(Graphics g, int x, int y, int ix, int iy, double scale, Color colour) {
+    public int drawTile(Graphics g, int x, int y, int ix, int iy, int tw, int th, double scale, Color colour) {
         int border = ((int) (tileSize * scale) - tileSize) / 2;
         try {
-            g.drawImage(tileSheet, x - 1 - border, y - border, x + tileSize + border + 1, y + tileSize + border, ix, iy, ix + tileSize, iy + tileSize, null);
+            g.drawImage(tileSheet, x - 1 - border, y - border, x + tw + border + 1, y + th + border, ix, iy, ix + tw, iy + th, null);
         }
         catch (ArrayIndexOutOfBoundsException e) {
             g.setColor(colour);
-            g.fillRect(x, y, tileSize, tileSize);
+            g.fillRect(x, y, tw, th);
             g.setColor(BLACK);
         }
         return border;
     }
 
+    public int[] getTileDimensions(int tileX, int tileY, int tileW, int tileH, int screenX, int screenY, int screenTileW, int screenTileH) {
+        int sx1 = tileX, sy1 = tileY, sx2 = tileX + tileW, sy2 = tileY + tileH;
+        int dx1 = screenX - 1, dy1 = screenY, dx2 = screenX + screenTileW + 1, dy2 = screenY + screenTileH;
+        System.out.println("1 " + methods.tuple("tile", sx1, sy1, sx2, sy2, "screen", dx1, dy1, dx2, dy2));
+        if (screenX < 0) {
+            sx1 = sx1 + (screenX / screenTileW) * tileW;
+            dx1 = 0;
+            dx2 = dx2 - (screenX + screenTileW);
+            System.out.println("  2 " + methods.tuple("X", screenX, "source", sx1, sx2, "dest", dx1, dx2));
+        }
+        if (screenY < 0) {
+            sy1 = sy1 + (screenY / screenTileH) * tileH;
+            dy1 = 0;
+            dy2 = dy2 - (screenY + screenTileH);
+            System.out.println("  2 " + methods.tuple("Y", screenY, "source", sy1, sy2, "dest", dy1, dy2));
+        }
+        return new int[] {sx1, sy1, sx2, sy2, dx1, dy1, dx2, dy2};
+    }
+
     //Draw the room's wall tiles using the map's wallChecker's autotiling functionality.
-    public void drawRoomTiles(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileSize, Enums.tileType tile, Color colour) {
+    public void drawRoomTiles(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileW, int screenTileH, Enums.tileType tile, Color colour) {
         if (tileSheet != null) {
-            //Top, Bottom, Left, Right, Top-Left, Top-Right, Bottom-Left, Bottom-Right
-            int[] tilePos;
-            if (autotiled) {
-                tilePos = tileMap.get(map.wallChecker.getAdjacentTiles(map.map, tileX, tileY));
-            }
-            else {
-                tilePos = tileGrid[tileY][tileX];
-            }
-            if (tilePos != null) {
-                int sheetX = tilePos[0] * tileSize;
-                int sheetY = tilePos[1] * tileSize;
-                //com.Game.System.out.println(methods.tuple(sheetX, sheetY));
-                int sx1 = sheetX, sy1 = sheetY, sx2 = sheetX + tileSize, sy2 = sheetY + tileSize;
-                int dx1 = screenX - 1, dy1 = screenY, dx2 = screenX + screenTileSize + 1, dy2 = screenY + screenTileSize;
-                if (screenX < 0) {
-                    sx1 = sx1 - screenX;
-                    dx2 = dx2 + screenX;
+            if (map.isWall(tileX, tileY)) {
+                //Top, Bottom, Left, Right, Top-Left, Top-Right, Bottom-Left, Bottom-Right
+                int[] tilePos;
+                String code = null;
+                if (autotiled) {
+                    code = map.wallChecker.getAdjacentTiles(map.map, tileX, tileY);
+                    tilePos = tileMap.get(code);
+                } else {
+                    tilePos = tileGrid[tileY][tileX];
                 }
-                if (screenY < 0) {
-                    sy1 = sy1 - screenY;
-                    dy2 = dy2 + screenY;
+                System.out.println(methods.tuple("wall", autotiled, tileX, tileY, tilePos, code));
+                if (tilePos != null) {
+                    int[] td = getTileDimensions(tilePos[0] * tileSize, tilePos[1] * tileSize, tileSize, tileSize, screenX, screenY, screenTileW, screenTileH);
+                    g.drawImage(tileSheet, td[4], td[5], td[6], td[7], td[0], td[1], td[2], td[3], null);
+                } else {
+                    drawTile(g, tileX, tileY, screenX, screenY, screenTileW, screenTileH, tile, colour);
                 }
-                g.drawImage(tileSheet, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
-            }
-            else {
-                drawTile(g, tileX, tileY, screenX, screenY, screenTileSize, tile, colour);
             }
         }
         else if (background != null) {

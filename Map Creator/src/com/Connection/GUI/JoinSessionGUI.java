@@ -1,7 +1,6 @@
 package com.Connection.GUI;
 
 import com.Connection.Hosts.ClientHost;
-import com.Game.methods;
 import com.Game.swingMethods;
 
 import javax.swing.*;

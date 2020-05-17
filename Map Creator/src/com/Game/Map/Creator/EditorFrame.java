@@ -2,13 +2,14 @@ package com.Game.Map.Creator;
 
 import com.Game.GUI.Camera;
 import com.Game.GUI.GUI;
+import com.Game.GUI.SubFrame;
 import com.Game.Map.Map;
 import com.Game.System.InputMethods.MouseInput;
 import com.Game.swingMethods;
 
 import javax.swing.*;
 
-public class EditorFrame extends JFrame {
+public class EditorFrame extends SubFrame {
     JToolBar toolbar = new JToolBar();
     TilesetPanel tilePanel;
     JList layerList;
@@ -19,6 +20,7 @@ public class EditorFrame extends JFrame {
     int bh = 32;
     int tileSize = 32;
     public EditorFrame(GUI frame, Map map) {
+        super(frame);
         setSize(frame.getSize());
         this.map = new Map(map.map, map.layers);
         this.map.setEditing(true);

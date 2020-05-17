@@ -7,212 +7,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f9eb421-2611-4309-a006-9c0cd2b9d723" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Connection/Action/ActionProtocol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Connection/Threads/HostQueueTaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Game/GUI/SubFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Map_Creator_jar/Map Creator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Map_Creator_jar/Map Creator.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ActionCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ActionSignalProtocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ActionUnpackProtocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ConnectionGUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ConnectionGUI$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/ConnectionGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/CreateSessionGUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/CreateSessionGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/HostRunnable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/HostThread.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ClientHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ClientHost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/Host.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/Host.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ServerHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ServerHost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ServerThreadHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/ServerThreadHost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/SingleHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/Hosts/SingleHost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/JoinSessionGUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/JoinSessionGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/SessionGUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/SessionGUI$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/SessionGUI$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Connection/SessionGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Abilities/Ability.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Abilities/AbilityScoreImprovement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Abilities/ClassAbility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Attacks/Attack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/CharacterModel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/CharacterModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Classes/CharacterClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Classes/MonkClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Conditions/Condition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/PlayerModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Actor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Casters/Caster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Casters/FullCaster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Casters/HalfCaster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Casters/ThirdCaster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Casters/WarlockCaster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Pathfinder$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Characters/Subsystems/Pathfinder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Entities/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/Camera$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/Camera.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/GUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/HUD$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/HUD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/Animation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/Background.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/Fonts$font.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/Fonts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/RoomLinker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/GUI/System/Transitions/Transition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Creator/EditorFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Creator/SaveMap$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Creator/SaveMap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Creator/SelectedTile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Creator/TilesetPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Map$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/Map.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/Map/WallChecker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/DamageTypes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Die.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$action.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$actionType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$alignmentHorizontal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$alignmentVertical.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$animationEnd.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$attackType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$damageType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$fileAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$key.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$mapLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$pathTile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$spellShape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$spellType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums$tileType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Enums.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/FileFilters/ExtensionFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/FileFilters/ImageFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/FileFilters/MapFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/HasFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/InputMethods/KeyInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/InputMethods/MouseGridInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/InputMethods/MouseInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Text/DamageText.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Text/ExperienceText.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Text/FloatingText.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/System/Text/TextStore.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/globals.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/methods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/backgrounds/Cave.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/fonts/DUNGRG__.TTF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/fonts/STCHARLE.TTF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/fonts/partybusiness.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/fonts/stchh___.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/fonts/stonehen.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/Die Background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/attack_module.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/character_sheet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/death_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/death_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/death_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/life_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/life_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/life_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/life_death.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/resources/images/life_death_coloured.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/swingMethods$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Map Creator/com/swingMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Action/ActionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ActionSignalProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Action/ActionSignalProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Action/ActionUnpackProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/ConnectionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/ConnectionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/HostRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Threads/HostRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/HostThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Threads/HostThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/JoinSessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Connection/SessionGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/GUI/SessionGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Abilities/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Abilities/AbilityScoreImprovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/AbilityScoreImprovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Abilities/ClassAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/ClassAbility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Attacks/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Attacks/Attack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/CharacterModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/CharacterModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Classes/CharacterClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Classes/CharacterClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Classes/MonkClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Classes/MonkClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Conditions/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Conditions/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/PlayerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/PlayerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/Caster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Casters/Caster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/FullCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Casters/FullCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/HalfCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Casters/HalfCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/ThirdCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Casters/ThirdCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Casters/WarlockCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Casters/WarlockCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/AttackComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/SheetComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Characters/Subsystems/Pathfinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Pathfinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/HUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/HUD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/Animation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/Animation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/Fonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/Fonts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/RoomLinker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/RoomLinker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/GUI/System/Transitions/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/Transitions/Transition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/Creator/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/SaveMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/Creator/SelectedTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/TilesetPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Map/WallChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/WallChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/DamageTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/DamageTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Die.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Die.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Enums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Enums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/FileFilters/ExtensionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/FileFilters/ExtensionFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/FileFilters/ImageFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/FileFilters/ImageFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/FileFilters/MapFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/FileFilters/MapFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/HasFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/HasFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/InputMethods/KeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/InputMethods/KeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/InputMethods/MouseGridInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/InputMethods/MouseGridInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/InputMethods/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/InputMethods/MouseInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Text/DamageText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Text/DamageText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Text/ExperienceText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Text/ExperienceText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Text/FloatingText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Text/FloatingText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/System/Text/TextStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/System/Text/TextStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/globals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/methods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/backgrounds/Cave.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/backgrounds/Cave.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/fonts/DUNGRG__.TTF" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/fonts/DUNGRG__.TTF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/fonts/STCHARLE.TTF" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/fonts/STCHARLE.TTF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/fonts/partybusiness.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/fonts/partybusiness.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/fonts/stchh___.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/fonts/stchh___.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/fonts/stonehen.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/fonts/stonehen.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/Die Background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/Die Background.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/attack_module.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/attack_module.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/character_sheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/character_sheet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/death_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/death_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/death_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/death_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/death_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/death_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/life_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/life_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/life_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/life_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/life_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/life_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/life_death.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/life_death.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/resources/images/life_death_coloured.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/resources/images/life_death_coloured.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/swingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/swingMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/ClassAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/ClassAbility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/GUI/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/GUI/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/GUI/System/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/GUI/System/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Map/Creator/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/SaveMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Map/Creator/TilesetPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/Creator/TilesetPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/Map/WallChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/Map/WallChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Game/methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Game/methods.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -224,10 +36,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="126" column="45" lean-forward="true" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
+            <state relative-caret-position="1649">
+              <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -236,10 +48,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionUnpackProtocol.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+            <state relative-caret-position="102">
+              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -248,10 +60,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -260,10 +81,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/CharacterModel.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+            <state relative-caret-position="34">
+              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="116" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -272,26 +102,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="262" column="40" lean-forward="true" selection-start-line="262" selection-start-column="40" selection-end-line="262" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2231#2232#0" expanded="true" />
-                <element signature="e#2264#2265#0" expanded="true" />
-                <element signature="e#7601#7602#0" expanded="true" />
-                <element signature="e#7652#7653#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
+            <state relative-caret-position="180">
+              <caret line="105" column="41" lean-forward="true" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -300,24 +114,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostQueueTaker.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/System/Background.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-353">
+              <caret line="220" column="56" lean-forward="true" selection-start-line="220" selection-start-column="56" selection-end-line="220" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionSignalProtocol.java">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/Map/WallChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="66" column="93" selection-start-line="66" selection-start-column="93" selection-end-line="66" selection-end-column="93" />
+            <state relative-caret-position="1811">
+              <caret line="155" column="58" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Game/methods.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-41">
+              <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1828#1829#0" expanded="true" />
+                <element signature="e#1889#1890#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -334,23 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>close</find>
-      <find>welcome</find>
-      <find>reciev</find>
-      <find>receive</find>
-      <find>recip</find>
-      <find>re</find>
-      <find>&quot;:&quot;</find>
-      <find>`</find>
-      <find>91</find>
-      <find>404</find>
-      <find>101</find>
-      <find>4</find>
-      <find>&quot;Conne&quot;</find>
-      <find>&quot;Connection closed gracefully.&quot;</find>
-      <find>closeThread()</find>
-      <find>println(</find>
-      <find>message, this</find>
       <find>DBG</find>
       <find>Host@</find>
       <find>RCV</find>
@@ -364,6 +169,23 @@
       <find>println(message</find>
       <find>MSG_FLAG</find>
       <find>createProtocol</find>
+      <find>upper</find>
+      <find>sent</find>
+      <find>command \&quot;</find>
+      <find>close</find>
+      <find>clos</find>
+      <find>dispa</find>
+      <find>window</find>
+      <find>extends JFrame</find>
+      <find>frame.wind</find>
+      <find>new JFrame</find>
+      <find>FLAG_SENT</find>
+      <find>ERR</find>
+      <find>tilePos</find>
+      <find>-</find>
+      <find>000</find>
+      <find>00000000</find>
+      <find>0, 0, 0, 0</find>
     </findStrings>
     <replaceStrings>
       <replace>Condition</replace>
@@ -377,17 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/GUI/System/Background.java" />
-        <option value="$PROJECT_DIR$/src/com/Map/Creator/TilesetPanel.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/SessionGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/ConnectionThread.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/HostThread.java" />
-        <option value="$PROJECT_DIR$/src/com/swingMethods.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/ActionCommand.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/HostRunnable.java" />
-        <option value="$PROJECT_DIR$/src/com/System/Die.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/CreateSessionGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/GUI/GUI.java" />
         <option value="$PROJECT_DIR$/src/com/Map/Creator/EditorFrame.java" />
         <option value="$PROJECT_DIR$/src/com/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/com/Map/WallChecker.java" />
@@ -408,34 +219,45 @@
         <option value="$PROJECT_DIR$/src/com/Connection/ActionSignalProtocol.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ActionUnpackProtocol.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/ActionProtocol.java" />
-        <option value="$PROJECT_DIR$/src/com/Game/methods.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Action/ActionCommand.java" />
-        <option value="$PROJECT_DIR$/src/com/Game/GUI/GUI.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/GUI/ConnectionGUI.java" />
         <option value="$PROJECT_DIR$/src/com/Game/System/InputMethods/MouseGridInput.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerThreadHost.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Threads/HostRunnable.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Hosts/Host.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Action/ActionSignalProtocol.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Threads/HostThread.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Action/ActionProtocol.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Threads/HostQueueTaker.java" />
-        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" />
         <option value="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/HoverComponent.java" />
         <option value="$PROJECT_DIR$/src/com/Connection/Action/ActionUnpackProtocol.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java" />
         <option value="$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Map/Creator/SaveMap.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/AbilityScoreImprovement.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/ClassAbility.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/GUI/SubFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/GUI/GUI.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/GUI/Camera.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Map/Creator/TilesetPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java" />
+        <option value="$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/Map/WallChecker.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/methods.java" />
+        <option value="$PROJECT_DIR$/src/com/Game/GUI/System/Background.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="699" />
-    <option name="height" value="784" />
+    <option name="width" value="697" />
+    <option name="height" value="775" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -443,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -467,37 +288,6 @@
               <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Connection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Connection" type="462c0819:PsiDirectoryNode" />
-              <item name="Action" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Connection" type="462c0819:PsiDirectoryNode" />
-              <item name="Hosts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Connection" type="462c0819:PsiDirectoryNode" />
-              <item name="Threads" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -506,7 +296,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
-              <item name="Entities" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
@@ -514,39 +304,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
-              <item name="Entities" type="462c0819:PsiDirectoryNode" />
-              <item name="Characters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Game" type="462c0819:PsiDirectoryNode" />
-              <item name="Entities" type="462c0819:PsiDirectoryNode" />
-              <item name="Characters" type="462c0819:PsiDirectoryNode" />
-              <item name="Subsystems" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Map Creator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Map Creator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="Game" type="462c0819:PsiDirectoryNode" />
-              <item name="Entities" type="462c0819:PsiDirectoryNode" />
-              <item name="Characters" type="462c0819:PsiDirectoryNode" />
-              <item name="Subsystems" type="462c0819:PsiDirectoryNode" />
-              <item name="CharacterSheet" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="System" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589497595874" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589753829227" />
     <property name="last_opened_file_path" value="D:/Java/Year 2/CE203/Weeks 3 and 4" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -646,7 +416,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24810892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -655,7 +425,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -716,128 +486,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Pathfinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/Actor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="138" column="5" selection-start-line="138" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="160" column="12" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/BufferedReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="377" column="42" lean-forward="true" selection-start-line="377" selection-start-column="42" selection-end-line="377" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/JTabbedPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="2393" column="21" selection-start-line="2393" selection-start-column="21" selection-end-line="2393" selection-end-column="21" />
-          <folding>
-            <element signature="e#27175#27176#0" expanded="true" />
-            <element signature="e#27244#27245#0" expanded="true" />
-            <element signature="e#82514#82515#0" expanded="true" />
-            <element signature="e#82566#82567#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/swing/text/JTextComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="1751" column="16" selection-start-line="1751" selection-start-column="16" selection-end-line="1751" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="707" selection-start-line="707" selection-end-line="707" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/PrintStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="733" column="16" selection-start-line="733" selection-start-column="16" selection-end-line="733" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/System/Die.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding>
-            <element signature="e#663#664#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/net/ServerSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="433" column="15" selection-start-line="433" selection-start-column="15" selection-end-line="433" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
-            <element signature="e#5342#5343#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2108">
-          <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
-          <folding>
-            <element signature="e#4295#4296#0" expanded="true" />
-            <element signature="e#5415#5416#0" expanded="true" />
-            <element signature="e#5476#5477#0" expanded="true" />
-            <element signature="e#6005#6006#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/WallChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="201" column="41" lean-forward="true" selection-start-line="201" selection-start-column="41" selection-end-line="201" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -955,40 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/methods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1633#1634#0" expanded="true" />
-            <element signature="e#1695#1696#0" expanded="true" />
-            <element signature="e#1726#1727#0" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="90" column="18" lean-forward="true" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostRunnable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -1005,16 +619,6 @@
             <element signature="e#739#740#0" expanded="true" />
             <element signature="e#795#796#0" expanded="true" />
             <element signature="e#823#824#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1057,61 +661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/Host.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1243#1244#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-            <element signature="e#1325#1326#0" expanded="true" />
-            <element signature="e#1350#1351#0" expanded="true" />
-            <element signature="e#2292#2293#0" expanded="true" />
-            <element signature="e#2326#2327#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="1068" column="28" selection-start-line="1068" selection-start-column="28" selection-end-line="1068" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1906#1907#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1969#1970#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-            <element signature="e#2047#2048#0" expanded="true" />
-            <element signature="e#2653#2654#0" expanded="true" />
-            <element signature="e#2681#2682#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="40" lean-forward="true" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1122,10 +675,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/CharacterModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+        <state relative-caret-position="204">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1134,7 +687,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
+        <state relative-caret-position="493">
           <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1144,7 +697,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostQueueTaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
+        <state relative-caret-position="561">
           <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1154,7 +707,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionSignalProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
+        <state relative-caret-position="1088">
           <caret line="66" column="93" selection-start-line="66" selection-start-column="93" selection-end-line="66" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1162,10 +715,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="126" column="45" lean-forward="true" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
+          <caret line="240" column="18" selection-start-line="240" selection-start-column="18" selection-end-line="240" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2231#2232#0" expanded="true" />
+            <element signature="e#2264#2265#0" expanded="true" />
+            <element signature="e#3603#3604#0" expanded="true" />
+            <element signature="e#3667#3668#0" expanded="true" />
+            <element signature="e#3688#3689#0" expanded="true" />
+            <element signature="e#3752#3753#0" expanded="true" />
+            <element signature="e#7861#7862#0" expanded="true" />
+            <element signature="e#7912#7913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionUnpackProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1182,36 +753,225 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Connection/Action/ActionUnpackProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/Host.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        <state relative-caret-position="-424">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1243#1244#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1325#1326#0" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#2292#2293#0" expanded="true" />
+            <element signature="e#2326#2327#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/CharacterModel.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/awt/event/WindowEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+          <caret line="300" column="11" selection-start-line="300" selection-start-column="11" selection-end-line="300" selection-end-column="11" />
+          <folding>
+            <element signature="e#11964#11965#0" expanded="true" />
+            <element signature="e#12008#12009#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/GUI/CreateSessionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Subsystems/CharacterSheet/CharacterSheet.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ServerHost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="262" column="40" lean-forward="true" selection-start-line="262" selection-start-column="40" selection-end-line="262" selection-end-column="40" />
+        <state relative-caret-position="54">
+          <caret line="97" column="65" lean-forward="true" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#7601#7602#0" expanded="true" />
-            <element signature="e#7652#7653#0" expanded="true" />
+            <element signature="e#4093#4094#0" expanded="true" />
+            <element signature="e#4153#4154#0" expanded="true" />
+            <element signature="e#6059#6060#0" expanded="true" />
+            <element signature="e#6087#6088#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/GUI/JoinSessionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/AbilityScoreImprovement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/ClassAbility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Abilities/Ability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Classes/CharacterClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-121">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Entities/Characters/Classes/MonkClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/ClientHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-495">
+          <caret line="117" column="32" lean-forward="true" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/SubFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#338#462#0" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/SaveMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="53" lean-forward="true" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/TilesetPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="42" column="191" selection-start-line="42" selection-start-column="191" selection-end-line="42" selection-end-column="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/EditorFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/Creator/SelectedTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/ReceiveThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Threads/HostThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Connection/Hosts/SingleHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="116" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/methods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41">
+          <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1889#1890#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/Map/WallChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1811">
+          <caret line="155" column="58" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/System/Background.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-353">
+          <caret line="220" column="56" lean-forward="true" selection-start-line="220" selection-start-column="56" selection-end-line="220" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Game/GUI/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="105" column="41" lean-forward="true" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

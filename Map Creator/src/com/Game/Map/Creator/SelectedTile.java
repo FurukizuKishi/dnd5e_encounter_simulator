@@ -17,7 +17,7 @@ public class SelectedTile extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         int i = (y * (panel.getWidth() - panel.tileset.tileSize)) + x;
-        border = panel.tileset.drawTile(g, x, y, (i % panel.tileset.tw) * panel.tileset.tileSize, (i / panel.tileset.tw) * panel.tileset.tileSize, scale, Color.WHITE);
+        border = panel.tileset.drawTile(g, x, y, (i % panel.tileset.tw) * panel.tileset.tileSize, (i / panel.tileset.tw) * panel.tileset.tileSize, panel.tileset.tileSize, panel.tileset.tileSize, scale, Color.WHITE);
         repaint();
     }
 }

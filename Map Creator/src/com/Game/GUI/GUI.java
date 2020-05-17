@@ -13,6 +13,9 @@ import com.Game.System.Text.TextStore;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,6 +35,8 @@ public class GUI extends JFrame {
     public RoomLinker roomLinker = new RoomLinker(this);            //The room linker that allows for transitions between rooms.
     public HashMap<String, TextStore> textStores = new HashMap<>();         //A map storing all of the game's floating text.
     public HasFile imageSelector = new HasFile(this);               //The image selector for the game.
+    private ArrayList<SubFrame> subframes = new ArrayList<>();             //A list of all of the gui's subframes that close when the gui does.
+    private Dimension monitorSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     //The GUI constructor. Handles the initial setup of the game, creating fonts, enemy definitions, and setting the window's characteristics.
     public GUI(String title, int width, int height, int cameraWidth, int cameraHeight, ClientHost host) {
@@ -77,6 +82,27 @@ public class GUI extends JFrame {
         //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(title);
 
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                for (int i = 0; i < subframes.size(); i += 1) {
+                    subframes.get(0).dispatchEvent(new WindowEvent(subframes.get(0), WindowEvent.WINDOW_CLOSING));
+                }
+                host.endThread();
+            }
+        });
+
+        addWindowStateListener(new WindowStateListener() {
+            public void windowStateChanged(WindowEvent e) {
+                GUI gui = (GUI) e.getSource();
+                gui.setLocation(0, 0);
+                host.frame.setLocation(gui.monitorSize.width - host.frame.w, 0);
+                host.frame.setState(gui.getState());
+                for (int i = 0; i < subframes.size(); i += 1) {
+                    subframes.get(0).setState(gui.getState());
+                }
+            }
+        });
+
         roomLinker.unlinkRoom();
         roomLinker.startRoomSwitch(rooms.get(0));
         players.get("Akuma").teleport(6, 4);
@@ -89,6 +115,19 @@ public class GUI extends JFrame {
         //EditorFrame editor = new EditorFrame(this);
         setResizable(false);
         repaint();
+    }
+
+    //Add a subframe.
+    public void addSubframe(SubFrame frame) {
+        subframes.add(frame);
+    }
+    //Delete a subframe.
+    public void removeSubframe(SubFrame frame) {
+        subframes.remove(frame);
+    }
+    //Get the index of a subframe.
+    public int getSubframe(SubFrame frame) {
+        return subframes.indexOf(frame);
     }
 
     //Create a new room, setting its attributes, placing the player within it and spawning its enemies.

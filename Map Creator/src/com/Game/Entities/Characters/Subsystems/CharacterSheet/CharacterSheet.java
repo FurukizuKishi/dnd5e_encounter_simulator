@@ -4,6 +4,7 @@ import com.Game.Entities.Characters.Attacks.Attack;
 import com.Game.Entities.Characters.CharacterModel;
 import com.Game.Entities.Characters.Classes.CharacterClass;
 import com.Game.GUI.GUI;
+import com.Game.GUI.SubFrame;
 import com.Game.GUI.System.Fonts;
 import com.Game.System.InputMethods.MouseInput;
 import com.Game.methods;
@@ -83,7 +84,7 @@ public class CharacterSheet extends JPanel {
         assignAbilityScore("CHA", charisma);
     }
     public void assignAbilityScore(String score, int value) {
-        abilityScores.put(score, new int[] { value, (value - 10) / 2 });
+        abilityScores.put(score.toLowerCase(), new int[] { value, (value - 10) / 2 });
     }
 
     public void setName(String name) {
@@ -93,10 +94,10 @@ public class CharacterSheet extends JPanel {
         return name;
     }
     public int score(String score) {
-        return abilityScores.get(score.toUpperCase())[0];
+        return abilityScores.get(score.toLowerCase())[0];
     }
     public int mod(String score) {
-        return abilityScores.get(score.toUpperCase())[1];
+        return abilityScores.get(score.toLowerCase())[1];
     }
     public int AC() {
         return secondaryScores.get("AC");
@@ -257,7 +258,12 @@ public class CharacterSheet extends JPanel {
                     map.put(stat, value);
                 }
                 if (source != null) {
-                    source.setText(map.get(stat).toString());
+                    if (map == abilityScores) {
+                        source.setText(Integer.toString(score(stat)));
+                    }
+                    else {
+                        source.setText(map.get(stat).toString());
+                    }
                 }
             } else {
                 if (stat.equals("hp")) {
@@ -289,7 +295,7 @@ public class CharacterSheet extends JPanel {
         }
     }
     public void display() {
-        sheet = new JFrame();
+        sheet = new SubFrame(game);
         sheet.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 sheet = null;

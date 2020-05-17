@@ -1,6 +1,7 @@
 package com.Connection.Hosts;
 
 import com.Connection.Action.ActionUnpackProtocol;
+import com.Connection.GUI.CreateSessionGUI;
 import com.Connection.GUI.JoinSessionGUI;
 import com.Game.Entities.Characters.CharacterModel;
 import com.Game.GUI.GUI;
@@ -8,6 +9,7 @@ import com.Game.main;
 import com.Game.methods;
 import com.Game.swingMethods;
 
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -68,6 +70,7 @@ public class ClientHost extends SingleHost {
         }
         frame.closeConnectionLog(frame.w, frame.h);
         frame.changeConnectionButtons(false);
+        game.dispatchEvent(new WindowEvent(game, WindowEvent.WINDOW_CLOSING));
     }
 
     public boolean createProtocol() {
@@ -113,6 +116,7 @@ public class ClientHost extends SingleHost {
             if (holdingFlag() && !sentFlag) {
                 sendMessage(this.message);
                 sentFlag = true;
+                System.out.println(methods.tuple("FLAG_SENT", message, this));
             }
         }
         if (holdingMessage() && !messageProcessed) {
@@ -143,6 +147,10 @@ public class ClientHost extends SingleHost {
                         if ((!master && sentName) || (master && sentMaster)) {
                             receivedNameConfirmation = true;
                         }
+                    }
+                    if (message.startsWith("Processed command") || message.startsWith("Sent the command")) {
+                        sentFlag = false;
+                        System.out.println(methods.tuple("MSG_FLAG_RECEIVED"));
                     }
                 }
             }

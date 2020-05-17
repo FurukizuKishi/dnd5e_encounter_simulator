@@ -40,7 +40,7 @@ public class TilesetPanel extends JPanel {
                     if (Arrays.equals(selectedTile, new int[] {x, y})) {
                         scale = 1.2;
                     }
-                    tileset.drawTile(g, getX() + x, getY() + y, (i % tileset.tw) * tileset.tileSize, (i / tileset.tw) * tileset.tileSize, scale, Color.WHITE);
+                    tileset.drawTile(g, getX() + x, getY() + y, (i % tileset.tw) * tileset.tileSize, (i / tileset.tw) * tileset.tileSize, tileset.tileSize, tileset.tileSize, scale, Color.WHITE);
                     i += 1;
                 }
                 y += tileset.tileSize;

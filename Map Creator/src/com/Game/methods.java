@@ -11,6 +11,7 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,15 +36,26 @@ public class methods {
         if (start) {
             limit = "";
         }
-        if (obj instanceof String) {
-            return limit + "\"" + obj + "\"";
-        } else if (obj instanceof Collection) {
-            return limit + encapsulatedTuple("<", ">", limit, (Collection) obj);
-        } else if (obj.getClass().isArray()) {
-            return limit + encapsulatedTuple("[", "]", limit, (Object[]) obj);
-        } else {
-            return limit + obj;
+        if (obj != null) {
+            if (obj instanceof String) {
+                return limit + "\"" + obj + "\"";
+            } else if (obj instanceof Collection) {
+                return limit + encapsulatedTuple("<", ">", limit, (Collection) obj);
+            } else if (obj.getClass().isArray()) {
+                if (obj.getClass().getComponentType().isPrimitive()) {
+                    ArrayList array = new ArrayList();
+                    int length = Array.getLength(obj);
+                    for (int i = 0; i < length; i++) {
+                        array.add(Array.get(obj, i));
+                    }
+                    return limit + encapsulatedTuple("[", "]", limit, array.toArray());
+                }
+                return limit + encapsulatedTuple("[", "]", limit, (Object[]) obj);
+            } else {
+                return limit + obj;
+            }
         }
+        return limit + null;
     }
 
     public static String limitedTuple(String limit, Object ... str) {

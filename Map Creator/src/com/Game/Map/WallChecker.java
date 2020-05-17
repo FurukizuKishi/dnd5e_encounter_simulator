@@ -1,6 +1,7 @@
 package com.Game.Map;
 
 import com.Game.System.Enums;
+import com.Game.methods;
 
 import java.util.Arrays;
 
@@ -138,7 +139,7 @@ public class WallChecker {
             int[] diagonalCode = {};
             try {
                 if (this.map.isWall(map, x, y)) {
-                    code = new int[]{top, bottom, left, right};
+                    code = new int[] {top, bottom, left, right};
                     diagonalCode = new int[] {topLeft, topRight, bottomLeft, bottomRight};
                     if (x == 0) {
                         code = new int[]{top, bottom, 1, right};
@@ -197,6 +198,9 @@ public class WallChecker {
                         }
                     }
                 }
+            }
+            if (!(code.length == 4 || code.length == 8)) {
+                code = Arrays.copyOf(code, 4);
             }
             //System.out.println(concatenateCode(code));
             return concatenateCode(code);
