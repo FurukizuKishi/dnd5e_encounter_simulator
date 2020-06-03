@@ -17,7 +17,14 @@ public class swingMethods {
         return createPanel(frame, null, x, y, w, h);
     }
     public static JPanel createPanel(JFrame frame, String title, int x, int y, int w, int h) {
-        JPanel panel = new JPanel();
+        JPanel panel = alterPanel(new JPanel(), title, x, y, w, h);
+        frame.add(panel);
+        return panel;
+    }
+    public static JPanel alterPanel(JPanel panel, int x, int y, int w, int h) {
+        return alterPanel(panel, null, x, y, w, h);
+    }
+    public static JPanel alterPanel(JPanel panel, String title, int x, int y, int w, int h) {
         panel.setLocation(x, y);
         panel.setLayout(null);
         if (title != null) {
@@ -25,7 +32,6 @@ public class swingMethods {
         }
         panel.setSize(w, h);
         panel.setVisible(true);
-        frame.add(panel);
         return panel;
     }
     public static TilesetPanel createTilesetPanel(JFrame frame, String tilesheet, int x, int y, int w, int h, int ts) {

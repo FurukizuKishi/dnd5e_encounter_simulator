@@ -33,7 +33,7 @@ public class ReceiveThread extends HostRunnable {
         try {
             String input;
             if ((input = in.readLine()) != null) {
-                System.out.println(methods.tuple("RCV", input, host));
+                //System.out.println(methods.tuple("RCV", input, host));
                 host.receiveMessage(input);
                 if (methods.messageIsFlag(input)) {
                     host.addCommand(input);

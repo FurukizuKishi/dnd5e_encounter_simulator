@@ -70,7 +70,7 @@ public class Background {
             initializeTileMap();
         }
         catch (Exception e) {
-            System.out.println("[ERR]: " + e + " " +  backgroundPath);
+            //System.out.println("[ERR]: " + e + " " +  backgroundPath);
             setTilesheet(methods.getImage(backgroundPath), tileSize);
             //System.out.println(tileSheet);
             exit();
@@ -177,7 +177,7 @@ public class Background {
 
     //Draw the repeating pattern for the room's floor.
     public void drawRoomFloor(Graphics g, int tileX, int tileY, int screenX, int screenY, int screenTileW, int screenTileH) {
-        System.out.println(methods.tuple("floor"));
+        //System.out.println(methods.tuple("floor"));
         int[] td = getTileDimensions(0, 0, tileSize, tileSize, screenX, screenY, screenTileW, screenTileH);
         g.drawImage(tileSheet, td[4], td[5], td[6], td[7], 0, 0, tileSize, tileSize, null);
         //g.drawImage(tileSheet, screenX - 1, screenY, screenX + screenTileW + 1, screenY + screenTileH, 0, 0, tileSize, tileSize, null);
@@ -216,18 +216,18 @@ public class Background {
     public int[] getTileDimensions(int tileX, int tileY, int tileW, int tileH, int screenX, int screenY, int screenTileW, int screenTileH) {
         int sx1 = tileX, sy1 = tileY, sx2 = tileX + tileW, sy2 = tileY + tileH;
         int dx1 = screenX - 1, dy1 = screenY, dx2 = screenX + screenTileW + 1, dy2 = screenY + screenTileH;
-        System.out.println("1 " + methods.tuple("tile", sx1, sy1, sx2, sy2, "screen", dx1, dy1, dx2, dy2));
+        //System.out.println("1 " + methods.tuple("tile", sx1, sy1, sx2, sy2, "screen", dx1, dy1, dx2, dy2));
         if (screenX < 0) {
             sx1 = sx1 + (screenX / screenTileW) * tileW;
             dx1 = 0;
             dx2 = dx2 - (screenX + screenTileW);
-            System.out.println("  2 " + methods.tuple("X", screenX, "source", sx1, sx2, "dest", dx1, dx2));
+            //System.out.println("  2 " + methods.tuple("X", screenX, "source", sx1, sx2, "dest", dx1, dx2));
         }
         if (screenY < 0) {
             sy1 = sy1 + (screenY / screenTileH) * tileH;
             dy1 = 0;
             dy2 = dy2 - (screenY + screenTileH);
-            System.out.println("  2 " + methods.tuple("Y", screenY, "source", sy1, sy2, "dest", dy1, dy2));
+            //System.out.println("  2 " + methods.tuple("Y", screenY, "source", sy1, sy2, "dest", dy1, dy2));
         }
         return new int[] {sx1, sy1, sx2, sy2, dx1, dy1, dx2, dy2};
     }
@@ -245,7 +245,7 @@ public class Background {
                 } else {
                     tilePos = tileGrid[tileY][tileX];
                 }
-                System.out.println(methods.tuple("wall", autotiled, tileX, tileY, tilePos, code));
+                //System.out.println(methods.tuple("wall", autotiled, tileX, tileY, tilePos, code));
                 if (tilePos != null) {
                     int[] td = getTileDimensions(tilePos[0] * tileSize, tilePos[1] * tileSize, tileSize, tileSize, screenX, screenY, screenTileW, screenTileH);
                     g.drawImage(tileSheet, td[4], td[5], td[6], td[7], td[0], td[1], td[2], td[3], null);

@@ -23,7 +23,7 @@ public abstract class HostQueueTaker<T> extends HostRunnable {
                         host.endThread(endReason);
                         return false;
                     }
-                    System.out.println(methods.tuple("MSG_TAKE", item, host.toString()));
+                    //System.out.println(methods.tuple("MSG_TAKE", item, host.toString()));
                     continueTakeProcess();
                 }
             }

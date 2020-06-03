@@ -13,7 +13,7 @@ public abstract class ActionProtocol<T> extends HostQueueTaker<T> {
     }
 
     public void setItem() {
-        setItem(null);
+        this.command = null;
     }
     public T getItem() {
         return command;
@@ -22,16 +22,16 @@ public abstract class ActionProtocol<T> extends HostQueueTaker<T> {
         return (command != null);
     }
 
-    public boolean setCommand(T command) {
+    public boolean setItem(T command) {
         if (command != null) {
-            System.out.println(methods.tuple("SET", this, command));
+            //System.out.println(methods.tuple("SET", this, command));
             this.command = command;
             return true;
         }
         return false;
     }
     public void releaseCommand() {
-        System.out.println(methods.tuple("RELEASE", this, command));
+        //System.out.println(methods.tuple("RELEASE", this, command));
         setItem();
     }
 

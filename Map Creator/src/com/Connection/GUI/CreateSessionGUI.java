@@ -19,6 +19,7 @@ public class CreateSessionGUI extends ConnectionGUI {
 
     public CreateSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Create", w, h);
+        createInterface(w, h);
     }
 
     public String getConnectionKey(ServerThreadHost host) {
@@ -56,6 +57,7 @@ public class CreateSessionGUI extends ConnectionGUI {
 
     public void createInterface(int w, int h) {
         super.createInterface(w, h);
+        System.out.println(methods.tuple(2, panel));
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 frame.createSessionGUI = null;

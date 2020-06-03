@@ -11,8 +11,14 @@ public class ActionUnpackProtocol extends ActionProtocol<String> {
         startThread();
     }
 
+    public void continueTakeProcess() {
+        processCommand();
+        releaseCommand();
+    }
+
     public boolean setItem(String command) {
         if (command != null) {
+            client.addLog("Set the command \"" + command + "\".");
             this.command = command;
             return true;
         }
@@ -20,8 +26,7 @@ public class ActionUnpackProtocol extends ActionProtocol<String> {
     }
 
     public void releaseCommand() {
-        client.setMessage();
-        client.sentFlag = false;
+        client.addLog("Released the command \"" + command + "\".");
         super.releaseCommand();
     }
 

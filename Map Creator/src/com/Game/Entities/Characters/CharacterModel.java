@@ -66,10 +66,10 @@ public abstract class CharacterModel extends Entity implements Comparable<Charac
     public int[] moveKey(Enums.key input) {
         int[] move = new int[2];
         switch (input) {
-            case LEFT: move = new int[] {-1, 0}; System.out.println("[DBG]: Moved left."); break;
-            case RIGHT: move = new int[] {1, 0}; System.out.println("[DBG]: Moved right."); break;
-            case UP: move = new int[] {0, -1}; System.out.println("[DBG]: Moved up."); break;
-            case DOWN: move = new int[] {0, 1}; System.out.println("[DBG]: Moved down."); break;
+            case LEFT: move = new int[] {-1, 0}; break;
+            case RIGHT: move = new int[] {1, 0}; break;
+            case UP: move = new int[] {0, -1}; break;
+            case DOWN: move = new int[] {0, 1}; break;
         }
         if (map.checkEntityPositions(x + move[0], y + move[1]) == null) {
             boolean collided = checkCollision(move[0], move[1]);

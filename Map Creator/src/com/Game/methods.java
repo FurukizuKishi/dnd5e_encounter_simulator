@@ -25,7 +25,7 @@ public class methods {
             if (str[i] != null) {
                 tuple += determineObjectPrintout(str[i], limit, false);
             } else {
-                tuple += ", " + str[i];
+                tuple += limit + str[i];
             }
         }
         tuple += endChar;
@@ -33,14 +33,15 @@ public class methods {
     }
 
     public static String determineObjectPrintout(Object obj, String limit, boolean start) {
+        String startLimit = limit;
         if (start) {
-            limit = "";
+            startLimit = "";
         }
         if (obj != null) {
             if (obj instanceof String) {
-                return limit + "\"" + obj + "\"";
+                return startLimit + "\"" + obj + "\"";
             } else if (obj instanceof Collection) {
-                return limit + encapsulatedTuple("<", ">", limit, (Collection) obj);
+                return startLimit + encapsulatedTuple("<", ">", limit, (Collection) obj);
             } else if (obj.getClass().isArray()) {
                 if (obj.getClass().getComponentType().isPrimitive()) {
                     ArrayList array = new ArrayList();
@@ -48,14 +49,14 @@ public class methods {
                     for (int i = 0; i < length; i++) {
                         array.add(Array.get(obj, i));
                     }
-                    return limit + encapsulatedTuple("[", "]", limit, array.toArray());
+                    return startLimit + encapsulatedTuple("[", "]", limit, array.toArray());
                 }
-                return limit + encapsulatedTuple("[", "]", limit, (Object[]) obj);
+                return startLimit + encapsulatedTuple("[", "]", limit, (Object[]) obj);
             } else {
-                return limit + obj;
+                return startLimit + obj;
             }
         }
-        return limit + null;
+        return startLimit + null;
     }
 
     public static String limitedTuple(String limit, Object ... str) {

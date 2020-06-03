@@ -113,29 +113,29 @@ public class ClientHost extends SingleHost {
             return false;
         }
         if (receivedNameConfirmation) {
+            //System.out.println(methods.tuple(holdingFlag(), sentFlag));
             if (holdingFlag() && !sentFlag) {
                 sendMessage(this.message);
                 sentFlag = true;
-                System.out.println(methods.tuple("FLAG_SENT", message, this));
+                //System.out.println(methods.tuple("FLAG_SENT", message, this));
             }
         }
         if (holdingMessage() && !messageProcessed) {
             String message = this.message;
-            System.out.println(message);
+            //System.out.println(message);
             if (!receivedNameConfirmation || holdingFlag() || message.startsWith("Processed command")) {
-                System.out.println(methods.tuple("MSG", message, this));
+                //System.out.println(methods.tuple("MSG", message, this));
                 if (!messageProcessed) {
                     try {
                         String substring = message.substring("Processed command \"".length(), message.length() - 2);
                         if (methods.messageIsFlag(substring)) {
                             createProtocol();
                             addCommand(substring);
-                            addLog("Unpacked command \"" + substring + "\".");
-                            System.out.println(methods.tuple("MSG_FLAG", substring, protocol));
-                            setMessage();
+                            addLog("Unpacked command \"" + substring + "\", protocol contains command '" + protocol.getItem() + "'.");
+                            //System.out.println(methods.tuple("MSG_FLAG", substring, protocol));
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println(methods.tuple("MSG_FLAG", null));
+                        //System.out.println(methods.tuple("MSG_FLAG", null));
                     }
                     if (message.equals("Who are you? I need your name.") && !sentName) {
                         sendMessage("Hello, I am " + name + ".");
@@ -148,11 +148,12 @@ public class ClientHost extends SingleHost {
                             receivedNameConfirmation = true;
                         }
                     }
-                    if (message.startsWith("Processed command") || message.startsWith("Sent the command")) {
-                        sentFlag = false;
-                        System.out.println(methods.tuple("MSG_FLAG_RECEIVED"));
-                    }
                 }
+            }
+            if (message.startsWith("Processed command") || message.startsWith("Sent the command")) {
+                sentFlag = false;
+                setMessage("Unpacked command.");
+                //System.out.println(methods.tuple("MSG_FLAG_RECEIVED", holdingFlag(), sentFlag));
             }
             messageProcessed = true;
         }

@@ -1,6 +1,7 @@
 package com.Connection.GUI;
 
 import com.Connection.Hosts.ClientHost;
+import com.Game.methods;
 import com.Game.swingMethods;
 
 import javax.swing.*;
@@ -13,20 +14,23 @@ public class JoinSessionGUI extends ConnectionGUI {
     public String clientName;
     public JoinSessionGUI(SessionGUI frame, int w, int h) {
         super(frame, "Join", w, h);
+        createInterface(w, h, new JoinSessionPanel(w, h));
+        ((JoinSessionPanel) panel).setGUI(this);
     }
 
-    public void createInterface(int w, int h) {
-        super.createInterface(w, h);
+    public void createInterface(int w, int h, JPanel panel) {
+        super.createInterface(w, h, panel);
+        System.out.println(methods.tuple(2, this.panel));
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 frame.joinSessionGUI = null;
             }
         });
 
-        hostField = swingMethods.createTextField("Hostname", panel, bx - bxo, by, bw, bh);
-        panel.add(hostField);
-        portNumber = swingMethods.createIntegerField("Port", panel, bx + bxo - bw, by, bw, bh);
-        panel.add(portNumber);
+        hostField = swingMethods.createTextField("Hostname", this.panel, bx - bxo, by, bw, bh);
+        this.panel.add(hostField);
+        portNumber = swingMethods.createIntegerField("Port", this.panel, bx + bxo - bw, by, bw, bh);
+        this.panel.add(portNumber);
     }
 
     public void changeConnectionButtons(boolean active) {

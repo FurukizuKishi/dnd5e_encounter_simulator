@@ -25,9 +25,12 @@ public abstract class ConnectionGUI extends JFrame {
 
     }
     public ConnectionGUI(SessionGUI frame, String action, int w, int h) {
+        this(frame, action, w, h, null);
+    }
+    public ConnectionGUI(SessionGUI frame, String action, int w, int h, JPanel panel) {
         this.frame = frame;
         setTitle(frame.getTitle() + " - " + action + " a Session");
-        createInterface(w, h);
+        //createInterface(w, h, panel);
     }
 
     public SessionGUI getFrame() {
@@ -39,17 +42,23 @@ public abstract class ConnectionGUI extends JFrame {
     }
 
     public void createInterface(int w, int h) {
+        createInterface(w, h, null);
+    }
+    public void createInterface(int w, int h, JPanel panel) {
         this.w = w;
         this.h = h;
         setSize(w, h);
+        this.panel = panel;
+        if (panel == null) {
+            this.panel = swingMethods.createPanel(this, 0, 0, w, h);
+        }
+        System.out.println(methods.tuple(1, this.panel));
 
-        panel = swingMethods.createPanel(this, 0, 0, w, h);
-
-        bw = panel.getWidth() / 4;
+        bw = this.panel.getWidth() / 4;
         bh = 16;
-        bx = (panel.getWidth() / 2);
-        bxo = (panel.getWidth() / 3);
-        by = (panel.getHeight() / 3);
+        bx = (this.panel.getWidth() / 2);
+        bxo = (this.panel.getWidth() / 3);
+        by = (this.panel.getHeight() / 3);
 
         connectButton = swingMethods.createButton("Connect", bx - (bw / 2), (by * 2) - 32, bw, bh);
         connectButton.addActionListener(new ActionListener() {
@@ -57,7 +66,7 @@ public abstract class ConnectionGUI extends JFrame {
                 connect(master);
             }
         });
-        panel.add(connectButton);
+        this.panel.add(connectButton);
 
         terminateButton = swingMethods.createButton("Terminate", bx - (bw / 2), by * 2, bw, bh);
         terminateButton.addActionListener(new ActionListener() {
@@ -66,7 +75,9 @@ public abstract class ConnectionGUI extends JFrame {
             }
         });
         terminateButton.setEnabled(false);
-        panel.add(terminateButton);
+        this.panel.add(terminateButton);
+
+        add(this.panel);
 
         setResizable(false);
         setVisible(true);

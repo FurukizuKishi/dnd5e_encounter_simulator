@@ -12,11 +12,16 @@ public class ActionSignalProtocol extends ActionProtocol<ActionCommand> {
         startThread();
     }
 
+    public void continueTakeProcess() {
+        processCommand();
+        releaseCommand();
+    }
+
     public boolean setItem(ActionCommand command) {
         if (command != null) {
             if (command.command != null) {
                 if (methods.messageIsFlag(command.command)) {
-                    super.setCommand(command);
+                    super.setItem(command);
                     return true;
                 }
             }
@@ -64,7 +69,7 @@ public class ActionSignalProtocol extends ActionProtocol<ActionCommand> {
         }
         if (result != null) {
             command.result = methods.concencateList(result, ":");
-            System.out.println(methods.tuple("PROCESS", this, command.host, command.result));
+            //System.out.println(methods.tuple("PROCESS", this, command.host, command.result));
         }
     }
 }

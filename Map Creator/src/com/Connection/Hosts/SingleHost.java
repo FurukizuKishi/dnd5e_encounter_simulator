@@ -60,7 +60,7 @@ public abstract class SingleHost extends Host<String> {
     public void setMessage(String message) {
         this.message = message;
         messageProcessed = false;
-        System.out.println(methods.tuple("MSG_SET"));
+        //System.out.println(methods.tuple("MSG_SET"));
     }
     public void setMessage() {
         setMessage(null);

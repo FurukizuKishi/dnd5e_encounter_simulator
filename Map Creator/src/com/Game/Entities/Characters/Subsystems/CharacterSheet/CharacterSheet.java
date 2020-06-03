@@ -275,7 +275,7 @@ public class CharacterSheet extends JPanel {
             }
         }
         catch (NullPointerException e) {
-            System.out.println("Could not find a field for '" + stat + "'.");
+            //System.out.println("Could not find a field for '" + stat + "'.");
         }
     }
 
