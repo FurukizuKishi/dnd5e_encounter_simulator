@@ -7,8 +7,7 @@ import com.Game.System.Enums;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static java.awt.event.MouseEvent.BUTTON1;
-import static java.awt.event.MouseEvent.BUTTON3;
+import static java.awt.event.MouseEvent.*;
 
 public class MouseGridInput extends MouseInput {
     GUI frame;
@@ -92,6 +91,18 @@ public class MouseGridInput extends MouseInput {
                             //System.out.println(character);
                             if (!frame.hud.select(character)) {
                                 character.charSheet.display();
+                            }
+                        }
+                    }
+                } break;
+            case BUTTON2:
+                for (CharacterModel character : frame.camera.getMap().characterList) {
+                    Point coords = frame.camera.getRelativeCoordinates(character.x * frame.camera.tileSize, character.y * frame.camera.tileSize);
+                    if (coords != null) {
+                        if ((new Rectangle(coords.x, coords.y, frame.camera.tileSize, frame.camera.tileSize)).contains(mx, my)) {
+                            //System.out.println(character);
+                            if (character.pathfinder.path.size() > 0) {
+                                character.actor.move();
                             }
                         }
                     }

@@ -116,9 +116,9 @@ public class Pathfinder {
     //Print the path.
     public void printPath() {
         for (int[] node : path) {
-            //System.out.print(methods.tuple(node[0], node[1]) + ", ");
+            System.out.print(methods.tuple(node) + ", ");
         }
-        //System.out.println();
+        System.out.println();
     }
 
     //Pathfind towards the player, one step at a time. This function checks each of the enemy's adjacent walls to see where it can move that reduces

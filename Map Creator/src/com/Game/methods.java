@@ -20,7 +20,13 @@ import java.util.Collection;
 public class methods {
     //Print multiples of variables inside brackets.
     public static String encapsulatedTuple(String beginChar, String endChar, String limit, Object ... str) {
-        String tuple = beginChar + determineObjectPrintout(str[0], limit, true);
+        String tuple;
+        try {
+            tuple = beginChar + determineObjectPrintout(str[0], limit, true);
+        }
+        catch (IndexOutOfBoundsException e) {
+            tuple = beginChar;
+        }
         for (int i = 1; i < str.length; i += 1) {
             if (str[i] != null) {
                 tuple += determineObjectPrintout(str[i], limit, false);

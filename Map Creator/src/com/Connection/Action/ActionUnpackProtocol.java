@@ -1,7 +1,10 @@
 package com.Connection.Action;
 
 import com.Connection.Hosts.ClientHost;
+import com.Game.Entities.Characters.CharacterModel;
 import com.Game.methods;
+
+import java.util.ArrayList;
 
 public class ActionUnpackProtocol extends ActionProtocol<String> {
     private ClientHost client;
@@ -43,7 +46,27 @@ public class ActionUnpackProtocol extends ActionProtocol<String> {
                 client.addLog(args[0] + " = " + roll);
                 break;
             case "MOVE":
-
+                ArrayList<int[]> pathList = new ArrayList<>();
+                String str = "";
+                boolean inNode = false;
+                int[] node;
+                for (int i = 0; i < unpacked[1].length(); i += 1) {
+                    if (unpacked[1].charAt(i) == ']') {
+                        String[] nodeString = str.split(",");
+                        node = new int[] { Integer.parseInt(nodeString[0]), Integer.parseInt(nodeString[1]) };
+                        pathList.add(node);
+                        inNode = false;
+                        str = "";
+                    }
+                    if (inNode) {
+                        str += unpacked[1].charAt(i);
+                    }
+                    if (unpacked[1].charAt(i) == '[') {
+                        inNode = true;
+                    }
+                }
+                CharacterModel character = client.getGame().players.get(args[0]);
+                character.actor.move(pathList);
                 break;
             case "CHAR":
                 client.getGame().players.get(args[0]).charSheet.updateStat(args[1], Integer.parseInt(args[2]));

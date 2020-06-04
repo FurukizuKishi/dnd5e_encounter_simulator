@@ -12,6 +12,7 @@ import com.Game.swingMethods;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientHost extends SingleHost {
     private ActionUnpackProtocol protocol;
@@ -88,12 +89,21 @@ public class ClientHost extends SingleHost {
         return false;
     }
 
-    public void setFlag(String flag, CharacterModel character, String stat, int value) {
+    public void setFlag(String flag, CharacterModel character, String ... args) {
         switch (flag) {
             case "CHAR":
-                setMessage(("ALL(" + name + "):" + flag + ":" + character.name + "," + stat + "," + value));
+                setMessage("ALL(" + name + "):" + flag + ":" + character.name + "," + args[0] + "," + args[1]);
+                break;
+            case "MOVE":
+                setMessage("ALL(" + name + "):" + flag + ":" + character.name + "," + args[0]);
                 break;
         }
+    }
+    public void setStatFlag(CharacterModel character, String stat, int value) {
+        setFlag("CHAR", character, stat, Integer.toString(value));
+    }
+    public void setMoveFlag(CharacterModel character, ArrayList<int[]> nodes) {
+        setFlag("MOVE", character, methods.limitedTuple(",", nodes.toArray()));
     }
     public boolean holdingFlag() {
         if (holdingMessage()) {

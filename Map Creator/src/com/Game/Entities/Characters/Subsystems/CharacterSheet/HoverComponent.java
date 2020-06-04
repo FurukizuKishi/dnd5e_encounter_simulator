@@ -70,7 +70,7 @@ public class HoverComponent extends JPanel {
                             if (!source.getText().equals("")) {
                                 sheet.updateStat(source, map, stat, val);
                                 //System.out.println(methods.tuple("FLAG", sheet, sheet.character));
-                                sheet.getGame().host.setFlag("CHAR", sheet.character,  stat, val);
+                                sheet.getGame().host.setStatFlag(sheet.character,  stat, val);
                             }
                         } catch (NumberFormatException ex) {
 

@@ -62,6 +62,11 @@ public class Camera extends JPanel {
         this.hud = hud;
     }
 
+    //Get the camera's frame object.
+    public JFrame getGame() {
+        return frame;
+    }
+
     //Change the camera's current map. Alone this won't work. For a full removal, the com.Game.GUI's unlinkRoom() function will need to be called.
     public void setMap(Map map) {
         this.map = map;

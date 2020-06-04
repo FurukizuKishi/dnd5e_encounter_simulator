@@ -61,7 +61,7 @@ public class ActionSignalProtocol extends ActionProtocol<ActionCommand> {
                 result[2] = summation + "=" + roll[0];
                 break;
             case "MOVE":
-                result = new String[] {flag, args[0] + "," + args[1] + "," + args[2]};
+                result = new String[] {flag, unpacked[2]};
                 break;
             case "CHAR":
                 result = new String[] {flag, args[0] + "," + args[1] + "," + args[2]};

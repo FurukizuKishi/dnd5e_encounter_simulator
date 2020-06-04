@@ -1,8 +1,10 @@
 package com.Game.Entities.Characters.Subsystems;
 
 import com.Game.Entities.Characters.CharacterModel;
+import com.Game.GUI.GUI;
 import com.Game.System.Enums;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Actor {
@@ -108,6 +110,10 @@ public class Actor {
 
     }
 
+    public boolean move(ArrayList<int[]> path) {
+        owner.pathfinder.path = path;
+        return move();
+    }
     public boolean move() {
         moving = false;
         if (owner.pathfinder.path.size() > node + 1) {
@@ -131,6 +137,7 @@ public class Actor {
             if (node < owner.pathfinder.getMove() - 1) {
                 closePath(node, true);
             } else {
+                ((GUI) owner.map.camera.getGame()).host.setMoveFlag(owner, owner.pathfinder.path);
                 closePath(-1, true);
             }
         }
@@ -138,6 +145,7 @@ public class Actor {
     }
     public void closePath(int node, boolean clear) {
         this.node = node;
+        owner.pathfinder.path = null;
         owner.pathfinder.activate(clear);
         moving = false;
     }
